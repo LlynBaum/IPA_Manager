@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ipa.Manager.Controllers;
 
+[Authorize]
 public class AuthController : ControllerBase
 {
     [AllowAnonymous]
@@ -37,6 +38,7 @@ public class AuthController : ControllerBase
         return Redirect("/");
     }
 
+    [AllowAnonymous]
     [HttpPost("/register")]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest)
     {
