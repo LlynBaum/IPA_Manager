@@ -1,2 +1,2 @@
 # IPA_Manager
-IPA Manager Tool für Lerhlinge
+IPA Manager Tool für Lehrlinge
