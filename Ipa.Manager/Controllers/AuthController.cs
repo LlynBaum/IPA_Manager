@@ -36,6 +36,13 @@ public class AuthController : ControllerBase
 
         return Redirect("/");
     }
+
+    [HttpPost("/register")]
+    public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest)
+    {
+        // TODO: create user
+        return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password));
+    }
     
     [HttpGet("/logout")]
     public async Task<IActionResult> LogoutAsync()
@@ -45,4 +52,6 @@ public class AuthController : ControllerBase
     }
 
     public record LoginRequest(string Username, string Password);
+
+    public record RegisterRequest(string Username, string Password);
 }
