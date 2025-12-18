@@ -1,1 +1,7 @@
 @page "/login"
+
+<form action="/login" method="post">
+    <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
+    <input type="text" name="Username" required />
+    <input type="password" name="Password" required />
+</form>
