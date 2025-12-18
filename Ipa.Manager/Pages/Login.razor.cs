@@ -9,6 +9,17 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
 
+    private string? username;
+    private string? password;
+
+    private bool IsInputValid()
+    {
+        return username is not null 
+               && username.Length > 0 
+               && password is not null 
+               && password.Length > 0;
+    }
+    
     private void ToRegister()
     {
         navigationManager.NavigateTo("/register");
