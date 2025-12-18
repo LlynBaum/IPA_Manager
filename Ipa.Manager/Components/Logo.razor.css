@@ -1,0 +1,18 @@
+.app-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-lg);
+    background: var(--primary-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--primary-shadow);
+    opacity: 0.9;
+}
+
+.app-icon svg {
+    width: 36px;
+    height: 36px;
+    color: var(--surface);
+}
