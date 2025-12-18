@@ -27,7 +27,7 @@ jobs:
           --results-directory TestResults
 
       - name: Upload test results
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
