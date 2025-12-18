@@ -24,4 +24,8 @@
         <Using Include="System.Threading.Tasks"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Ipa.Manager\Ipa.Manager.csproj" />
+    </ItemGroup>
+
 </Project>
