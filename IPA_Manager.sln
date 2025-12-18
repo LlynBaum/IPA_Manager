@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPA_Manager", "IPA_Manager\IPA_Manager.csproj", "{7FD9EA56-D5CE-4360-A588-6207E820E7D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ipa.Manager", "Ipa.Manager\Ipa.Manager.csproj", "{7FD9EA56-D5CE-4360-A588-6207E820E7D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

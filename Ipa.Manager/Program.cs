@@ -1,4 +1,4 @@
-using IPA_Manager;
+using Ipa.Manager;
 
 var builder = WebApplication.CreateBuilder(args);
 
