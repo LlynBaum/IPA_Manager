@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ipa.Manager", "Ipa.Manager\Ipa.Manager.csproj", "{7FD9EA56-D5CE-4360-A588-6207E820E7D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ipa.Manager.Tests", "Ipa.Manager.Tests\Ipa.Manager.Tests.csproj", "{036BD226-7455-4413-B46C-2023AC10B23F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{7FD9EA56-D5CE-4360-A588-6207E820E7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FD9EA56-D5CE-4360-A588-6207E820E7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FD9EA56-D5CE-4360-A588-6207E820E7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036BD226-7455-4413-B46C-2023AC10B23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036BD226-7455-4413-B46C-2023AC10B23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036BD226-7455-4413-B46C-2023AC10B23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036BD226-7455-4413-B46C-2023AC10B23F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
