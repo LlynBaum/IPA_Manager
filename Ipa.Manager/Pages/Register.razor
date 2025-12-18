@@ -1,5 +1,4 @@
 @page "/register"
-@using Microsoft.AspNetCore.Components
 
 <div class="register-container">
     <div class="register-card">
@@ -56,7 +55,7 @@
         </form>
 
         <div class="footer-text">
-            <p>Already have an account? <a href="/login">Sign in</a></p>
+            <p>Already have an account? <button @onclick="@ToLogin">Sign in</button></p>
         </div>
     </div>
 </div>
