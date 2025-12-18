@@ -1,8 +1,17 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Ipa.Manager.Components
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)"/>
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                <RedirectToLogin />
+            </NotAuthorized>
+        </AuthorizeRouteView>
     </Found>
     <NotFound>
-        <p>Whoops, nothing is here.</p>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Not found</p>
+        </LayoutView>
     </NotFound>
 </Router>
