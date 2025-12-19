@@ -51,7 +51,6 @@ public class ApplicationDbContext : DbContext
                   .HasColumnType("TIMESTAMP")
                   .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
-            // Configure JSON column for FulfilledRequirementIds
             entity.Property(c => c.FulfilledRequirementIds)
                   .HasColumnType("json");
 

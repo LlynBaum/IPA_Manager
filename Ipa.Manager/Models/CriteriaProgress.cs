@@ -7,6 +7,7 @@ namespace Ipa.Manager.Models;
 public class CriteriaProgress
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("id")]
     public int Id { get; set; }
 
@@ -18,9 +19,8 @@ public class CriteriaProgress
     [MaxLength(50)]
     public string CriteriaId { get; set; } = string.Empty;
 
-    // We will configure this to map to JSON in DbContext
     [Column("fulfilled_requirement_ids")]
-    public List<int> FulfilledRequirementIds { get; set; } = new List<int>();
+    public List<int> FulfilledRequirementIds { get; set; } = [];
 
     [Column("notes")]
     [MaxLength(1000)]

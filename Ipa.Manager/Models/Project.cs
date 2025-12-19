@@ -7,6 +7,7 @@ namespace Ipa.Manager.Models;
 public class Project
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("id")]
     public int Id { get; set; }
 
@@ -29,5 +30,5 @@ public class Project
     [ForeignKey("UserId")]
     public User User { get; set; } = null!;
 
-    public ICollection<CriteriaProgress> CriteriaProgress { get; set; } = new List<CriteriaProgress>();
+    public ICollection<CriteriaProgress> CriteriaProgress { get; set; } = [];
 }
