@@ -55,7 +55,6 @@
 
     <ItemGroup>
       <Folder Include="Components\" />
-      <Folder Include="Database\" />
       <Folder Include="Services\" />
     </ItemGroup>
 

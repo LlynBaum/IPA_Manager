@@ -1,7 +1,7 @@
 using Ipa.Manager.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ipa.Manager.Data;
+namespace Ipa.Manager.Database;
 
 public class ApplicationDbContext : DbContext
 {

@@ -1,5 +1,5 @@
 using Ipa.Manager;
-using Ipa.Manager.Data;
+using Ipa.Manager.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
