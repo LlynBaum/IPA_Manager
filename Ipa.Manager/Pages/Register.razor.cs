@@ -8,7 +8,7 @@ public partial class Register(NavigationManager navigationManager) : ComponentBa
 {
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
-    
+    // TODO: prevent submitting when passwords do not match
     private void ToLogin()
     {
         navigationManager.NavigateTo("/login");
