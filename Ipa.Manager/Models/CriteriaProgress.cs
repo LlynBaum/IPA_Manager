@@ -17,7 +17,7 @@ public class CriteriaProgress
     [Required]
     [Column("criteria_id")]
     [MaxLength(50)]
-    public string CriteriaId { get; set; } = string.Empty;
+    public required string CriteriaId { get; set; }
 
     [Column("fulfilled_requirement_ids")]
     public List<int> FulfilledRequirementIds { get; set; } = [];
