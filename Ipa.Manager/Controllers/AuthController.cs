@@ -11,10 +11,11 @@ using Microsoft.EntityFrameworkCore;
 namespace Ipa.Manager.Controllers;
 
 [Authorize]
+[Route("auth")]
 public class AuthController(ApplicationDbContext context, IPasswordHasher<User> passwordHasher) : ControllerBase
 {
     [AllowAnonymous]
-    [HttpPost("/login")]
+    [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromForm] LoginRequest loginRequest, CancellationToken cancellationToken)
     {
         var user = await context.Users.SingleOrDefaultAsync(u => u.Username == loginRequest.Username, cancellationToken);
@@ -52,7 +53,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
     }
 
     [AllowAnonymous]
-    [HttpPost("/register")]
+    [HttpPost("register")]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest, CancellationToken cancellationToken)
     {
         // The default Implementation of PasswordHasher does not use the value of user
@@ -69,7 +70,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
         return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password), cancellationToken);
     }
     
-    [HttpGet("/logout")]
+    [HttpGet("logout")]
     public async Task<IActionResult> LogoutAsync()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
