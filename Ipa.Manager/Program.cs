@@ -1,8 +1,8 @@
 using Ipa.Manager;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Ipa.Manager.Data;
 using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Identity;
+using Ipa.Manager.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

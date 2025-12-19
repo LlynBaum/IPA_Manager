@@ -1,14 +1,10 @@
 using Ipa.Manager.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ipa.Manager.Data;
+namespace Ipa.Manager.Database;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<User> Users { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<CriteriaProgress> CriteriaProgress { get; set; }
@@ -51,7 +47,6 @@ public class ApplicationDbContext : DbContext
                   .HasColumnType("TIMESTAMP")
                   .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
-            // Configure JSON column for FulfilledRequirementIds
             entity.Property(c => c.FulfilledRequirementIds)
                   .HasColumnType("json");
 
