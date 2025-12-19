@@ -1,33 +1,18 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
-@using Ipa.Manager.Components
 @using Ipa.Manager.Auth
+@using Ipa.Manager.Components
 
-@if (IsLoginPage)
-{
+<CascadingUserContext>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+                <NotAuthorized>
+                    <RedirectToLogin />
+                </NotAuthorized>
+            </AuthorizeRouteView>
         </Found>
     </Router>
-}
-else
-{
-    <CascadingUserContext>
-        <AuthorizeView>
-            <Authorized>
-                <Router AppAssembly="@typeof(App).Assembly">
-                    <Found Context="routeData">
-                        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-                    </Found>
-                </Router>
-            </Authorized>
-
-            <NotAuthorized>
-                <RedirectToLogin />
-            </NotAuthorized>
-        </AuthorizeView>
-    </CascadingUserContext>
-}
+</CascadingUserContext>
 
 @code {
     [Inject] NavigationManager Nav { get; set; } = default!;
