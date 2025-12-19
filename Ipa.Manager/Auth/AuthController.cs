@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ipa.Manager.Controllers;
+namespace Ipa.Manager.Auth;
 
 [Authorize]
 [Route("auth")]

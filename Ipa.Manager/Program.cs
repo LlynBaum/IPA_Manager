@@ -1,5 +1,5 @@
 using Ipa.Manager;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Ipa.Manager.Auth;
 using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Identity;
 using Ipa.Manager.Database;
@@ -14,17 +14,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddCascadingAuthenticationState();
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Cookie.Name = "wih.auth";
-        options.LoginPath = "/login";
-        options.LogoutPath = "/logout";
-        options.AccessDeniedPath = "/denied";
-        options.SlidingExpiration = true;
-        options.ExpireTimeSpan = TimeSpan.FromDays(7);
-    });
+builder.Services.AddCookieAuth();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

@@ -1,0 +1,27 @@
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+
+<CascadingValue TValue="UserContext" Value="@userContext" ChildContent="@ChildContent" />
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [CascadingParameter]
+    public required Task<AuthenticationState> Authentication { get; set; }
+    
+    private UserContext userContext = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var auth = await Authentication;
+        
+        var userIdStr = auth.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var username = auth.User.FindFirstValue(ClaimTypes.Name);
+        
+        if(userIdStr is not null && int.TryParse(userIdStr, out var id))
+        {
+            userContext = new UserContext(id, username!);
+        }
+    }
+}
