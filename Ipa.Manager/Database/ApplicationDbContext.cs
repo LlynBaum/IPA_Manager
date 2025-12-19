@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ipa.Manager.Database;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<User> Users { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<CriteriaProgress> CriteriaProgress { get; set; }
