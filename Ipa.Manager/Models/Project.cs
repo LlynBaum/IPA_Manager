@@ -17,12 +17,12 @@ public class Project
     [Required]
     [Column("name")]
     [MaxLength(255)]
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     [Required]
     [Column("topic")]
     [MaxLength(255)]
-    public string Topic { get; set; } = string.Empty;
+    public required string Topic { get; set; }
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

@@ -16,12 +16,12 @@ public class User
     [Required]
     [Column("username")]
     [MaxLength(100)]
-    public string Username { get; set; } = string.Empty;
+    public required string Username { get; set; }
 
     [Required]
     [Column("password_hash")]
     [MaxLength(255)]
-    public string PasswordHash { get; set; } = string.Empty;
+    public required string PasswordHash { get; set; }
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
