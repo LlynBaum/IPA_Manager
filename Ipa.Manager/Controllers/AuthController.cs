@@ -55,13 +55,13 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
     [HttpPost("/register")]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest, CancellationToken cancellationToken)
     {
+        // The default Implementation of PasswordHasher does not use the value of user
+        var passwordHash = passwordHasher.HashPassword(null!, registerRequest.Password);
         var user = new User
         {
-            Username = registerRequest.Username
+            Username = registerRequest.Username,
+            PasswordHash = passwordHash
         };
-        
-        var passwordHash = passwordHasher.HashPassword(user, registerRequest.Password);
-        user.PasswordHash = passwordHash;
 
         await context.Users.AddAsync(user, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
