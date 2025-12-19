@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Ipa.Manager.Data;
+using Ipa.Manager.Database;
 using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
