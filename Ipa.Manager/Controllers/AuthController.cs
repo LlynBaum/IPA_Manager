@@ -1,26 +1,39 @@
 using System.Security.Claims;
+using Ipa.Manager.Data;
+using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ipa.Manager.Controllers;
 
 [Authorize]
-public class AuthController : ControllerBase
+public class AuthController(ApplicationDbContext context, IPasswordHasher<User> passwordHasher) : ControllerBase
 {
     [AllowAnonymous]
     [HttpPost("/login")]
-    public async Task<IActionResult> LoginAsync([FromForm] LoginRequest loginRequest)
+    public async Task<IActionResult> LoginAsync([FromForm] LoginRequest loginRequest, CancellationToken cancellationToken)
     {
-        // TODO: get user from db
-        var username = "";
-        var userId = 1;
+        var user = await context.Users.SingleOrDefaultAsync(u => u.Username == loginRequest.Username, cancellationToken);
+
+        if (user is null)
+        {
+            return Redirect("/login");
+        }
+
+        var loginResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginRequest.Password);
+        if (loginResult != PasswordVerificationResult.Success)
+        {
+            return Redirect("/login");
+        }
         
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, userId.ToString()),
-            new(ClaimTypes.Name, username),
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, user.Username),
         };
         
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -40,10 +53,20 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("/register")]
-    public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest)
+    public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest, CancellationToken cancellationToken)
     {
-        // TODO: create user
-        return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password));
+        var user = new User
+        {
+            Username = registerRequest.Username
+        };
+        
+        var passwordHash = passwordHasher.HashPassword(user, registerRequest.Password);
+        user.PasswordHash = passwordHash;
+
+        await context.Users.AddAsync(user, cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
+        
+        return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password), cancellationToken);
     }
     
     [HttpGet("/logout")]
