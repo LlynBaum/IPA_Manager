@@ -46,7 +46,6 @@ app.UseAntiforgery();
 app.MapStaticAssets().AllowAnonymous();
 app.MapControllers();
 app.MapRazorComponents<App>()
-    .RequireAuthorization()
     .AddInteractiveServerRenderMode();
 
 app.Run();
