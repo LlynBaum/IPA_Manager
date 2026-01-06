@@ -9,6 +9,10 @@
     <ItemGroup>
       <AdditionalFiles Include="Pages\Home.razor" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="Ipa.Manager.Tests" />
+    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
