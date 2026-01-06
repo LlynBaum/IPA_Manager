@@ -10,6 +10,6 @@ public class LoginE2E : PlaywrightTestBase
         await Page.GotoAsync(BaseUrl);
 
         await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
-        Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}/login?ReturnUrl=%2F"));
+        Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}login?ReturnUrl=%2F"));
     }
 }

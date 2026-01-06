@@ -16,7 +16,7 @@ internal class PlaywrightServerFixture
         var connectionString = mySqlContainer.GetConnectionString();
         
         Factory = new TestWebAppFactory(connectionString);
-        _ = Factory.CreateClient(); // Force the host to be built + started so CreateHost() runs
+        await Factory.StartAsync();
     }
     
     [OneTimeTearDown]

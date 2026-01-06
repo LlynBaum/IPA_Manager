@@ -17,7 +17,7 @@ public class PlaywrightTestBase : PageTest
     [SetUp]
     public async Task SetUp()
     {
-        BaseUrl = PlaywrightServerFixture.Factory.BaseUrl;
+        BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
         
         Scope = PlaywrightServerFixture.Factory.Services.CreateScope();
         Db = Scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
