@@ -46,7 +46,6 @@ jobs:
         run: dotnet build --configuration Release
 
       # Install Playwright browsers + Linux dependencies
-      # IMPORTANT: set working-directory to the project that references Microsoft.Playwright
       - name: Install Playwright
         shell: pwsh
         working-directory: Ipa.Manager.Tests
