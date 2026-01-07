@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.E2E;
 
 [NonParallelizable]
-public class PlaywrightTestBase : PageTest
+public class PlaywrightTestBase(bool enableTracing = false) : PageTest
 {
     /// <summary>
     /// The URL where the Blazor host is available.
