@@ -22,13 +22,15 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
 
         if (user is null)
         {
-            return Redirect("/login");
+            var loginUri = "/login" + QueryString.Create("ReturnUrl", loginRequest.ReturnUrl ?? "/");
+            return Redirect(loginUri);
         }
 
         var loginResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginRequest.Password);
         if (loginResult != PasswordVerificationResult.Success)
         {
-            return Redirect("/login");
+            var loginUri = "/login" + QueryString.Create("ReturnUrl", loginRequest.ReturnUrl ?? "/");
+            return Redirect(loginUri);
         }
         
         var claims = new List<Claim>
@@ -49,7 +51,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
                 ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
             });
 
-        return Redirect("/");
+        return Redirect(loginRequest.ReturnUrl ?? "/");
     }
 
     [AllowAnonymous]
@@ -67,7 +69,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
         await context.Users.AddAsync(user, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
         
-        return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password), cancellationToken);
+        return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password, registerRequest.ReturnUrl), cancellationToken);
     }
     
     [HttpGet("logout")]
@@ -77,7 +79,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
         return Redirect("/login");
     }
 
-    public record LoginRequest(string Username, string Password);
+    public record LoginRequest(string Username, string Password, string? ReturnUrl);
 
-    public record RegisterRequest(string Username, string Password);
+    public record RegisterRequest(string Username, string Password, string? ReturnUrl);
 }

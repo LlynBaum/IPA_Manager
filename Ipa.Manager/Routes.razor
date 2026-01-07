@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Ipa.Manager.Auth
-@using Ipa.Manager.Components
+
 
 <CascadingUserContext>
     <Router AppAssembly="@typeof(App).Assembly">
@@ -13,10 +13,3 @@
         </Found>
     </Router>
 </CascadingUserContext>
-
-@code {
-    [Inject] NavigationManager Nav { get; set; } = default!;
-
-    bool IsLoginPage => new Uri(Nav.Uri).AbsolutePath.Equals("/login", StringComparison.OrdinalIgnoreCase);
-}
-

@@ -22,6 +22,7 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
     
     private void ToRegister()
     {
-        navigationManager.NavigateTo("/register");
+        var registerUri = "/register" + QueryString.Create("ReturnUrl", ReturnUrl ?? "/");
+        navigationManager.NavigateTo(registerUri);
     }
 }
