@@ -1,0 +1,46 @@
+﻿//using Ipa.Manager.Database;
+//using Microsoft.EntityFrameworkCore;
+using Microsoft.Playwright.NUnit;
+using NUnit.Framework;
+
+namespace Ipa.Manager.Tests.E2E;
+
+[NonParallelizable]
+public class PlaywrightTestBase : PageTest
+{
+    /// <summary>
+    /// The URL where the Blazor host is available.
+    /// </summary>
+    protected string BaseUrl = string.Empty;
+    
+    /// <summary>
+    /// A DB Context for the current DB Instance. The data in the DB will be cleared after every Test run.
+    /// </summary>
+    //protected ApplicationDbContext Db;
+
+    /// <summary>
+    /// The ServiceProvider to access the DI Container.
+    /// </summary>
+    protected IServiceProvider ServiceProvider => scope.ServiceProvider;
+    
+    private IServiceScope scope;
+    
+    [SetUp]
+    public Task SetUp()
+    {
+        BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
+        
+        scope = PlaywrightServerFixture.Factory.Services.CreateScope();
+        //Db = Scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //await Db.Database.EnsureDeletedAsync();
+        //await Db.Database.MigrateAsync();
+        return Task.CompletedTask;
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        //Db.Dispose();
+        scope.Dispose();
+    }
+}
