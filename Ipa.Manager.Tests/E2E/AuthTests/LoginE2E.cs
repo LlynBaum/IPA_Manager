@@ -22,8 +22,8 @@ public class LoginE2E : PlaywrightTestBase
         Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}register?ReturnUrl=%2F"));
 
         await Page.GetByRole(AriaRole.Textbox, new () { Name = "username" }).FillAsync(username);
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).FillAsync(password);
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "confirm-password" }).FillAsync(password);
+        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).First.FillAsync(password);
+        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).Last.FillAsync(password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
