@@ -8,17 +8,29 @@ namespace Ipa.Manager.Tests.E2E;
 [NonParallelizable]
 public class PlaywrightTestBase : PageTest
 {
+    /// <summary>
+    /// The URL where the Blazor host is available.
+    /// </summary>
     protected string BaseUrl = string.Empty;
-
-    protected IServiceScope Scope;
+    
+    /// <summary>
+    /// A DB Context for the current DB Instance. The data in the DB will be cleared after every Test run.
+    /// </summary>
     //protected ApplicationDbContext Db;
+
+    /// <summary>
+    /// The ServiceProvider to access the DI Container.
+    /// </summary>
+    protected IServiceProvider ServiceProvider => scope.ServiceProvider;
+    
+    private IServiceScope scope;
     
     [SetUp]
     public Task SetUp()
     {
         BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
         
-        Scope = PlaywrightServerFixture.Factory.Services.CreateScope();
+        scope = PlaywrightServerFixture.Factory.Services.CreateScope();
         //Db = Scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         //await Db.Database.EnsureDeletedAsync();
         //await Db.Database.MigrateAsync();
@@ -29,6 +41,6 @@ public class PlaywrightTestBase : PageTest
     public void TearDown()
     {
         //Db.Dispose();
-        Scope.Dispose();
+        scope.Dispose();
     }
 }

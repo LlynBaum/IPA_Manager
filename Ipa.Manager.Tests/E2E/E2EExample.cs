@@ -8,8 +8,14 @@ public class E2EExample : PlaywrightTestBase
     [Test]
     public async Task Ka()
     {
-        await Page.GotoAsync(BaseUrl);
-        // Db.Users.Add(new User());
+        // Use BaseUrl
+        await Page.GotoAsync(BaseUrl); 
+        
+        // Access DI
+        var configuration = ServiceProvider.GetRequiredService<IConfiguration>(); 
+        
+        // Use DB
+        // Db.Users.Add(new User()); 
         // await Db.SaveChangesAsync();
     }
 }
