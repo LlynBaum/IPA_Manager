@@ -2,17 +2,17 @@
 
 public class FileLoggerProvider : ILoggerProvider
 {
-    private readonly string _filePath;
-    private readonly object _lock = new();
+    private readonly string filePath;
+    private readonly object @lock = new();
 
     public FileLoggerProvider(string filePath)
     {
-        _filePath = filePath;
+        this.filePath = filePath;
         Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
     }
 
     public ILogger CreateLogger(string categoryName)
-        => new FileLogger(categoryName, _filePath, _lock);
+        => new FileLogger(categoryName, filePath, @lock);
 
     public void Dispose() { }
 }
