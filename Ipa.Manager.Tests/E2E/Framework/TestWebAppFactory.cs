@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
-namespace Ipa.Manager.Tests.E2E;
+namespace Ipa.Manager.Tests.E2E.Framework;
 
 /// <summary>
 /// Spins up the Blazor Web App.

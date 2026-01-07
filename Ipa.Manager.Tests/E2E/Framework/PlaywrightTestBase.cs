@@ -1,9 +1,9 @@
-﻿using Ipa.Manager.Database;
+using Ipa.Manager.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 
-namespace Ipa.Manager.Tests.E2E;
+namespace Ipa.Manager.Tests.E2E.Framework;
 
 [NonParallelizable]
 public class PlaywrightTestBase(bool enableTracing = false) : PageTest

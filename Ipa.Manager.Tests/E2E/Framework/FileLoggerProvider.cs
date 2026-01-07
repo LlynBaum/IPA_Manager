@@ -1,4 +1,4 @@
-﻿namespace Ipa.Manager.Tests.E2E;
+﻿namespace Ipa.Manager.Tests.E2E.Framework;
 
 public class FileLoggerProvider : ILoggerProvider
 {
