@@ -1,12 +1,12 @@
-﻿using Ipa.Manager.Database;
+using Ipa.Manager.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 
-namespace Ipa.Manager.Tests.E2E;
+namespace Ipa.Manager.Tests.E2E.Framework;
 
 [NonParallelizable]
-public class PlaywrightTestBase : PageTest
+public class PlaywrightTestBase(bool enableTracing = false) : PageTest
 {
     /// <summary>
     /// The URL where the Blazor host is available.
@@ -26,7 +26,29 @@ public class PlaywrightTestBase : PageTest
     private IServiceScope scope;
     
     [SetUp]
-    public async Task SetUp()
+    public async Task Setup()
+    {
+        if(!enableTracing) return;
+        await Context.Tracing.StartAsync(new()
+        {
+            Screenshots = true,
+            Snapshots = true,
+            Sources = true
+        });
+    }
+    
+    [TearDown]
+    public async Task TearDown()
+    {
+        if(!enableTracing) return;
+        await Context.Tracing.StopAsync(new()
+        {
+            Path = "trace.zip"
+        });
+    }
+    
+    [SetUp]
+    public async Task StartServer()
     {
         BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
         
@@ -37,7 +59,7 @@ public class PlaywrightTestBase : PageTest
     }
 
     [TearDown]
-    public void TearDown()
+    public void DisposeScope()
     {
         Db.Dispose();
         scope.Dispose();

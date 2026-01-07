@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
-namespace Ipa.Manager.Tests.E2E;
+namespace Ipa.Manager.Tests.E2E.Framework;
 
 /// <summary>
 /// Spins up the Blazor Web App.
@@ -54,10 +54,16 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
             });
         });
         
+        builder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.AddProvider(new FileLoggerProvider("test-logs/app.log"));
+            logging.SetMinimumLevel(LogLevel.Debug);
+        });
+        
         builder.ConfigureWebHost(webHost =>
         {
             webHost.UseKestrel();
-            webHost.UseEnvironment("Test");
             webHost.UseUrls("http://127.0.0.1:0");
         });
 
