@@ -1,8 +1,9 @@
 ﻿using DotNet.Testcontainers.Builders;
+using Ipa.Manager.Tests.E2E.Framework;
 using NUnit.Framework;
 using Testcontainers.MySql;
 
-namespace Ipa.Manager.Tests.E2E.Framework;
+namespace Ipa.Manager.Tests.E2E;
 
 [SetUpFixture]
 internal class PlaywrightServerFixture
