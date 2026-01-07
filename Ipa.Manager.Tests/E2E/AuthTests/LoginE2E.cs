@@ -1,3 +1,4 @@
+using Ipa.Manager.Tests.E2E.Framework;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
@@ -5,8 +6,6 @@ namespace Ipa.Manager.Tests.E2E.AuthTests;
 
 public class LoginE2E : PlaywrightTestBase
 {
-    
-    
     [Test]
     public async Task RegisterCreatesUserInDb()
     {
