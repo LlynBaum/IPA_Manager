@@ -1,3 +1,4 @@
+using Ipa.Manager.Tests.E2E.Framework;
 using NUnit.Framework;
 
 namespace Ipa.Manager.Tests.E2E;
