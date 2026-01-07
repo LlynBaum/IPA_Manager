@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace Ipa.Manager.Tests.E2E;
 
-[TestFixture]
 [NonParallelizable]
 public class PlaywrightTestBase : PageTest
 {

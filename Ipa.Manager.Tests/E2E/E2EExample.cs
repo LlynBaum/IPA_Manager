@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 namespace Ipa.Manager.Tests.E2E;
 
+[TestFixture]
 public class E2EExample : PlaywrightTestBase
 {
     [Test]
