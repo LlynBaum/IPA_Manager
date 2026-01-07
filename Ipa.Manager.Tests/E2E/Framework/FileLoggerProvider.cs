@@ -3,7 +3,7 @@
 public class FileLoggerProvider : ILoggerProvider
 {
     private readonly string filePath;
-    private readonly object @lock = new();
+    private readonly object @lock = new object();
 
     public FileLoggerProvider(string filePath)
     {
@@ -17,30 +17,21 @@ public class FileLoggerProvider : ILoggerProvider
     public void Dispose() { }
 }
 
-public class FileLogger : ILogger
+public class FileLogger(string categoryName, string filePath, object writeLock) : ILogger
 {
-    private readonly string category;
-    private readonly string filePath;
-    private readonly object @lock;
-
-    public FileLogger(string categoryName, string filePath, object writeLock)
-    {
-        category = categoryName;
-        this.filePath = filePath;
-        @lock = writeLock;
-    }
-
+#pragma warning disable CS8633 // Nullability in constraints for type parameter doesn't match the constraints for type parameter in implicitly implemented interface method'.
     public IDisposable BeginScope<TState>(TState state) => null!;
+#pragma warning restore CS8633 // Nullability in constraints for type parameter doesn't match the constraints for type parameter in implicitly implemented interface method'.
 
     public bool IsEnabled(LogLevel logLevel) => true;
 
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
         Exception? exception, Func<TState, Exception?, string> formatter)
     {
-        lock (@lock)
+        lock (writeLock)
         {
             File.AppendAllText(filePath,
-                $"{DateTime.Now:HH:mm:ss} [{logLevel}] {category}: {formatter(state, exception)}{Environment.NewLine}");
+                $"{DateTime.Now:HH:mm:ss} [{logLevel}] {categoryName}: {formatter(state, exception)}{Environment.NewLine}");
 
             if (exception != null)
             {
