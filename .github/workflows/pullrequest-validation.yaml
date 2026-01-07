@@ -30,7 +30,7 @@ jobs:
       # IMPORTANT: set working-directory to the project that references Microsoft.Playwright
       - name: Install Playwright
         shell: pwsh
-        working-directory: path/to/your-playwright-test-project
+        working-directory: Ipa.Manager.Tests
         run: ./bin/Release/net*/playwright.ps1 install --with-deps
 
       - name: Run tests
