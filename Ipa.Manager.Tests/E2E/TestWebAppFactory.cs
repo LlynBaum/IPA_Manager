@@ -24,7 +24,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
     
     public async Task StartAsync()
     {
-        // Triggers CreateHost() getting called.
+        // Triggers CreateHost() getting called. Else the host isn't yet created when calling StartAsync().
         _ = base.Services;
 
         Debug.Assert(host is not null);

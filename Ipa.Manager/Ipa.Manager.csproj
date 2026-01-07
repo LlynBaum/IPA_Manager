@@ -5,13 +5,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
+  
     <ItemGroup>
-      <AdditionalFiles Include="Pages\Home.razor" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <InternalsVisibleTo Include="Ipa.Manager.Tests" />
+      <InternalsVisibleto Include="Ipa.Manager.Tests" />
     </ItemGroup>
 
     <ItemGroup>
