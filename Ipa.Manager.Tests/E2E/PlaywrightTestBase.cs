@@ -1,5 +1,5 @@
-﻿//using Ipa.Manager.Database;
-//using Microsoft.EntityFrameworkCore;
+﻿using Ipa.Manager.Database;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 
@@ -16,7 +16,7 @@ public class PlaywrightTestBase : PageTest
     /// <summary>
     /// A DB Context for the current DB Instance. The data in the DB will be cleared after every Test run.
     /// </summary>
-    //protected ApplicationDbContext Db;
+    protected ApplicationDbContext Db;
 
     /// <summary>
     /// The ServiceProvider to access the DI Container.
@@ -26,21 +26,20 @@ public class PlaywrightTestBase : PageTest
     private IServiceScope scope;
     
     [SetUp]
-    public Task SetUp()
+    public async Task SetUp()
     {
         BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
         
         scope = PlaywrightServerFixture.Factory.Services.CreateScope();
-        //Db = Scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        //await Db.Database.EnsureDeletedAsync();
-        //await Db.Database.MigrateAsync();
-        return Task.CompletedTask;
+        Db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await Db.Database.EnsureDeletedAsync();
+        await Db.Database.MigrateAsync();
     }
 
     [TearDown]
     public void TearDown()
     {
-        //Db.Dispose();
+        Db.Dispose();
         scope.Dispose();
     }
 }
