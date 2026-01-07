@@ -54,10 +54,16 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
             });
         });
         
+        builder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.AddProvider(new FileLoggerProvider("test-logs/app.log"));
+            logging.SetMinimumLevel(LogLevel.Debug);
+        });
+        
         builder.ConfigureWebHost(webHost =>
         {
             webHost.UseKestrel();
-            webHost.UseEnvironment("Test");
             webHost.UseUrls("http://127.0.0.1:0");
         });
 
