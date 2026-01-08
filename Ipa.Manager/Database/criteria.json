@@ -1,146 +1,156 @@
 ﻿[
   {
-    "id": "A01",
-    "name": "Auftragsanalyse und Wahl einer Projektmethode",
-    "description": "Wie erfolgt die Auftragsanalyse? Welche Projektmethode kommt zum Einsatz?",
-    "quality-level-3": "1. Der Projektauftrag wurde analysiert und die Erkenntnisse mittels geeigneter Darstellungsmethoden (z. B. Zielstruktur, Use-Case- oder Kontextdiagramm, Anforderungstabelle) schriftlich dokumentiert.\n2. Dokumentation aus Punkt 1 liefert die Grundlage, um die Projektziele konsequent zu verfolgen.\n3. Eine zur Aufgabe passende Projektmethode wurde ausgewählt.\n4. Die Wahl der Projektmethode ist nachvollziehbar und schriftlich begründet.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+    "section": "HKB A: Begleiten von ICT-Projekten (Pflichtkriterien BF)",
+    "criteria": [
+      {
+        "id": "A01",
+        "name": "Auftragsanalyse und Wahl einer Projektmethode",
+        "description": "Wie erfolgt die Auftragsanalyse? Welche Projektmethode kommt zum Einsatz?",
+        "quality-level-3": "1. Der Projektauftrag wurde analysiert und die Erkenntnisse mittels geeigneter Darstellungsmethoden (z. B. Zielstruktur, Use-Case- oder Kontextdiagramm, Anforderungstabelle) schriftlich dokumentiert.\n2. Dokumentation aus Punkt 1 liefert die Grundlage, um die Projektziele konsequent zu verfolgen.\n3. Eine zur Aufgabe passende Projektmethode wurde ausgewählt.\n4. Die Wahl der Projektmethode ist nachvollziehbar und schriftlich begründet.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A02",
+        "name": "Informations-Recherche",
+        "description": "Wie werden Informationen recherchiert?",
+        "quality-level-3": "1. Fehlende und für die IPA relevante Informationen wurden identifiziert und systematisch recherchiert.\n2. Es wurde darauf verzichtet, allgemein bekannte Sachverhalte ausführlich wiederzugeben.\n3. Alle verwendeten Informationen, einschliesslich solcher, die auf den Einsatz von künstlicher Intelligenz oder ähnlichen Technologien zurückzuführen sind, und die nicht auf eigener Leistung beruhen, sind entsprechend deklariert.\n4. Die recherchierten Informationen sind verlässlich, aktuell und gültig.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A03",
+        "name": "Informations-Aufbereitung und -Verwendung",
+        "description": "Wie werden Informationen effektiv aufbereitet und verwendet?",
+        "quality-level-3": "1. Die verwendeten Informationen finden in einer klaren und übersichtlichen Dokumentation Niederschlag.\n2. Es werden geeignete Visualisierungsmethoden wie Grafiken, Diagramme oder Tabellen eingesetzt.\n3. Die bereitgestellten Informationen erlauben es einer Fachperson, ein umfassendes Verständnis der IPA (Dokumentation, Lösung) anzueignen.\n4. Alle verwendeten Informationen stehen im Auftragskontext und finden im Projekt sinnvolle Anwendung.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A04",
+        "name": "Zeitplan",
+        "description": "Was sind die Anforderungen an den Zeitplan?",
+        "quality-level-3": "1. Der Zeitplan ist Bestandteil von Teil 1 des IPA-Berichts.\n2. Der Zeitplan ist übersichtlich gestaltet.\n3. Struktur und Elemente des Zeitplans orientieren sich nach der gewählten Projektmethode.\n4. Es wurde eine Zeitachse definiert (Datum), die Zeitachse weist eine vernünftige Granularität auf (bspw. Stundenblöcke).\n5. Die identifizierten Aktivitäten sind zweckmässig und folgen einer sinnvollen Logik.\n6. Die IPA-Zeitvorgabe ist im Zeitplan korrekt berücksichtigt.",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A05",
+        "name": "Überprüfung und Dokumentation der Fortschritte und Risiken",
+        "description": "Wie erfolgt die Überprüfung und Dokumentation des Projektfortschritts und der Risiken?",
+        "quality-level-3": "1. Der Fortschritt wurde regelmässig überprüft, verständlich und korrekt dokumentiert.\n2. Es gibt eine genaue Gegenüberstellung des geplanten und tatsächlichen Zeitplans (Soll-/Ist-Vergleich).\n3. Es erfolgte eine periodische Risiko- und Problemüberprüfung. Bei einem allfälligen Eintreten eines Risikos oder Problems wurde professionell darauf reagiert. Es besteht hierzu ein schriftlicher Nachweis.\n4. Nicht erreichte Ziele wie auch Korrekturmassnahmen und Nacharbeiten zur IPA sind beschrieben. Falls solche Aspekte nicht existieren, ist dies entsprechend begründet.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A06",
+        "name": "Leistungsfähigkeit",
+        "description": "Wie ist die Leistung einzustufen?",
+        "quality-level-3": "1. Die Projektziele wurden konsequent verfolgt, Prioritäten wurden erkannt und das Vorgehen darauf abgestimmt.\n2. Die Aufgaben wurden effizient und ergebnisorientiert bearbeitet und entsprechen hinsichtlich Arbeitsleistung den Standards einer Informatik-Fachperson.\n3. Ergebnisse und Arbeitsweise sind fachlich korrekt, praxisgerecht und entsprechen hinsichtlich Qualität und Professionalität den Standards einer Informatik-Fachperson.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "A07",
+        "name": "Selbständiges Arbeiten",
+        "description": "Wie selbständig wurde gearbeitet?",
+        "quality-level-3": "1. Ziele und Aufgaben wurden eigenständig verfolgt.\n2. Eine ausgeprägte Fähigkeit zur Problemlösung wurde demonstriert; Hindernisse wurden eigenständig überwunden und/oder fremde Hilfe wurde angemessen in Anspruch genommen.\n3. Die Fähigkeit zur Selbstmotivation wurde gezeigt, das Engagement war hoch.\n4. Die Fähigkeit zur Selbstreflexion wurde gezeigt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A08",
+        "name": "Anwendung der Fachsprache",
+        "description": "Wie ist die Anwendung der Fachsprache zu beurteilen?",
+        "quality-level-3": "1. Das relevante Fachvokabular ist bekannt und wird konsistent und fachgerecht angewendet.\n2. Fachinhalte wurden präzise formuliert und korrekt wiedergegeben.\n3. Die Sprache ist durchgängig logisch strukturiert und ermöglicht dem Zielpublikum (externe Fachperson) ein klares Verständnis.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "A09",
+        "name": "Anwendung der Fachkompetenz",
+        "description": "Wie ist die Anwendung der Fachkompetenz zu beurteilen?",
+        "quality-level-3": "1. Das theoretische Wissen ist vorhanden und konnte in praktischen Situationen erfolgreich angewandt werden. Bei offensichtlichem Mangel an theoretischem Wissen wird dieser Punkt nicht gesprochen.\n2. Informationen und Sachverhalte wurden kritisch analysiert, um fundierte Schlussfolgerungen zu ziehen.\n3. Der Anspruch der Transferleistung ist erfüllt, da Fähigkeiten und Kenntnisse auf unerwartete oder neuartige Aufgabenstellungen angewandt wurden.\n4. Methoden und Werkzeuge wurden passend zur gewählten Projektmethode ausgewählt und wirkungsvoll eingesetzt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A10",
+        "name": "Interaktion im Projektteam",
+        "description": "Wie ist die Interaktion mit anderen Projektmitgliedern zu beurteilen?",
+        "quality-level-3": "1. Relevante Informationen von Auftraggebern, Experten oder anderen Projektmitgliedern wurden sorgfältig aufgenommen und korrekt dokumentiert.\n2. Rückmeldungen oder Vorgaben wurden nachvollziehbar umgesetzt und im Projektbericht nachgewiesen.\n3. Die Kommunikation mit Projektbeteiligten erfolgte effizient und nachvollziehbar, z. B. über Projektmanagement- oder Kollaborationstools.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "A11",
+        "name": "Abbildung der Projektaufbauorganisation",
+        "description": "Welche Informationen zur Projektaufbauorganisation sind verlangt?",
+        "quality-level-3": "1. Die zur gewählten Projektmethode relevanten Rollen wurden identifiziert.\n2. Die Rollen wurden korrekt und verständlich beschrieben.\n3. Die Projektaufbauorganisation ist grafisch dargestellt (z. B. als Organigramm), vollständig und die Abhängigkeiten zwischen den Rollen sind korrekt dargestellt.\n4. Der schriftliche Nachweis dieser drei Punkte ist Bestandteil von Teil 1 des IPA-Berichts.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A12",
+        "name": "Testdurchführung und Dokumentation",
+        "description": "Wie wurde die Testdurchführung organisiert und dokumentiert?",
+        "quality-level-3": "Gemeinsame Anforderungen:\n1. Es wurde eine Beschreibung der Testinfrastruktur und des Umfelds bereitgestellt, sodass eine externe Fachperson die Tests mit gleichen Ergebnissen reproduzieren kann.\n2. Verbesserungspotential wie auch Nacharbeiten wurden identifiziert. Falls weder Verbesserungspotential besteht noch Nacharbeit nötig ist, ist dies nachvollziehbar begründet.\nErgänzende Anforderungen bei linearem Vorgehen:\n3. Relevante Testszenarien wie auch Testkomponenten (bspw. Funktionen, Daten, Dokumente, Performance, Schnittstellen etc.) sind inkl. der erwarteten Ergebnisse beschrieben.\n4. Die Tests wurden basierend auf den Testszenarien durchgeführt. Die Ergebnisse sind korrekt und übersichtlich dokumentiert.\nErgänzende Anforderungen bei agilem Vorgehen:\n3. Es existiert eine Definition of Done (DoD), die festlegt, welche Bedingungen erfüllt sein müssen, damit eine User Story oder ein Arbeitspaket als abgeschlossen gilt.\n4. Die Tests wurden basierend auf der DoD durchgeführt. Die Ergebnisse sind korrekt und übersichtlich dokumentiert.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
   },
   {
-    "id": "A02",
-    "name": "Informations-Recherche",
-    "description": "Wie werden Informationen recherchiert?",
-    "quality-level-3": "1. Fehlende und für die IPA relevante Informationen wurden identifiziert und systematisch recherchiert.\n2. Es wurde darauf verzichtet, allgemein bekannte Sachverhalte ausführlich wiederzugeben.\n3. Alle verwendeten Informationen, einschliesslich solcher, die auf den Einsatz von künstlicher Intelligenz oder ähnlichen Technologien zurückzuführen sind, und die nicht auf eigener Leistung beruhen, sind entsprechend deklariert.\n4. Die recherchierten Informationen sind verlässlich, aktuell und gültig.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A03",
-    "name": "Informations-Aufbereitung und -Verwendung",
-    "description": "Wie werden Informationen effektiv aufbereitet und verwendet?",
-    "quality-level-3": "1. Die verwendeten Informationen finden in einer klaren und übersichtlichen Dokumentation Niederschlag.\n2. Es werden geeignete Visualisierungsmethoden wie Grafiken, Diagramme oder Tabellen eingesetzt.\n3. Die bereitgestellten Informationen erlauben es einer Fachperson, ein umfassendes Verständnis der IPA (Dokumentation, Lösung) anzueignen.\n4. Alle verwendeten Informationen stehen im Auftragskontext und finden im Projekt sinnvolle Anwendung.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A04",
-    "name": "Zeitplan",
-    "description": "Was sind die Anforderungen an den Zeitplan?",
-    "quality-level-3": "1. Der Zeitplan ist Bestandteil von Teil 1 des IPA-Berichts.\n2. Der Zeitplan ist übersichtlich gestaltet.\n3. Struktur und Elemente des Zeitplans orientieren sich nach der gewählten Projektmethode.\n4. Es wurde eine Zeitachse definiert (Datum), die Zeitachse weist eine vernünftige Granularität auf (bspw. Stundenblöcke).\n5. Die identifizierten Aktivitäten sind zweckmässig und folgen einer sinnvollen Logik.\n6. Die IPA-Zeitvorgabe ist im Zeitplan korrekt berücksichtigt.",
-    "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
-    "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A05",
-    "name": "Überprüfung und Dokumentation der Fortschritte und Risiken",
-    "description": "Wie erfolgt die Überprüfung und Dokumentation des Projektfortschritts und der Risiken?",
-    "quality-level-3": "1. Der Fortschritt wurde regelmässig überprüft, verständlich und korrekt dokumentiert.\n2. Es gibt eine genaue Gegenüberstellung des geplanten und tatsächlichen Zeitplans (Soll-/Ist-Vergleich).\n3. Es erfolgte eine periodische Risiko- und Problemüberprüfung. Bei einem allfälligen Eintreten eines Risikos oder Problems wurde professionell darauf reagiert. Es besteht hierzu ein schriftlicher Nachweis.\n4. Nicht erreichte Ziele wie auch Korrekturmassnahmen und Nacharbeiten zur IPA sind beschrieben. Falls solche Aspekte nicht existieren, ist dies entsprechend begründet.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A06",
-    "name": "Leistungsfähigkeit",
-    "description": "Wie ist die Leistung einzustufen?",
-    "quality-level-3": "1. Die Projektziele wurden konsequent verfolgt, Prioritäten wurden erkannt und das Vorgehen darauf abgestimmt.\n2. Die Aufgaben wurden effizient und ergebnisorientiert bearbeitet und entsprechen hinsichtlich Arbeitsleistung den Standards einer Informatik-Fachperson.\n3. Ergebnisse und Arbeitsweise sind fachlich korrekt, praxisgerecht und entsprechen hinsichtlich Qualität und Professionalität den Standards einer Informatik-Fachperson.",
-    "quality-level-2": "Zwei Punkte sind erfüllt.",
-    "quality-level-1": "Ein Punkt ist erfüllt.",
-    "quality-level-0": "Kein Punkt ist erfüllt."
-  },
-  {
-    "id": "A07",
-    "name": "Selbständiges Arbeiten",
-    "description": "Wie selbständig wurde gearbeitet?",
-    "quality-level-3": "1. Ziele und Aufgaben wurden eigenständig verfolgt.\n2. Eine ausgeprägte Fähigkeit zur Problemlösung wurde demonstriert; Hindernisse wurden eigenständig überwunden und/oder fremde Hilfe wurde angemessen in Anspruch genommen.\n3. Die Fähigkeit zur Selbstmotivation wurde gezeigt, das Engagement war hoch.\n4. Die Fähigkeit zur Selbstreflexion wurde gezeigt.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A08",
-    "name": "Anwendung der Fachsprache",
-    "description": "Wie ist die Anwendung der Fachsprache zu beurteilen?",
-    "quality-level-3": "1. Das relevante Fachvokabular ist bekannt und wird konsistent und fachgerecht angewendet.\n2. Fachinhalte wurden präzise formuliert und korrekt wiedergegeben.\n3. Die Sprache ist durchgängig logisch strukturiert und ermöglicht dem Zielpublikum (externe Fachperson) ein klares Verständnis.",
-    "quality-level-2": "Zwei Punkte sind erfüllt.",
-    "quality-level-1": "Ein Punkt ist erfüllt.",
-    "quality-level-0": "Kein Punkt ist erfüllt."
-  },
-  {
-    "id": "A09",
-    "name": "Anwendung der Fachkompetenz",
-    "description": "Wie ist die Anwendung der Fachkompetenz zu beurteilen?",
-    "quality-level-3": "1. Das theoretische Wissen ist vorhanden und konnte in praktischen Situationen erfolgreich angewandt werden. Bei offensichtlichem Mangel an theoretischem Wissen wird dieser Punkt nicht gesprochen.\n2. Informationen und Sachverhalte wurden kritisch analysiert, um fundierte Schlussfolgerungen zu ziehen.\n3. Der Anspruch der Transferleistung ist erfüllt, da Fähigkeiten und Kenntnisse auf unerwartete oder neuartige Aufgabenstellungen angewandt wurden.\n4. Methoden und Werkzeuge wurden passend zur gewählten Projektmethode ausgewählt und wirkungsvoll eingesetzt.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A10",
-    "name": "Interaktion im Projektteam",
-    "description": "Wie ist die Interaktion mit anderen Projektmitgliedern zu beurteilen?",
-    "quality-level-3": "1. Relevante Informationen von Auftraggebern, Experten oder anderen Projektmitgliedern wurden sorgfältig aufgenommen und korrekt dokumentiert.\n2. Rückmeldungen oder Vorgaben wurden nachvollziehbar umgesetzt und im Projektbericht nachgewiesen.\n3. Die Kommunikation mit Projektbeteiligten erfolgte effizient und nachvollziehbar, z. B. über Projektmanagement- oder Kollaborationstools.",
-    "quality-level-2": "Zwei Punkte sind erfüllt.",
-    "quality-level-1": "Ein Punkt ist erfüllt.",
-    "quality-level-0": "Kein Punkt ist erfüllt."
-  },
-  {
-    "id": "A11",
-    "name": "Abbildung der Projektaufbauorganisation",
-    "description": "Welche Informationen zur Projektaufbauorganisation sind verlangt?",
-    "quality-level-3": "1. Die zur gewählten Projektmethode relevanten Rollen wurden identifiziert.\n2. Die Rollen wurden korrekt und verständlich beschrieben.\n3. Die Projektaufbauorganisation ist grafisch dargestellt (z. B. als Organigramm), vollständig und die Abhängigkeiten zwischen den Rollen sind korrekt dargestellt.\n4. Der schriftliche Nachweis dieser drei Punkte ist Bestandteil von Teil 1 des IPA-Berichts.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A12",
-    "name": "Testdurchführung und Dokumentation",
-    "description": "Wie wurde die Testdurchführung organisiert und dokumentiert?",
-    "quality-level-3": "Gemeinsame Anforderungen:\n1. Es wurde eine Beschreibung der Testinfrastruktur und des Umfelds bereitgestellt, sodass eine externe Fachperson die Tests mit gleichen Ergebnissen reproduzieren kann.\n2. Verbesserungspotential wie auch Nacharbeiten wurden identifiziert. Falls weder Verbesserungspotential besteht noch Nacharbeit nötig ist, ist dies nachvollziehbar begründet.\nErgänzende Anforderungen bei linearem Vorgehen:\n3. Relevante Testszenarien wie auch Testkomponenten (bspw. Funktionen, Daten, Dokumente, Performance, Schnittstellen etc.) sind inkl. der erwarteten Ergebnisse beschrieben.\n4. Die Tests wurden basierend auf den Testszenarien durchgeführt. Die Ergebnisse sind korrekt und übersichtlich dokumentiert.\nErgänzende Anforderungen bei agilem Vorgehen:\n3. Es existiert eine Definition of Done (DoD), die festlegt, welche Bedingungen erfüllt sein müssen, damit eine User Story oder ein Arbeitspaket als abgeschlossen gilt.\n4. Die Tests wurden basierend auf der DoD durchgeführt. Die Ergebnisse sind korrekt und übersichtlich dokumentiert.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A13",
-    "name": "Erhebung und Dokumentation der Bedürfnisse und Umfeld",
-    "description": "Wie werden die Bedürfnisse und das Umfeld erhoben und dokumentiert?",
-    "quality-level-3": "1. Die Bedürfniserhebung folgte einem strukturierten und geeigneten Vorgehen (Befragungstechniken, Erhebungen oder Modelle). Das Vorgehen ist dokumentiert.\n2. Die relevanten Bedürfnisse (bspw. Kosten, Zeit, Qualität, Funktionen) wurden präzise erhoben und dokumentiert.\n3. Die Bedürfnisse sind nach ihrer Relevanz oder Dringlichkeit priorisiert oder strukturiert.\n4. Systeme und Umfeld sowie die relevanten Schnittstellen wurden korrekt identifiziert und dokumentiert.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A14",
-    "name": "Machbarkeitsstudie (Proof of concept)",
-    "description": "Wie ist eine Machbarkeitsstudie durchzuführen?",
-    "quality-level-3": "1. Der Umfang der Machbarkeitsstudie ist korrekt identifiziert und beschrieben.\n2. Sinnvolle Erfolgskriterien wurden identifiziert und beschrieben.\n3. Die Machbarkeitsstudie liefert brauchbare Rückschlüsse zur Anwendbarkeit der geplanten Lösung.\n4. Die Machbarkeitsstudie liefert eine solide und dokumentierte Grundlage, um über die nächsten Schritte zu befinden.",
-    "quality-level-2": "Drei Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
-  },
-  {
-    "id": "A15",
-    "name": "Instruktion",
-    "description": "Wie wird eine Instruktion durchgeführt?",
-    "quality-level-3": "1. Die Instruktion ist systematisch vorbereitet.\n2. Die Instruktion wurde durchgeführt.\n3. Die Instruktion setzt die relevanten Schwerpunkte und ist sinnvoll strukturiert.\n4. Die Instruktion ist auf die Zielgruppe zugeschnitten.\n5. Die Instruktion führt den Benutzer zum Erfolg.",
-    "quality-level-2": "Punkt zwei und drei weitere Punkte sind erfüllt.",
-    "quality-level-1": "Punkt zwei und zwei weitere Punkte sind erfüllt.",
-    "quality-level-0": "Das Ergebnis ist tiefer als Gütestufe 1."
-  },
-  {
-    "id": "A16",
-    "name": "Durchführung einer Evaluation",
-    "description": "Wie ist eine Evaluation durchzuführen?",
-    "quality-level-3": "1. Die Evaluationskriterien sind sinnvoll gewählt.\n2. Das Gewichtungsschema ist vor der Bewertung festgelegt.\n3. KO-Kriterien und allfällige Grenzwerte sind festgelegt.\n4. Die Evaluation wurde durchgeführt, das Ergebnis wurde verständlich dokumentiert.\n5. Basierend auf dem Evaluations-Ergebnis wurde eine objektive Empfehlung hergeleitet.",
-    "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
-    "quality-level-1": "Zwei Punkte sind erfüllt.",
-    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+    "section": "HKB A: Begleiten von ICT-Projekten (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "A13",
+        "name": "Erhebung und Dokumentation der Bedürfnisse und Umfeld",
+        "description": "Wie werden die Bedürfnisse und das Umfeld erhoben und dokumentiert?",
+        "quality-level-3": "1. Die Bedürfniserhebung folgte einem strukturierten und geeigneten Vorgehen (Befragungstechniken, Erhebungen oder Modelle). Das Vorgehen ist dokumentiert.\n2. Die relevanten Bedürfnisse (bspw. Kosten, Zeit, Qualität, Funktionen) wurden präzise erhoben und dokumentiert.\n3. Die Bedürfnisse sind nach ihrer Relevanz oder Dringlichkeit priorisiert oder strukturiert.\n4. Systeme und Umfeld sowie die relevanten Schnittstellen wurden korrekt identifiziert und dokumentiert.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A14",
+        "name": "Machbarkeitsstudie (Proof of concept)",
+        "description": "Wie ist eine Machbarkeitsstudie durchzuführen?",
+        "quality-level-3": "1. Der Umfang der Machbarkeitsstudie ist korrekt identifiziert und beschrieben.\n2. Sinnvolle Erfolgskriterien wurden identifiziert und beschrieben.\n3. Die Machbarkeitsstudie liefert brauchbare Rückschlüsse zur Anwendbarkeit der geplanten Lösung.\n4. Die Machbarkeitsstudie liefert eine solide und dokumentierte Grundlage, um über die nächsten Schritte zu befinden.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A15",
+        "name": "Instruktion",
+        "description": "Wie wird eine Instruktion durchgeführt?",
+        "quality-level-3": "1. Die Instruktion ist systematisch vorbereitet.\n2. Die Instruktion wurde durchgeführt.\n3. Die Instruktion setzt die relevanten Schwerpunkte und ist sinnvoll strukturiert.\n4. Die Instruktion ist auf die Zielgruppe zugeschnitten.\n5. Die Instruktion führt den Benutzer zum Erfolg.",
+        "quality-level-2": "Punkt zwei und drei weitere Punkte sind erfüllt.",
+        "quality-level-1": "Punkt zwei und zwei weitere Punkte sind erfüllt.",
+        "quality-level-0": "Das Ergebnis ist tiefer als Gütestufe 1."
+      },
+      {
+        "id": "A16",
+        "name": "Durchführung einer Evaluation",
+        "description": "Wie ist eine Evaluation durchzuführen?",
+        "quality-level-3": "1. Die Evaluationskriterien sind sinnvoll gewählt.\n2. Das Gewichtungsschema ist vor der Bewertung festgelegt.\n3. KO-Kriterien und allfällige Grenzwerte sind festgelegt.\n4. Die Evaluation wurde durchgeführt, das Ergebnis wurde verständlich dokumentiert.\n5. Basierend auf dem Evaluations-Ergebnis wurde eine objektive Empfehlung hergeleitet.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
   }
 ]
