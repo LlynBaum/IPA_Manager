@@ -1,5 +1,6 @@
 using Ipa.Manager;
 using Ipa.Manager.Database;
+using Ipa.Manager.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySQL(connectionString));
+
+builder.Services.AddIpaServices();
 
 var app = builder.Build();
 
