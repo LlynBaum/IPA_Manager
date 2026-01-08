@@ -22,7 +22,7 @@ internal class PlaywrightTestBase : PageTest
     protected string BaseUrl = string.Empty;
     
     /// <summary>
-    /// A HttpClient to interact with the Web App for Integration Tests.
+    /// A HttpClient to interact with the Web App for 'Integration' Tests.
     /// </summary>
     protected HttpClient Client => PlaywrightServerFixture.Factory.Server.CreateClient();
     
