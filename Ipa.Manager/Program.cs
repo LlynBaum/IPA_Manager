@@ -1,13 +1,13 @@
 using Ipa.Manager;
+using Ipa.Manager.Database;
 using Ipa.Manager.Auth;
 using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Identity;
-using Ipa.Manager.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
-
+    
 builder.Services.AddControllers();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
