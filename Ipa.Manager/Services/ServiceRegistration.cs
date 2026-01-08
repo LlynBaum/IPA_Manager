@@ -1,4 +1,6 @@
-﻿namespace Ipa.Manager.Services;
+﻿using Ipa.Manager.Services.Criterias;
+
+namespace Ipa.Manager.Services;
 
 public static class ServiceRegistration
 {
