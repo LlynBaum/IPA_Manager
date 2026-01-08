@@ -6,8 +6,15 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.E2E.Framework;
 
 [NonParallelizable]
-public class PlaywrightTestBase(bool enableTracing = false) : PageTest
+public class PlaywrightTestBase : PageTest
 {
+    /// <summary>
+    /// Use this code <code>protected override bool EnableTracing => true;</code> to Enable Playwright tracing.
+    /// Playwright Tracing can be used to view the Playwright Test Snapshots. Use the following command:
+    /// <code>npx playwright show-trace bin/Debug/net9.0/trace.zip</code>
+    /// </summary>
+    protected virtual bool EnableTracing => false; 
+    
     /// <summary>
     /// The URL where the Blazor host is available.
     /// </summary>
@@ -28,7 +35,7 @@ public class PlaywrightTestBase(bool enableTracing = false) : PageTest
     [SetUp]
     public async Task Setup()
     {
-        if(!enableTracing) return;
+        if(!EnableTracing) return;
         await Context.Tracing.StartAsync(new()
         {
             Screenshots = true,
@@ -40,7 +47,7 @@ public class PlaywrightTestBase(bool enableTracing = false) : PageTest
     [TearDown]
     public async Task TearDown()
     {
-        if(!enableTracing) return;
+        if(!EnableTracing) return;
         await Context.Tracing.StopAsync(new()
         {
             Path = "trace.zip"
