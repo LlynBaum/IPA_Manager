@@ -1,4 +1,5 @@
 ﻿using System.Collections.Frozen;
+using System.Collections.Immutable;
 using System.Reflection;
 using System.Text.Json;
 
@@ -9,6 +10,11 @@ public class CriteriaService : ICriteriaService
     private const string FilePath = "Database/criteria.json";
 
     private FrozenDictionary<string, Criteria> criteriaMap = null!;
+
+    public IReadOnlyList<Criteria> GetAll()
+    {
+        return criteriaMap.Values;
+    }
 
     public Criteria GetById(string id)
     {
