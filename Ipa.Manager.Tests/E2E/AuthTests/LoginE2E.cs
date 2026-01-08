@@ -64,7 +64,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_RedirectsToReturnUrl_OnSuccess()
     {
         const string returnUrl = "https://www.google.com";
-        var loginUri = "/" + QueryString.Create("ReturnUrl", returnUrl);
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
@@ -75,7 +75,7 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
-        Assert.That(Page.Url, Is.EqualTo("www.google.com"));
+        Assert.That(Page.Url, Is.EqualTo(returnUrl + "/"));
     }
     
     [Test]
@@ -85,7 +85,13 @@ public class LoginE2E : PlaywrightTestBase
     }
     
     [Test]
-    public async Task Login_GoesBackToLogin_WhenLoginFails()
+    public async Task Login_GoesBackToLogin_WhenPasswordIsWrong()
+    {
+        
+    }
+    
+    [Test]
+    public async Task Login_GoesBackToLogin_WhenUserDoesNotExist()
     {
         
     }
