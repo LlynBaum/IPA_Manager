@@ -1,13 +1,12 @@
 ﻿using System.Collections.Frozen;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Ipa.Manager.Services.Criterias;
 
 public class CriteriaService : ICriteriaService
 {
-    private const string FilePath = "Database/criteria.json";
-
     private FrozenDictionary<string, Criteria> criteriaMap = null!;
 
     public IReadOnlyList<Criteria> GetAll()
@@ -35,7 +34,7 @@ public class CriteriaService : ICriteriaService
             .ToDictionary(key => key, key => criteriaMap[key]);
     }
 
-    public async Task InitializeAsync(Assembly assembly, CancellationToken cancellationToken = default)
+    public async Task InitializeAsync(Assembly assembly, string fileName, CancellationToken cancellationToken = default)
     {
         var directory = Path.GetDirectoryName(assembly.Location);
         if (directory is null)
@@ -43,26 +42,46 @@ public class CriteriaService : ICriteriaService
             throw new ArgumentException("Location of Assembly was an invalid Directory.", nameof(assembly));
         }
         
-        var filePath = Path.Combine(directory, FilePath);
-        await using var fileStream = new FileStream(
-            filePath,
-            FileMode.Create,
-            FileAccess.Write,
-            FileShare.None,
-            bufferSize: 4096,
-            useAsync: true);
+        var filePath = Path.Combine(directory, fileName);
+        await using var fileStream = File.Open(filePath, FileMode.Open);
         
-        var map = new Dictionary<string, Criteria>();
-        var criteriaAsyncList = JsonSerializer.DeserializeAsyncEnumerable<Criteria>(
-            fileStream, 
-            cancellationToken: cancellationToken);
-        
-        await foreach (var criteria in criteriaAsyncList)
+        var criteriaList = await JsonSerializer.DeserializeAsync<List<CriteriaJsonNode>>(fileStream, cancellationToken: cancellationToken);
+
+        if (criteriaList is null)
         {
-            if (criteria is null) throw new InvalidOperationException("One criteria was not in a valid format.");
-            map.Add(criteria.Id, criteria);
+            throw new InvalidOperationException("Invalid criteria file.");
         }
 
-        criteriaMap = map.ToFrozenDictionary();
+        criteriaMap = criteriaList
+            .ToDictionary(
+                c => c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), 
+                c => new Criteria(c.Id, c.Name, c.Description, c.QualityLevels))
+            .ToFrozenDictionary();
+    }
+
+    private record CriteriaJsonNode
+    {
+        [JsonPropertyName("id")]
+        public required string Id { get; init; }
+        
+        [JsonPropertyName("name")]
+        public required string Name { get; init; }
+        
+        [JsonPropertyName("description")]
+        public required string Description { get; init; }
+        
+        [JsonPropertyName("quality-level-0")]
+        public required string QualityLevel0 { get; init; }
+        
+        [JsonPropertyName("quality-level-1")]
+        public required string QualityLevel1 { get; init; }
+        
+        [JsonPropertyName("quality-level-2")]
+        public required string QualityLevel2 { get; init; }
+        
+        [JsonPropertyName("quality-level-3")]
+        public required string QualityLevel3 { get; init; }
+
+        public IReadOnlyList<string> QualityLevels => [QualityLevel0, QualityLevel1, QualityLevel2, QualityLevel3];
     }
 }

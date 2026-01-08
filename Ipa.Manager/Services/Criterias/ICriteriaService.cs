@@ -12,5 +12,5 @@ public interface ICriteriaService
 
     IReadOnlyDictionary<string, Criteria> GetLookupTableByIds(IEnumerable<string> ids);
 
-    Task InitializeAsync(Assembly assembly, CancellationToken cancellationToken = default);
+    Task InitializeAsync(Assembly assembly, string fileName, CancellationToken cancellationToken = default);
 }
