@@ -1,4 +1,5 @@
 using Ipa.Manager.Tests.E2E.Framework;
+using Ipa.Manager.Models;
 using NUnit.Framework;
 
 namespace Ipa.Manager.Tests.E2E;
@@ -19,7 +20,14 @@ public class E2EExample : PlaywrightTestBase
         var configuration = ServiceProvider.GetRequiredService<IConfiguration>(); 
         
         // Use DB
-        // Db.Users.Add(new User()); 
-        // await Db.SaveChangesAsync();
+
+        var user = new User
+        {
+            Username = "Test",
+            PasswordHash = "abcdefg"
+        };
+        
+        await Db.Users.AddAsync(user); 
+        await Db.SaveChangesAsync();
     }
 }
