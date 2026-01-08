@@ -82,9 +82,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_ShowsError_WhenUsernameIsAlreadyInUse()
     {
         await CreateTestUserAsync();
-        const string returnUrl = "https://www.google.com";
-        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await Page.GotoAsync(loginUri);
+        await Page.GotoAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         await UsernameInput.FillAsync(Username);
@@ -94,15 +92,13 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
-        await Expect(Page.GetByText("Username already in user")).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Username is already in use.")).ToBeVisibleAsync();
     }
     
     [Test]
     public async Task Register_ShowsError_WhenUsernameIsTooLong()
     {
-        const string returnUrl = "https://www.google.com";
-        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await Page.GotoAsync(loginUri);
+        await Page.GotoAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         var username = string.Join(null, Enumerable.Repeat('a', 105));
@@ -114,18 +110,16 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
-        await Expect(Page.GetByText("Username too long.")).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Username is too long.")).ToBeVisibleAsync();
     }
     
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooLong()
     {
-        const string returnUrl = "https://www.google.com";
-        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await Page.GotoAsync(loginUri);
+        await Page.GotoAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
-        var password = string.Join(null, Enumerable.Repeat('a', 30));
+        var password = string.Join(null, Enumerable.Repeat('a', 35));
         
         await UsernameInput.FillAsync(Username);
         await PasswordInput.First.FillAsync(password);
@@ -134,15 +128,13 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
-        await Expect(Page.GetByText("Password too long.")).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Password is too long.")).ToBeVisibleAsync();
     }
     
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooShort()
     {
-        const string returnUrl = "https://www.google.com";
-        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await Page.GotoAsync(loginUri);
+        await Page.GotoAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         
         await UsernameInput.FillAsync(Username);
@@ -152,7 +144,7 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
-        await Expect(Page.GetByText("Password too short.")).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Password is too short.")).ToBeVisibleAsync();
     }
     
     [Test]
@@ -164,7 +156,7 @@ public class LoginE2E : PlaywrightTestBase
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync(Password);
         
-        await PasswordInput.Last.BlurAsync();
+        await PasswordInput.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
         Assert.That(Page.Url, Is.EqualTo(BaseUrl));
@@ -179,7 +171,7 @@ public class LoginE2E : PlaywrightTestBase
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync("wrong-password");
         
-        await PasswordInput.Last.BlurAsync();
+        await PasswordInput.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
         Assert.That(Page.Url, Does.StartWith($"{BaseUrl}login"));
@@ -195,7 +187,6 @@ public class LoginE2E : PlaywrightTestBase
         await UsernameInput.FillAsync("Unknown User");
         await PasswordInput.FillAsync(Password);
         
-        await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
         Assert.That(Page.Url, Does.StartWith($"{BaseUrl}login"));
@@ -214,7 +205,7 @@ public class LoginE2E : PlaywrightTestBase
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync(Password);
         
-        await PasswordInput.Last.BlurAsync();
+        await PasswordInput.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
         Assert.That(Page.Url, Is.EqualTo(returnUrl + "/"));
