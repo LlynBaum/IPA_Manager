@@ -1,0 +1,20 @@
+﻿[
+  {
+    "id": "A01",
+    "name": "Auftragsanalyse und Wahl einer Projektmethode",
+    "description": "Wie erfolgt die Auftragsanalyse? Welche Projektmethode kommt zum Einsatz?",
+    "quality-level-3": "1. Der Projektauftrag wurde analysiert und die Erkenntnisse mittels geeigneter\nDarstellungsmethoden (z. B. Zielstruktur, Use-Case- oder Kontextdiagramm,\nAnforderungstabelle) schriftlich dokumentiert.\n2. Dokumentation aus Punkt 1 liefert die Grundlage, um die Projektziele konsequent zu\nverfolgen.\n3. Eine zur Aufgabe passende Projektmethode wurde ausgewählt.\n4. Die Wahl der Projektmethode ist nachvollziehbar und schriftlich begründet",
+    "quality-level-2": "Drei Punkte sind erfüllt.",
+    "quality-level-1": "Zwei Punkte sind erfüllt.",
+    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+  },
+  {
+    "id": "A02",
+    "name": "Informations-Recherche",
+    "description": "Wie werden Informationen recherchiert?",
+    "quality-level-3": "1. Fehlende und für die IPA relevante Informationen wurden identifiziert und\nsystematisch recherchiert.\n2. Es wurde darauf verzichtet, allgemein bekannte Sachverhalte ausführlich\nwiederzugeben.\n3. Alle verwendeten Informationen, einschliesslich solcher, die auf den Einsatz von\nkünstlicher Intelligenz oder ähnlichen Technologien zurückzuführen sind, und die nicht\nauf eigener Leistung beruhen, sind entsprechend deklariert.\n4. Die recherchierten Informationen sind verlässlich, aktuell und gültig.",
+    "quality-level-2": "Drei Punkte sind erfüllt.",
+    "quality-level-1": "Zwei Punkte sind erfüllt.",
+    "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+  }
+]
