@@ -5,8 +5,10 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.E2E.AuthTests;
 
 [TestFixture]
-public class LoginE2E() : PlaywrightTestBase(true)
+public class LoginE2E : PlaywrightTestBase
 {
+    protected override bool EnableTracing => true;
+
     private ILocator UsernameInput => Page.GetByRole(AriaRole.Textbox, new() { Name = "username" });
     private ILocator PasswordInput => Page.GetByRole(AriaRole.Textbox, new() { Name = "password" });
 
