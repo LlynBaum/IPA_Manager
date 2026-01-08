@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Ipa.Manager.Tests.E2E.AuthTests;
 
+[TestFixture]
 public class LoginE2E : PlaywrightTestBase
 {
     [Test]
@@ -25,6 +26,7 @@ public class LoginE2E : PlaywrightTestBase
         await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).First.FillAsync(password);
         await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).Last.FillAsync(password);
         
+        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
         Assert.That(Page.Url, Is.EqualTo(BaseUrl)); 
