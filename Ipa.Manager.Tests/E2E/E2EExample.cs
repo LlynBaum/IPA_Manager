@@ -17,7 +17,7 @@ public class E2EExample : PlaywrightTestBase
         await Page.GotoAsync(BaseUrl); 
         
         // Access DI
-        var configuration = ServiceProvider.GetRequiredService<IConfiguration>();
+        var configuration = ServiceProvider.GetRequiredService<IConfiguration>(); 
         
         // Use DB
 
