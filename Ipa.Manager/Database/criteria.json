@@ -152,5 +152,55 @@
         "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
       }
     ]
+  },
+  {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "B01",
+        "name": "Firewall aufsetzen",
+        "description": "Wie wird eine Firewall aufgesetzt?",
+        "quality-level-3": "1. Die Zugriffskontrolle ist klar geregelt. Dies beinhaltet unter anderem die Festlegung erlaubter und verbotener Verbindungen.\n2. Filterregeln wurden korrekt implementiert, um den Zugriff auf Anwendungen und Dienste zu kontrollieren.\n3. Es wurden Funktionen zwecks Erkennung und Prävention von Eindringversuchen korrekt aktiviert.\n4. Der Datenverkehr wird bezüglich verdächtiger Aktivitäten überwacht, potenzielle Bedrohungen werden blockiert.\n5. Eine Protokollierung wurde sinnvoll konfiguriert und aktiviert.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B02",
+        "name": "Installation des Betriebssystems",
+        "description": "Wie erfolgt die Installation eines Betriebssystems?",
+        "quality-level-3": "1. Das Betriebssystem wurde gemäss den Unternehmensstandards und -richtlinien aufgesetzt, einschliesslich der erforderlichen Treiber und Konfigurationsoptionen.\n2. Nach Abschluss der Installation wurde eine Überprüfung durchgeführt, um sicherzustellen, dass das Betriebssystem ordnungsgemäss funktioniert und alle erforderlichen Komponenten erkannt wurden.\n3. Es wurde sichergestellt, dass alle erforderlichen Patches und Updates installiert sind, um die Sicherheit und Stabilität des Systems zu gewährleisten.\n4. Vor der endgültigen Bereitstellung des Systems wurden Benutzertests durchgeführt, um sicherzustellen, dass alle Funktionen ordnungsgemäss funktionieren und die Benutzererwartungen erfüllt werden.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B03",
+        "name": "Konfiguration der Sicherheitsmassnahmen",
+        "description": "Wie erfolgt die Konfiguration der Sicherheitsmassnahmen?",
+        "quality-level-3": "1. Die erforderlichen Sicherheitsmassnahmen wie Firewall-Konfiguration, Antivirensoftware-Installation usw. wurden gemäss den Unternehmensrichtlinien umgesetzt.\n2. Es wurde eine umfassende Dokumentation über die durchgeführten Sicherheitskonfigurationen erstellt, einschliesslich der Einstellungen, Ausnahmen und Aktualisierungen.\n3. Eine Sicherheitsprüfung wurde durchgeführt, um zu gewährleisten, dass die Konfiguration den aktuellen Bedrohungen standhält und den Sicherheitsanforderungen entspricht.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "B04",
+        "name": "Identifikation relevanter Prozessinformationen",
+        "description": "Was umfasst die Identifikation relevanter Prozessinformationen?",
+        "quality-level-3": "1. Die Prozessinformationen wurden vollständig erfasst und umfassen mindestens die Bezeichnung des Prozesses, das auslösende Ereignis, das erwartete Ergebnis, den Auslöser des Prozesses und den Empfänger des Ergebnisses.\n2. Die erfassten Prozessinformationen wurden klar und präzise dokumentiert, um eine eindeutige Zuordnung zu ermöglichen.\n3. Es wurde sichergestellt, dass die erfassten Informationen den tatsächlichen Ablauf des Geschäftsprozesses vollständig abbilden und keine wesentlichen Details fehlen.\n4. Die Identifikation erfolgte unter Berücksichtigung der spezifischen Anforderungen des Kunden und der branchenüblichen Standards für die Prozessdokumentation.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B05",
+        "name": "Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte",
+        "description": "Wie erfolgt die Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte?",
+        "quality-level-3": "1. Der Geschäftsprozess wurde systematisch analysiert, um alle relevanten Prozessschritte zu identifizieren und zu erfassen.\n2. Jeder Prozessschritt wurde klar und verständlich beschrieben, um seine Funktionalität und seine Position im Gesamtprozess zu verdeutlichen.\n3. Es wurde sichergestellt, dass die Zerlegung des Prozesses eine logische Abfolge von Aktivitäten darstellt und keine wesentlichen Schritte ausgelassen wurden.\n4. Die Zerlegung erfolgte unter Berücksichtigung der Abhängigkeiten zwischen den einzelnen Prozessschritten sowie der möglichen Variationen oder Ausnahmen, die auftreten können.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
   }
 ]
