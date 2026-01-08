@@ -10,6 +10,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,12 +20,25 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore, Build, and Test
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      # Install Playwright browsers + Linux dependencies
+      - name: Install Playwright
+        shell: pwsh
+        working-directory: Ipa.Manager.Tests
+        run: ./bin/Release/net*/playwright.ps1 install --with-deps
+
+      - name: Run tests
         run: |
           dotnet test --configuration Release \
-          --verbosity normal \
-          --logger "trx;LogFileName=test-results.trx" \
-          --results-directory TestResults
+            --no-build \
+            --verbosity normal \
+            --logger "trx;LogFileName=test-results.trx" \
+            --results-directory TestResults
 
       - name: Upload test results
         if: failure()

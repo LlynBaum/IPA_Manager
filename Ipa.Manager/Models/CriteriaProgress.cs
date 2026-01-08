@@ -1,0 +1,34 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Ipa.Manager.Models;
+
+[Table("criteria_progress")]
+public class CriteriaProgress
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("id")]
+    public int Id { get; set; }
+
+    [Column("project_id")]
+    public int ProjectId { get; set; }
+
+    [Required]
+    [Column("criteria_id")]
+    [MaxLength(50)]
+    public required string CriteriaId { get; set; }
+
+    [Column("fulfilled_requirement_ids")]
+    public List<int> FulfilledRequirementIds { get; set; } = [];
+
+    [Column("notes")]
+    [MaxLength(1000)]
+    public string? Notes { get; set; }
+
+    [Column("last_updated")]
+    public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
+
+    [ForeignKey("ProjectId")]
+    public Project Project { get; set; } = null!;
+}
