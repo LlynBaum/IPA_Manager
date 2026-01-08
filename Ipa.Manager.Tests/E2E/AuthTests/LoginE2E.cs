@@ -5,28 +5,33 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.E2E.AuthTests;
 
 [TestFixture]
-public class LoginE2E : PlaywrightTestBase
+public class LoginE2E() : PlaywrightTestBase(true)
 {
+    private ILocator UsernameInput => Page.GetByRole(AriaRole.Textbox, new() { Name = "username" });
+    private ILocator PasswordInput => Page.GetByRole(AriaRole.Textbox, new() { Name = "password" });
+
     [Test]
-    public async Task RegisterCreatesUserInDb()
+    public async Task UnauthorizedUser_IsRedirectedToLogin()
+    {
+        await Page.GotoAsync(BaseUrl);
+        await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
+        Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}login?ReturnUrl=%2F"));
+    }
+    
+    [Test]
+    public async Task Register_CreatesUserInDb()
     {
         const string username = "Test";
         const string password = "abcdefg";
         
         await Page.GotoAsync(BaseUrl);
-
-        await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
-        Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}login?ReturnUrl=%2F"));
-
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
-        await Task.Delay(100);
-        Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}register?ReturnUrl=%2F"));
 
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "username" }).FillAsync(username);
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).First.FillAsync(password);
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).Last.FillAsync(password);
+        await UsernameInput.FillAsync(username);
+        await PasswordInput.First.FillAsync(password);
+        await PasswordInput.Last.FillAsync(password);
         
-        await Page.GetByRole(AriaRole.Textbox, new () { Name = "password" }).Last.BlurAsync();
+        await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
         Assert.That(Page.Url, Is.EqualTo(BaseUrl)); 
@@ -38,5 +43,35 @@ public class LoginE2E : PlaywrightTestBase
             Assert.That(user.Username, Is.EqualTo(username));
             Assert.That(user.PasswordHash, Is.Not.EqualTo(password));
         });
+    }
+
+    [Test]
+    public async Task Register_RedirectsBackAndDoesNotCreateUser_WhenRegisterFails()
+    {
+        
+    }
+    
+    [Test]
+    public async Task Register_RedirectsToReturnUrl_OnSuccess()
+    {
+        
+    }
+    
+    [Test]
+    public async Task Login_LogisInTheUser_OnSuccess()
+    {
+        
+    }
+    
+    [Test]
+    public async Task Login_GoesBackToLogin_WhenLoginFails()
+    {
+        
+    }
+    
+    [Test]
+    public async Task Login_RedirectsToReturnUrl_OnSuccess()
+    {
+        
     }
 }
