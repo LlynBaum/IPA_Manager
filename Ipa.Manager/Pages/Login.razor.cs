@@ -10,16 +10,10 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
     public string? ReturnUrl { get; set; }
 
     [SupplyParameterFromQuery(Name = "LoginFailed")] 
-    public bool LoginFailed { get; set; } = false;
+    public bool LoginFailed { get; set; }
 
     private string? username;
     private string? password;
-
-    protected override Task OnParametersSetAsync()
-    {
-        _ = navigationManager.Uri;
-        return base.OnParametersSetAsync();
-    }
 
     private bool IsInputValid()
     {

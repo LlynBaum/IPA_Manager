@@ -73,7 +73,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var queryString = new Dictionary<string, string?>
             {
                 { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
-                { "RegisterError", "Username too long" }
+                { "RegisterError", "Username is too long." }
             };
             var loginUri = "/register" + QueryString.Create(queryString);
             return Redirect(loginUri);
@@ -106,7 +106,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var queryString = new Dictionary<string, string?>
             {
                 { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
-                { "RegisterError", "Username already in use." }
+                { "RegisterError", "Username is already in use." }
             };
             var loginUri = "/register" + QueryString.Create(queryString);
             return Redirect(loginUri);

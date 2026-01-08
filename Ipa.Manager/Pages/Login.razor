@@ -23,6 +23,7 @@
                            name="Username" 
                            placeholder="Enter your username"
                            @bind="username"
+                           @bind:event="oninput"
                            required />
                 </div>
             </div>
@@ -39,6 +40,7 @@
                            name="Password" 
                            placeholder="Enter your password" 
                            @bind="password"
+                           @bind:event="oninput"
                            required />
                 </div>
             </div>
