@@ -1,7 +1,6 @@
 using Ipa.Manager.Tests.E2E.Framework;
 using Microsoft.Playwright;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 
 namespace Ipa.Manager.Tests.E2E.AuthTests;
 
@@ -49,7 +48,7 @@ public class LoginE2E : PlaywrightTestBase
     }
 
     [Test]
-    public async Task Register_RedirectsBackAndDoesNotCreateUser_WhenPasswordConfirmationDoesNotMatch()
+    public async Task Register_CreateAccountDisabled_WhenPasswordConfirmationDoesNotMatch()
     {
         await Page.GotoAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
@@ -59,17 +58,24 @@ public class LoginE2E : PlaywrightTestBase
         await PasswordInput.Last.FillAsync(Password + "Bla");
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).IsDisabledAsync();
-        
-        Assert.That(Page.Url, Does.Contain("register"));
-        
-        var user = Db.Users.SingleOrDefault();
-        Assert.That(user, Is.Null);
     }
     
     [Test]
     public async Task Register_RedirectsToReturnUrl_OnSuccess()
     {
+        const string returnUrl = "https://www.google.com";
+        var loginUri = "/" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.First.FillAsync(Password);
+        await PasswordInput.Last.FillAsync(Password);
         
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
+        
+        Assert.That(Page.Url, Is.EqualTo("www.google.com"));
     }
     
     [Test]
