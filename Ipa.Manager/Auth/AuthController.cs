@@ -22,14 +22,24 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
 
         if (user is null)
         {
-            var loginUri = "/login" + QueryString.Create("ReturnUrl", loginRequest.ReturnUrl ?? "/");
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", loginRequest.ReturnUrl ?? "/" },
+                { "LoginFailed", "true" }
+            };
+            var loginUri = "/login" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
 
         var loginResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginRequest.Password);
         if (loginResult != PasswordVerificationResult.Success)
         {
-            var loginUri = "/login" + QueryString.Create("ReturnUrl", loginRequest.ReturnUrl ?? "/");
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", loginRequest.ReturnUrl ?? "/" },
+                { "LoginFailed", "true" }
+            };
+            var loginUri = "/login" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
         
