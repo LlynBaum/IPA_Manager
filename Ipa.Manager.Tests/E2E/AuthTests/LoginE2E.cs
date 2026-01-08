@@ -1,4 +1,6 @@
+using Ipa.Manager.Models;
 using Ipa.Manager.Tests.E2E.Framework;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
@@ -35,8 +37,6 @@ public class LoginE2E : PlaywrightTestBase
         
         await PasswordInput.Last.BlurAsync();
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
-        
-        Assert.That(Page.Url, Is.EqualTo(BaseUrl)); 
         
         var user = Db.Users.SingleOrDefault();
         Assert.That(user, Is.Not.Null);
@@ -79,26 +79,159 @@ public class LoginE2E : PlaywrightTestBase
     }
     
     [Test]
+    public async Task Register_ShowsError_WhenUsernameIsAlreadyInUse()
+    {
+        await CreateTestUserAsync();
+        const string returnUrl = "https://www.google.com";
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.First.FillAsync(Password);
+        await PasswordInput.Last.FillAsync(Password);
+        
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
+
+        await Expect(Page.GetByText("Username already in user")).ToBeVisibleAsync();
+    }
+    
+    [Test]
+    public async Task Register_ShowsError_WhenUsernameIsTooLong()
+    {
+        await CreateTestUserAsync();
+        const string returnUrl = "https://www.google.com";
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+
+        var username = string.Join(null, Enumerable.Repeat('a', 105));
+        
+        await UsernameInput.FillAsync(username);
+        await PasswordInput.First.FillAsync(Password);
+        await PasswordInput.Last.FillAsync(Password);
+        
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
+
+        await Expect(Page.GetByText("Username too long.")).ToBeVisibleAsync();
+    }
+    
+    [Test]
+    public async Task Register_ShowsError_WhenPasswordIsTooLong()
+    {
+        await CreateTestUserAsync();
+        const string returnUrl = "https://www.google.com";
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+
+        var password = string.Join(null, Enumerable.Repeat('a', 30));
+        
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.First.FillAsync(password);
+        await PasswordInput.Last.FillAsync(password);
+        
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
+
+        await Expect(Page.GetByText("Password too long.")).ToBeVisibleAsync();
+    }
+    
+    [Test]
+    public async Task Register_ShowsError_WhenPasswordIsTooShort()
+    {
+        await CreateTestUserAsync();
+        const string returnUrl = "https://www.google.com";
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.First.FillAsync("ab");
+        await PasswordInput.Last.FillAsync("ab");
+        
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
+
+        await Expect(Page.GetByText("Password too short.")).ToBeVisibleAsync();
+    }
+    
+    [Test]
     public async Task Login_LogisInTheUser_OnSuccess()
     {
+        await CreateTestUserAsync();
+        await Page.GotoAsync(BaseUrl);
+
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.FillAsync(Password);
         
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
+        
+        Assert.That(Page.Url, Is.EqualTo(BaseUrl));
     }
     
     [Test]
     public async Task Login_GoesBackToLogin_WhenPasswordIsWrong()
     {
+        await CreateTestUserAsync();
+        await Page.GotoAsync(BaseUrl);
+
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.FillAsync("wrong-password");
         
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
+        
+        Assert.That(Page.Url, Does.StartWith($"{BaseUrl}login"));
+        await Expect(Page.GetByText("Wrong Password")).ToBeVisibleAsync();
     }
     
     [Test]
     public async Task Login_GoesBackToLogin_WhenUserDoesNotExist()
     {
+        await CreateTestUserAsync();
+        await Page.GotoAsync(BaseUrl);
+
+        await UsernameInput.FillAsync("Unknown User");
+        await PasswordInput.FillAsync(Password);
         
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
+        
+        Assert.That(Page.Url, Does.StartWith($"{BaseUrl}login"));
+        await Expect(Page.GetByText("User does not Exist")).ToBeVisibleAsync();
     }
     
     [Test]
     public async Task Login_RedirectsToReturnUrl_OnSuccess()
     {
+        await CreateTestUserAsync();
         
+        const string returnUrl = "https://www.google.com";
+        var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
+        await Page.GotoAsync(loginUri);
+        
+        await UsernameInput.FillAsync(Username);
+        await PasswordInput.FillAsync(Password);
+        
+        await PasswordInput.Last.BlurAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
+        
+        Assert.That(Page.Url, Is.EqualTo(returnUrl + "/"));
+    }
+
+    private async Task CreateTestUserAsync()
+    {
+        var passwordHasher = ServiceProvider.GetRequiredService<IPasswordHasher<User>>();
+        var user = new User
+        {
+            Username = Username,
+            PasswordHash = passwordHasher.HashPassword(null!, Password)
+        };
+        await Db.Users.AddAsync(user);
+        await Db.SaveChangesAsync();
     }
 }
