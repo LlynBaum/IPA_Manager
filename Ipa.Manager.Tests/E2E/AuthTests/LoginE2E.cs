@@ -100,7 +100,6 @@ public class LoginE2E : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenUsernameIsTooLong()
     {
-        await CreateTestUserAsync();
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
@@ -121,7 +120,6 @@ public class LoginE2E : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooLong()
     {
-        await CreateTestUserAsync();
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
@@ -142,7 +140,6 @@ public class LoginE2E : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooShort()
     {
-        await CreateTestUserAsync();
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
