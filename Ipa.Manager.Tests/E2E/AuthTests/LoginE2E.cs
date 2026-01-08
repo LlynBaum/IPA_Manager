@@ -16,7 +16,7 @@ public class LoginE2E : PlaywrightTestBase
     private ILocator PasswordInput => Page.GetByRole(AriaRole.Textbox, new() { Name = "password" });
 
     [Test]
-    public async Task UnauthorizedUser_IsRedirectedToLogin()
+    public async Task UnauthenticatedUser_IsRedirectedToLogin()
     {
         await Page.GotoAsync(BaseUrl);
         await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
