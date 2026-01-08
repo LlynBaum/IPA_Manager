@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: IPA-Manager
+  IMAGE_NAME: ipa-manager
 
 jobs:
   dotnet-build:
