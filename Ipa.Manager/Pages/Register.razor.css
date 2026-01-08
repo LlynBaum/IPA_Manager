@@ -86,6 +86,26 @@
     margin-top: var(--spacing-xl);
 }
 
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: #fee;
+    border: 1px solid #fcc;
+    border-radius: var(--radius-md);
+    color: #c33;
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+}
+
+.error-message svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
 .form-group {
     margin-bottom: var(--spacing-lg);
 }

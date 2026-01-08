@@ -9,6 +9,9 @@ public partial class Register(NavigationManager navigationManager) : ComponentBa
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
     
+    [SupplyParameterFromQuery]
+    public string? RegisterError { get; set; }
+    
     private string? username;
     private string? password;
     private string? passwordConfirmation;

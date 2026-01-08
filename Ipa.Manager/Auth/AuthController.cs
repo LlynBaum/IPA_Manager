@@ -68,6 +68,50 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
     [HttpPost("register")]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest, CancellationToken cancellationToken)
     {
+        if (registerRequest.Username.Length > 100)
+        {   
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
+                { "RegisterError", "Username too long" }
+            };
+            var loginUri = "/register" + QueryString.Create(queryString);
+            return Redirect(loginUri);
+        }
+        
+        if (registerRequest.Password.Length > 30)
+        {   
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
+                { "RegisterError", "Password is too long." }
+            };
+            var loginUri = "/register" + QueryString.Create(queryString);
+            return Redirect(loginUri);
+        }
+        
+        if (registerRequest.Password.Length < 5)
+        {   
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
+                { "RegisterError", "Password is too short." }
+            };
+            var loginUri = "/register" + QueryString.Create(queryString);
+            return Redirect(loginUri);
+        }
+
+        if (await context.Users.AnyAsync(u => u.Username == registerRequest.Username, cancellationToken))
+        {
+            var queryString = new Dictionary<string, string?>
+            {
+                { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
+                { "RegisterError", "Username already in use." }
+            };
+            var loginUri = "/register" + QueryString.Create(queryString);
+            return Redirect(loginUri);
+        }
+        
         // The default Implementation of PasswordHasher does not use the value of user
         var passwordHash = passwordHasher.HashPassword(null!, registerRequest.Password);
         var user = new User
