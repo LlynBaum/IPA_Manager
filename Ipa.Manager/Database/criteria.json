@@ -157,49 +157,528 @@
     "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
     "criteria": [
       {
-        "id": "B01",
-        "name": "Firewall aufsetzen",
-        "description": "Wie wird eine Firewall aufgesetzt?",
-        "quality-level-3": "1. Die Zugriffskontrolle ist klar geregelt. Dies beinhaltet unter anderem die Festlegung erlaubter und verbotener Verbindungen.\n2. Filterregeln wurden korrekt implementiert, um den Zugriff auf Anwendungen und Dienste zu kontrollieren.\n3. Es wurden Funktionen zwecks Erkennung und Prävention von Eindringversuchen korrekt aktiviert.\n4. Der Datenverkehr wird bezüglich verdächtiger Aktivitäten überwacht, potenzielle Bedrohungen werden blockiert.\n5. Eine Protokollierung wurde sinnvoll konfiguriert und aktiviert.",
+        "id": "C01",
+        "name": "Daten sichten unter Einsatz des 4V-Modells",
+        "description": "Wie wird das 4V-Modell bei Big Data angewandt?",
+        "quality-level-3": "1. Es wurde deklariert, aus welchen Quellen die Daten stammen, um ihre Herkunft nachvollziehbar zu machen.\n2. Folgende Komponenten des 4V-Modells wurden korrekt beschrieben:\n   • Menge/Volume\n   • Vielfalt/Variety\n   • Geschwindigkeit/Velocity\n   • Zuverlässigkeit/Veracity",
         "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
         "quality-level-1": "Zwei Punkte sind erfüllt.",
         "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
       },
       {
-        "id": "B02",
-        "name": "Installation des Betriebssystems",
-        "description": "Wie erfolgt die Installation eines Betriebssystems?",
-        "quality-level-3": "1. Das Betriebssystem wurde gemäss den Unternehmensstandards und -richtlinien aufgesetzt, einschliesslich der erforderlichen Treiber und Konfigurationsoptionen.\n2. Nach Abschluss der Installation wurde eine Überprüfung durchgeführt, um sicherzustellen, dass das Betriebssystem ordnungsgemäss funktioniert und alle erforderlichen Komponenten erkannt wurden.\n3. Es wurde sichergestellt, dass alle erforderlichen Patches und Updates installiert sind, um die Sicherheit und Stabilität des Systems zu gewährleisten.\n4. Vor der endgültigen Bereitstellung des Systems wurden Benutzertests durchgeführt, um sicherzustellen, dass alle Funktionen ordnungsgemäss funktionieren und die Benutzererwartungen erfüllt werden.",
+        "id": "C02",
+        "name": "Datenmodelle entwickeln",
+        "description": "Wie wird ein Datenmodell entwickelt?",
+        "quality-level-3": "1. Es wurde eine geeignete Datenmodellierungsmethodik (bspw. relational, objektorientierte, ER-Modellierung) gewählt, die Wahl wurde sinnvoll begründet.\n2. In der Umsetzung des Datenmodells wurden die spezifischen Geschäftsanforderungen korrekt widerspiegelt.\n3. Die Grundsätze der Normalisierung wurden sinnvoll angewandt.\n4. Das Datenmodell ist flexibel und skalierbar.\n5. Das Datenmodell ist ausreichend dokumentiert, damit andere Entwickler das Modell verstehen und damit arbeiten können.\n6. Die Performanceanforderungen sind dokumentiert und es wurde ihnen entsprochen (bspw. via Indexierungen).",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "C03",
+        "name": "Datenmodell implementieren",
+        "description": "Wie wird ein Datenmodell implementiert?",
+        "quality-level-3": "1. Es wurde ein geeignetes Datenbankmanagementsystem (bspw. MySQL) ausgewählt. Die Wahl wurde plausibel begründet.\n2. Basierend auf dem Datenmodell wurden im Datenbankmanagementsystem Tabellen und Beziehungen angelegt.\n3. Die Datenintegrität wurde durch den Einsatz von Integritätsregeln (Constraints) sowie Primär- und Fremdschlüsseln sichergestellt.\n4. Es wurden Sicherheitsmassnahmen implementiert, um die Vertraulichkeit und Integrität der Daten zu gewährleisten.\n5. Es wurden Massnahmen – wie bspw. Indexierung – zwecks Entsprechung der Performanceerwartung umgesetzt.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "C04",
+        "name": "Durchführung einer Datenmigration",
+        "description": "Wie erfolgt eine Datenmigration?",
+        "quality-level-3": "1. Die Datenmigration aus den definierten Quellen ins Zielsystem wurde strukturiert vorbereitet.\n2. Die Datenmigration wurde strukturiert durchgeführt.\n3. Die relevanten Funktions- und Performancetests wurden durchgeführt, dokumentiert und ausgewertet.\n4. Die migrierten Daten wurden korrekt auf Vollständigkeit und Integrität geprüft. Sollten dabei Unregelmässigkeiten festgestellt worden sein, wurden diese entweder umgehend behoben oder es wurde ein detailliertes Vorgehen zur Behebung beschrieben.",
         "quality-level-2": "Drei Punkte sind erfüllt.",
         "quality-level-1": "Zwei Punkte sind erfüllt.",
         "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
       },
       {
-        "id": "B03",
-        "name": "Konfiguration der Sicherheitsmassnahmen",
-        "description": "Wie erfolgt die Konfiguration der Sicherheitsmassnahmen?",
-        "quality-level-3": "1. Die erforderlichen Sicherheitsmassnahmen wie Firewall-Konfiguration, Antivirensoftware-Installation usw. wurden gemäss den Unternehmensrichtlinien umgesetzt.\n2. Es wurde eine umfassende Dokumentation über die durchgeführten Sicherheitskonfigurationen erstellt, einschliesslich der Einstellungen, Ausnahmen und Aktualisierungen.\n3. Eine Sicherheitsprüfung wurde durchgeführt, um zu gewährleisten, dass die Konfiguration den aktuellen Bedrohungen standhält und den Sicherheitsanforderungen entspricht.",
+        "id": "C05",
+        "name": "Datensicherheit und Datenschutz planen",
+        "description": "Wie wird der Schutz von Daten geplant?",
+        "quality-level-3": "1. Es wurde erfolgreich ein Modell entwickelt oder gewählt, welches eine Klassifizierung der Daten nach ihrer Schutzwürdigkeit ermöglicht. Das Modell ist beschrieben.\n2. Die Klassifizierung der relevanten Daten nach ihrer Schutzwürdigkeit wurde durchgeführt.\n3. Es wurden erfolgreich Modelle eingesetzt, welche den Grundsätzen von \"Privacy by Design\" (Einbeziehung von Datenschutz in den gesamten Entwicklungsprozess) entsprechen.\n4. Ein einsetzbares Rollenkonzept wurde beschrieben, das Zuweisungen von Verantwortlichkeiten und Zugriffsrechten für die verschiedenen Benutzerrollen innerhalb des Systems festlegt.\n5. Es wurde ein einsetzbares Backup-Recovery-Konzept beschrieben.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "C06",
+        "name": "Verschlüsselung von Daten",
+        "description": "Wie werden Daten verschlüsselt?",
+        "quality-level-3": "1. Ein geeigneter Verschlüsselungsalgorithmus wurde gewählt. Die Wahl wurde begründet.\n2. Ein robustes Schlüsselmanagement wurde entwickelt, das die sichere Erzeugung, Speicherung, Verteilung und Vernichtung von Verschlüsselungsschlüsseln ermöglicht.\n3. Die End-to-End-Verschlüsselung wurde erfolgreich implementiert.",
         "quality-level-2": "Zwei Punkte sind erfüllt.",
         "quality-level-1": "Ein Punkt ist erfüllt.",
         "quality-level-0": "Kein Punkt ist erfüllt."
       },
       {
-        "id": "B04",
-        "name": "Identifikation relevanter Prozessinformationen",
-        "description": "Was umfasst die Identifikation relevanter Prozessinformationen?",
-        "quality-level-3": "1. Die Prozessinformationen wurden vollständig erfasst und umfassen mindestens die Bezeichnung des Prozesses, das auslösende Ereignis, das erwartete Ergebnis, den Auslöser des Prozesses und den Empfänger des Ergebnisses.\n2. Die erfassten Prozessinformationen wurden klar und präzise dokumentiert, um eine eindeutige Zuordnung zu ermöglichen.\n3. Es wurde sichergestellt, dass die erfassten Informationen den tatsächlichen Ablauf des Geschäftsprozesses vollständig abbilden und keine wesentlichen Details fehlen.\n4. Die Identifikation erfolgte unter Berücksichtigung der spezifischen Anforderungen des Kunden und der branchenüblichen Standards für die Prozessdokumentation.",
+        "id": "C07",
+        "name": "Planung eines Backup-Recovery-Konzepts und Durchführung",
+        "description": "Wie wird ein Backup-Recovery-Konzept geplant und durchgeführt?",
+        "quality-level-3": "1. Es wurde eine Backup-Strategie entwickelt, welche mindestens folgendes korrekt festlegt: Datenumfang, Häufigkeit der Backups, Backup-Methode, Definition eines sicheren Speicherorts.\n2. Es wurden Backup-Routinen konzipiert und implementiert, damit die Daten in definierten Intervallen gespeichert werden.\n3. Der Backup-Wiederherstellungsprozess wurde erfolgreich getestet.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "C08",
+        "name": "Planung und Implementierung eines Rollenkonzepts",
+        "description": "Wie wird ein Rollenkonzept geplant und implementiert?",
+        "quality-level-3": "1. Die entsprechenden Rollen wurden korrekt identifiziert und beschrieben.\n2. Ein einsetzbares Berechtigungsmanagement wurde entwickelt, welches die Rollen mit entsprechenden Zugriffsrechten verknüpft.\n3. Das Prinzip der geringsten Privilegien (Least Privilege) wurde korrekt angewandt.\n4. Das Konzept wurde erfolgreich implementiert.",
         "quality-level-2": "Drei Punkte sind erfüllt.",
         "quality-level-1": "Zwei Punkte sind erfüllt.",
         "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
       },
       {
-        "id": "B05",
-        "name": "Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte",
-        "description": "Wie erfolgt die Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte?",
-        "quality-level-3": "1. Der Geschäftsprozess wurde systematisch analysiert, um alle relevanten Prozessschritte zu identifizieren und zu erfassen.\n2. Jeder Prozessschritt wurde klar und verständlich beschrieben, um seine Funktionalität und seine Position im Gesamtprozess zu verdeutlichen.\n3. Es wurde sichergestellt, dass die Zerlegung des Prozesses eine logische Abfolge von Aktivitäten darstellt und keine wesentlichen Schritte ausgelassen wurden.\n4. Die Zerlegung erfolgte unter Berücksichtigung der Abhängigkeiten zwischen den einzelnen Prozessschritten sowie der möglichen Variationen oder Ausnahmen, die auftreten können.",
+        "id": "C09",
+        "name": "Daten analysieren, identifizieren sowie Validität prüfen",
+        "description": "Wie werden die Daten analysiert, identifiziert sowie auf Datenfehler und Validität geprüft?",
+        "quality-level-3": "1. Die relevanten Daten wurden nach einem systematischen Ansatz (Verfahren/Methoden) analysiert.\n2. Die essenziellen Informationen wurden identifiziert.\n3. Es wurden entsprechende Massnahmen ergriffen, um Datenfehler zu erkennen und die Validität der Daten sicherzustellen.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "C10",
+        "name": "Daten aufbereiten, darstellen und bewerten",
+        "description": "Wie werden Daten dargestellt?",
+        "quality-level-3": "1. Die relevanten Daten wurden aussagekräftig aufbereitet und dargestellt.\n2. Die Darstellung berücksichtigt die Zielsetzung und ermöglicht Hinweise auf Trends, Muster oder Abweichungen.\n3. Die Bewertung der Daten ist sachlich begründet und nachvollziehbar.",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "C11",
+        "name": "Einsatz von KI-Modellen",
+        "description": "Wie werden KI-Modelle souverän eingesetzt?",
+        "quality-level-3": "1. Der Einsatz von KI-Modellen führte zu folgendem Nutzen:\n   • Höhere Effizienz, bspw. in Form einer schnelleren Datenanalyse oder via Prozess-Automatisierung\n   • Höhere Effektivität, bspw. in Form besserer Entscheidungsfindung oder frühzeitiger Erkennung von Fehlern\n   • Qualitätssteigerung bspw. in Form höherwertiger Datenqualität\n2. Folgende Anwendungskompetenz wurde demonstriert:\n   • Die Input-Werte für das KI-Modell wurden durch korrekte und präzise formulierte Erwartungen und Spezifikationen bereitgestellt.\n   • Das KI-Modell wurde zweckmässig genutzt.\n   • Die Ergebnisse wurden objektiv geprüft.",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "C12",
+        "name": "Eine KI mittels Machine Learning antrainieren",
+        "description": "Wie erfolgt das Anlernen einer KI mittels Machine Learning?",
+        "quality-level-3": "1. Das zu lösende Problem sowie das Ziel wurden klar definiert.\n2. Relevante Trainingsdaten wurden beschafft und entsprechend aufbereitet.\n3. Ein geeignetes Machine Learning-Modell wurde evaluiert.\n4. Der Trainingsprozess wurde erfolgreich durchgeführt.\n5. Das KI-Modell wurde bewertet und basierend auf den Erkenntnissen verbessert bzw. die Limitationen beschrieben.\n6. Das KI-Modell wurde in die Nutzungsphase überführt.",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "G01",
+        "name": "Dokumentation fachlicher und technischer Anforderungen",
+        "description": "Wie wurden die fachlichen und technischen Anforderungen erfasst und dokumentiert?",
+        "quality-level-3": "1. Die fachlichen und technischen Anforderungen sind vollständig, verständlich und nachvollziehbar dokumentiert.\n2. Die Anforderungen sind lösungsneutral beschrieben und entsprechend ihrer Relevanz oder Priorität gekennzeichnet.\n3. Die Anforderungen sind klar formuliert, eindeutig abgegrenzt und bei Bedarf mit Beispielen oder Akzeptanzkriterien ergänzt.\n4. Die Dokumentation enthält einheitliche Begriffsdefinitionen und eine klare Struktur, sodass die Stakeholder diese problemlos verstehen.",
         "quality-level-2": "Drei Punkte sind erfüllt.",
         "quality-level-1": "Zwei Punkte sind erfüllt.",
         "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G02",
+        "name": "Validierung und Abstimmung von Anforderungen mit Stakeholdern",
+        "description": "Wie wurden die Anforderungen mit den Stakeholdern abgestimmt und validiert?",
+        "quality-level-3": "1. Die Anforderungen wurden in Zusammenarbeit mit allen relevanten Stakeholdern (inklusive Endnutzern) überprüft und validiert.\n2. Rückmeldungen und Änderungswünsche der Beteiligten wurden aufgenommen, dokumentiert und berücksichtigt.\n3. Die endgültigen Anforderungen sind gemeinsam abgestimmt und für alle nachvollziehbar festgehalten.\n4. Die Dokumentation der Anforderungen ist aktuell, inklusive aller Änderungen während des Entwicklungsprozesses.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G03",
+        "name": "Entwicklung von Gestaltungsentwürfen",
+        "description": "Wie wurde sichergestellt, dass die Gestaltungsentwürfe für Benutzerschnittstellen den technischen Vorgaben entsprachen?",
+        "quality-level-3": "1. Es wurden geeignete grafische Tools zur Erstellung von Gestaltungsentwürfen wie MockUps eingesetzt, die den Richtlinien der eingesetzten Technologie und Vorgaben der Firma entsprechen.\n2. Benutzerfreundlichkeit und technische Machbarkeit wurden in den Entwürfen gewährleistet.\n3. Die finalen Gestaltungsentwürfe sind vollständig dokumentiert, inklusive aller Änderungen und Begründungen für diese Anpassungen.\n4. Die Entwürfe wurden mit dem Auftraggeber abgeglichen und in die Überarbeitung integriert, um eine optimale Benutzererfahrung zu sichern.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G04",
+        "name": "Überprüfung der technischen Machbarkeit",
+        "description": "Wie wurde die technischen Anforderungen auf Machbarkeit überprüft und sichergestellt, dass die Lösung umsetzbar ist?",
+        "quality-level-3": "1. Die technische Machbarkeit der geplanten Lösung wurde überprüft (z. B. Schnittstellen, Datenstrukturen, Technologien, Abhängigkeiten).\n2. Potenzielle Risiken oder technische Einschränkungen wurden früh erkannt und nachvollziehbar dokumentiert.\n3. Mit Stakeholdern oder Fachpersonen wurden machbare Alternativen oder Optimierungen besprochen.\n4. Die gewählte Lösung ist technisch realisierbar und entspricht den definierten Anforderungen.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G05",
+        "name": "Prototyping und Validierung der Benutzeroberfläche",
+        "description": "Wie wurden Benutzeroberflächen und Abläufe mit geeigneten Prototypen gestaltet, getestet und verbessert?",
+        "quality-level-3": "1. Zentrale Funktionen oder Abläufe wurden mit Prototypen (z. B. Wireframes, Mockups, klickbare Modelle) dargestellt.\n2. Die Prototypen wurden genutzt, um Benutzerfreundlichkeit, Informationsfluss und Gestaltung zu überprüfen.\n3. Rückmeldungen von Beteiligten oder Testpersonen wurden eingeholt und in die Verbesserung eingearbeitet.\n4. Die finalen Oberflächen sind klar, konsistent und orientieren sich an aktuellen Usability- und Designprinzipien.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G06",
+        "name": "Risikoanalyse und Sicherheitsmassnahme",
+        "description": "Wie wurden Sicherheitsrisiken von Applikationen und Schnittstellen identifiziert und wie wurden diese adressiert?",
+        "quality-level-3": "1. Relevante Risiken im Projekt wurden systematisch identifiziert und dokumentiert.\n2. Das Systemumfeld wurde analysiert, um sicherheitsrelevante Schwachstellen zu erkennen.\n3. Geeignete Sicherheitsmassnahmen, wie Verschlüsselung und Zugriffssicherheit, sind spezifiziert und umgesetzt worden.\n4. Die Ergebnisse und geplanten Massnahmen wurden mit den Stakeholdern abgestimmt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G07",
+        "name": "Entwicklung und Anpassung des Anforderungskatalogs",
+        "description": "Wie wurde der Anforderungskatalog für Sicherheitsmassnahmen von Applikationen und/oder Schnittstellen erstellt oder angepasst?",
+        "quality-level-3": "1. Der Anforderungskatalog wurde basierend auf den identifizierten Sicherheitsrisiken und den diskutierten Massnahmen aktualisiert und detailliert ausgearbeitet.\n2. Sicherheitsrelevante Informationen wurden systematisch im Team und mit der Community (z. B. OWASP) ausgetauscht und in die Anforderungen integriert.\n3. Alle sicherheitsrelevanten Risiken und Massnahmen sind im Anforderungskatalog nachvollziehbar dokumentiert und klar kommuniziert.\n4. Der überarbeitete Anforderungskatalog wurde mit den Stakeholdern besprochen, um eine vollständige Übereinstimmung mit den Sicherheitsanforderungen zu gewährleisten.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G08",
+        "name": "Erarbeitung von Umsetzungsvarianten",
+        "description": "Wie wurden alternative Umsetzungsmöglichkeiten für die Applikation bewertet und ausgewählt?",
+        "quality-level-3": "1. Mindestens zwei mögliche Umsetzungsvarianten wurden skizziert und beschrieben (z. B. Ablauf, Komponenten, Technologien).\n2. Vor- und Nachteile jeder Variante wurden dokumentiert, um eine sachliche Entscheidungsgrundlage zu schaffen.\n3. Die Auswahl der bevorzugten Variante wurde nachvollziehbar begründet und mit den relevanten Stakeholdern abgestimmt.\n4. Für die gewählte Variante wurde eine Machbarkeitsprüfung durchgeführt, um die Realisierbarkeit zu bestätigen.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G09",
+        "name": "Ausarbeitung des Realisierungskonzepts",
+        "description": "Wie wird das Realisierungskonzept für die ausgewählte Umsetzungsvariante entwickelt?",
+        "quality-level-3": "1. Das fachliche und technische Realisierungskonzept wurde schrittweise ausgearbeitet, inklusive Use Cases, Komponenten, Schichten, Abläufen, Schnittstellen, Klassen und Datenmodell.\n2. Relevante Daten, Abläufe, Systeme und Schnittstellen wurden analysiert und die Ergebnisse präzise dokumentiert.\n3. Zur Dokumentation und Darstellung des Konzepts wurden geeignete Werkzeuge und/oder Methoden (bspw. UML) verwendet.\n4. Bei Bedarf wurden Anpassungen für bestehende Applikationen entworfen und in das Konzept integriert.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G10",
+        "name": "Einrichtung der Entwicklungs- und Laufzeitumgebung",
+        "description": "Wie wird eine geeignete Entwicklungs- und Laufzeitumgebung eingerichtet?",
+        "quality-level-3": "1. Die Auswahl und Konfiguration der Entwicklungs- und Laufzeitumgebung basiert auf dem Realisierungskonzept sowie den spezifischen Firmenvorgaben.\n2. Alle notwendigen Tools und Dienste für die Entwicklung (z. B. IDEs, Datenbanken, Versionierungssysteme) sind installiert und funktionsfähig.\n3. Die Umgebung unterstützt die Entwicklung sowohl des Back-Ends als auch des Front-Ends und berücksichtigt dabei Sicherheitsanforderungen.\n4. Die Einrichtung ermöglicht eine effiziente, strukturierte Programmierung und unterstützt regelmässige Tests und Debugging-Aktivitäten.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G11",
+        "name": "Konforme Implementierung und Versionierung",
+        "description": "Wie werden Applikationen und Schnittstellen konform implementiert und versioniert?",
+        "quality-level-3": "1. Back-End und Front-End wurden gemäss den definierten Anforderungen und unter Einhaltung der Programmiersprachen, Entwicklungstools und Sicherheitsvorgaben implementiert.\n2. Regelmässige Überprüfungen der Implementierung gegen die Anforderungen (funktional, nicht-funktional, Sicherheit) wurden durchgeführt, mit kontinuierlicher Anpassung und Optimierung.\n3. Die Einhaltung von Coderichtlinien wurde überprüft, um Nachvollziehbarkeit und Verständlichkeit des Codes zu sichern.\n4. Alle Änderungen und Erweiterungen wurden übersichtlich und zuverlässig in einem Softwareverwaltungssystem abgelegt, wobei firmeninterne Richtlinien beachtet wurden.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G12",
+        "name": "Testkonzepterstellung und Testfalldefinition",
+        "description": "Wie wurden Testkonzepte und Testfälle für die Applikationen und/oder Schnittstellen entwickelt?",
+        "quality-level-3": "1. Das Testumfeld wurde vollständig beschrieben, inklusive System, Akteure, Daten, Benutzer und Berechtigungen, sodass eine aussenstehende Person dieses Umfeld reproduzieren kann.\n2. Eine Auswahl geeigneter Testarten (Unit Tests, Integrationstests, Sicherheitstests etc.) wurde getroffen und die Begründung wurde dokumentiert.\n3. Testfälle wurden klar in Bezug auf Anwendungsfälle und Anforderungen beschrieben, unter Berücksichtigung verschiedener Testperspektiven, und sind wiederholbar gestaltet (automatisiert oder manuell).\n4. Erwartete Ergebnisse für jeden Testfall wurden definiert und sind nachvollziehbar dokumentiert. Unerwartete Ergebnisse bzw. Fehler wurden souverän behoben.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G13",
+        "name": "Durchführung und Auswertung von Tests",
+        "description": "Wie wird die Durchführung von Tests organisiert und deren Ergebnisse ausgewertet?",
+        "quality-level-3": "1. Eine geeignete Testumgebung wurde gemäss dem Testkonzept aufgebaut und alle automatisierbaren Testfälle wurden implementiert.\n2. Testfälle wurden umfassend durchgeführt, wobei besonderes Augenmerk auf die Sorgfalt der Testdurchführung und die Nachvollziehbarkeit der Protokollierung gelegt wurde.\n3. Ergebnisse der Testläufe wurden systematisch ausgewertet und dokumentiert; nicht erfolgreiche Testfälle wurden identifiziert und Korrekturmassnahmen eingeleitet.\n4. Die Implementierung wurde gemäss dem Sicherheitskonzept überprüft, und bei Abweichungen wurden geeignete Korrekturmassnahmen getroffen.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G14",
+        "name": "Berücksichtigung sicherer Programmierpraktiken",
+        "description": "Wie werden sichere Programmierpraktiken angewandt?",
+        "quality-level-3": "1. Die Software wurde unter Berücksichtigung sicherer Programmierpraktiken entwickelt. Dazu gehört die Vermeidung von häufigen Sicherheitsanfälligkeiten wie SQL-Injektionen, Cross-Site-Scripting (XSS) und unsicheren Datenübertragungen.\n2. Es wurden Sicherheitsüberprüfungen und -tests durchgeführt, einschliesslich der Implementierung automatisierter Tests, um sicherzustellen, dass sicherheitsrelevante Anforderungen erfüllt sind. Dies umfasst beispielsweise Unit-Tests für Sicherheitsfunktionen.\n3. Die Dokumentation umfasst klare Richtlinien zu Cyber-Security, einschliesslich Best Practices für die sichere Softwareentwicklung, Anleitungen zur Durchführung von Sicherheitsüberprüfungen sowie einen Plan zur Reaktion auf Sicherheitsvorfälle.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "G15",
+        "name": "Weiterführende Test- und Qualitätssicherungsmassnahmen",
+        "description": "Wie sind weiterführende Test- und Qualitätsmassnahmen umzusetzen?",
+        "quality-level-3": "1. Automatisierte Tests wurden umfassend implementiert, einschliesslich Unit-Tests, Integrationstests und gegebenenfalls End-to-End-Tests. Die Tests sind klar strukturiert und dokumentiert.\n2. Test-Driven Development (TDD) wurde konsequent angewendet. Der Code wurde iterativ entwickelt, wobei zunächst die Tests geschrieben wurden, die die gewünschte Funktionalität überprüfen.\n3. Es wurden geeignete Testtools und -frameworks (z. B. JUnit, TestNG, Selenium) eingesetzt, um Tests zu automatisieren, und die Ergebnisse der Tests wurden in regelmässigen Abständen überprüft. Zusätzlich wurden Metriken zur Testabdeckung erfasst und ausgewertet.\n4. Die Projektdokumentation umfasst eine Beschreibung der Teststrategie, einschliesslich der verwendeten Automatisierungstools, der Struktur der Tests und der Vorgehensweise zur Sicherstellung der Testqualität. Es sind klare Anleitungen zur Durchführung der Tests enthalten, damit andere Entwickler die Qualitätssicherungsprozesse nachvollziehen können.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "G16",
+        "name": "Fehlerbehandlung und Protokollierung",
+        "description": "Wie ist bei der Konzeption und Umsetzung der Fehler- und Ausnahmebehandlung vorzugehen?",
+        "quality-level-3": "1. Eine umfassende Fehlerbehandlung wurde implementiert, die sowohl erwartete als auch unerwartete Fehler angemessen auffängt, ohne die Benutzererfahrung negativ zu beeinträchtigen. Hierbei wurden benutzerfreundliche Fehlermeldungen bereitgestellt.\n2. Es sind spezifische Ausnahmebehandlungsmechanismen vorhanden, die sicherstellen, dass Fehler systematisch protokolliert werden. Dies umfasst die Verwendung von try-catch-Blöcken oder ähnlichen Strukturen zur Handhabung von Ausnahmen.\n3. Ein robustes «Logging-System» wird verwendet, um Fehlerprotokolle zu erstellen. Diese Protokolle enthalten relevante Informationen wie Zeitstempel, Fehlermeldungen und den Kontext, in dem der Fehler aufgetreten ist, und sind so strukturiert, dass sie bei der Fehlersuche hilfreich sind.\n4. Die Dokumentation beschreibt die Vorgehensweise zur Fehlerbehandlung, einschliesslich der verwendeten Methoden für «Logging» und «Notifications». Es werden Leitlinien bereitgestellt, wie auf bestimmte Fehler reagiert werden soll, um die Wartung und das Troubleshooting zu erleichtern.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "H01",
+        "name": "Komponenten-Abhängigkeiten und deren Auswahl",
+        "description": "Wie werden Abhängigkeiten zwischen Komponenten analysiert?",
+        "quality-level-3": "1. Alle relevanten Abhängigkeiten zwischen Komponenten (z. B. Mikroservices, bestehende Software, Schnittstellen/APIs) wurden identifiziert.\n2. Potenzielle Risiken und Einschränkungen durch Abhängigkeiten wurden analysiert und dokumentiert.\n3. Abhängigkeiten wurden bewertet, um die Auswahl geeigneter Plattformen und Technologien zu erleichtern.\n4. Die Analyse ist nachvollziehbar dokumentiert und für Stakeholder verständlich.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H02",
+        "name": "Plattformwahl",
+        "description": "Wie erfolgt die Wahl einer geeigneten Plattform?",
+        "quality-level-3": "1. Die Plattform (z. B. lokale Installation, serverbasiert, webbasiert, containerbasiert) wurde auf Basis der technischen Anforderungen und Abhängigkeiten der Applikation ausgewählt.\n2. Die Plattformwahl berücksichtigt technische Umsetzbarkeit, z. B. Unterstützung der benötigten Services, Schnittstellen und Komponenten.\n3. Die Plattform wurde praktisch eingerichtet oder konfiguriert, sodass die Applikation darauf ausgeführt werden kann.\n4. Sicherheits- und Datenschutzanforderungen wurden identifiziert und die verfügbaren Plattformdienste (z. B. Benutzerrechte, Verschlüsselung, Backups) entsprechend genutzt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H03",
+        "name": "Ressourcenauswahl und Konsistenzprüfung",
+        "description": "Wie erfolgt die Auswahl der benötigten Ressourcen und die Konsistenzprüfung?",
+        "quality-level-3": "1. Notwendige Ressourcen sind basierend auf der Empfehlung des Plattformbetreibers ausgewählt (Performance, Speicherbedarf, Verfügbarkeit, Kosten, Zugriff).\n2. Die gewählten Ressourcen unterstützen die geplante Funktionalität und Performance der Applikation.\n3. Die Auswahl wurde im Team und/oder mit dem Stakeholder auf Konsistenz geprüft; nötige Anpassungen wurden vorgenommen.\n4. Die Ergebnisse der Auswahl und Konsistenzprüfung sind dokumentiert und für alle Beteiligten nachvollziehbar festgehalten.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H04",
+        "name": "Integrationspraktiken für Auslieferungsprozesse",
+        "description": "Welche Integrationspraktiken sind für den Auslieferungsprozess geeignet?",
+        "quality-level-3": "1. Abhängigkeiten zwischen den verschiedenen Komponenten im Hinblick auf den Auslieferungsprozess sind analysiert und dokumentiert.\n2. Die Art und Weise, wie verschiedene Source-Codes geeignet zusammengefügt und freigegeben werden (bspw. Git-Flow, Trunk, Continuous Integration), ist definiert und korrekt umgesetzt.\n3. Die ausgewählten Integrationspraktiken sind klar festgehalten und allen relevanten Teammitgliedern kommuniziert.\n4. Planbare Migrationen (Code First, Datenbankschema) sind unter Berücksichtigung der Architektur berücksichtigt und in den Integrationsprozess integriert.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H05",
+        "name": "Deployment-Praktiken und Artefakt-Verwaltung",
+        "description": "Wie werden Deployment-Praktiken und Artefakt-Verwaltung definiert und umgesetzt?",
+        "quality-level-3": "1. Geeignete Deployment-Praktiken (z. B. Continuous Delivery, automatisierte Deployments) wurden praktisch definiert und umgesetzt.\n2. Die Applikation wurde erfolgreich auf der vorgesehenen Umgebung bereitgestellt (z. B. Test-, Entwicklungs- oder lokale Umgebung).\n3. Die Deployment-Schritte wurden in einer logischen Reihenfolge umgesetzt, sodass abhängige Komponenten korrekt starten. Beispielsweise wird die Datenbank zuerst bereitgestellt, danach das Backend und zum Schluss das Frontend.\n4. Es wurde überprüft, ob die Applikation korrekt läuft, die Grundfunktionen wurden getestet, auftretende Probleme wurden behoben, sodass die Auslieferung stabil und nutzbar ist.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H06",
+        "name": "Automatisierung des Auslieferungsprozesses",
+        "description": "Wie wird der Auslieferungsprozess effizient automatisiert?",
+        "quality-level-3": "1. Die Auslieferung ist automatisiert, korrekt eingerichtet und funktioniert einwandfrei.\n2. Die Auslieferung ist dokumentiert und für Aussenstehende nachvollziehbar.\n3. Der Automatisierungsprozess wurde auf Effizienz und Fehlerfreiheit überprüft und bei Bedarf optimiert.\n4. Es sind geeignete Kontrollmechanismen (z. B. Logs, Benachrichtigungen, Monitoring) implementiert, um Probleme frühzeitig zu erkennen.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H07",
+        "name": "Verwaltung und Test des Auslieferungsprozesses",
+        "description": "Wie werden Applikationskomponenten verwaltet und der Auslieferungsprozess getestet?",
+        "quality-level-3": "1. Applikationskomponenten sind bereitgestellt und korrekt in die Laufzeitumgebung integriert (z. B. Docker, Container).\n2. Artefakte sind systematisch verwaltet und versioniert, um Nachvollziehbarkeit und Konsistenz zu gewährleisten.\n3. Der gesamte Auslieferungsprozess ist gemäss Vorgaben überprüft, und die Funktionsfähigkeit der Applikation ist mittels eines Testkonzepts (z. B. Integrationstest) bestätigt.\n4. Verbesserungs- und Optimierungsmassnahmen für den Auslieferungsprozess sind auf Basis der Testergebnisse und der praktischen Anwendung identifiziert und umgesetzt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H08",
+        "name": "Überwachung der Stabilität und Performance von Applikationen",
+        "description": "Wie wird die Stabilität und Performance der Applikation überwacht?",
+        "quality-level-3": "1. Kritische Performance-Indikatoren (z. B. Antwortzeiten, CPU-/Speicherauslastung) wurden definiert.\n2. Tools oder Mechanismen zur Überwachung wurden eingerichtet und korrekt konfiguriert (z. B. Log-Level, Messpunkte).\n3. Die Performance wurde regelmässig überprüft, Abweichungen wurden erkannt und dokumentiert.\n4. Optimierungen oder Anpassungen wurden auf Basis der Überprüfung durchgeführt, um die Stabilität sicherzustellen.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H09",
+        "name": "Überwachung der Sicherheit von Applikationen",
+        "description": "Wie wird die Applikation auf sicherheitsrelevante Ereignisse überwacht?",
+        "quality-level-3": "1. Relevante Sicherheitsmetriken oder Ereignisse (z. B. fehlerhafte Logins, Berechtigungsänderungen, Zugriff auf kritische Daten) wurden definiert.\n2. Monitoring-Mechanismen oder Logs wurden eingerichtet, um diese Metriken zu erfassen.\n3. Sicherheitsrelevante Vorfälle wurden regelmässig überprüft und dokumentiert.\n4. Bei erkannten Problemen wurden angemessene Massnahmen umgesetzt oder vorgeschlagen (z. B. Berechtigungen korrigieren, Warnungen konfigurieren).",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "H10",
+        "name": "Analyse und Behebung von Problemen im Betrieb",
+        "description": "Wie werden Probleme im laufenden Betrieb analysiert und behoben?",
+        "quality-level-3": "1. Strukturierte Vorgehensweise zur Problemanalyse ist etabliert, inklusive Fehlerreproduktion und systematischer Fehlerausgrenzung.\n2. Aktualität und Sicherheitseinstellungen der Applikationen und Schnittstellen werden regelmässig überprüft, basierend auf den neuesten Herstellerinformationen.\n3. Ein zielführendes Vorgehen zur Problembehebung ist festgelegt.\n4. Umgesetzte Massnahmen zur Problembehebung sind dokumentiert und führen zu einer Erweiterung der Testfälle, um zukünftige Vorfälle zu minimieren.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "Doc01",
+        "name": "Gliederung",
+        "description": "Wie ist die Dokumentation gegliedert?",
+        "quality-level-3": "1. Der IPA-Bericht gliedert sich in Teil 1 und 2 sowie allfällige Anhänge: Teil 1 umfasst die durch die Prüfungsorganisation zusätzlich geforderten Inhalte, während Teil 2 die Umsetzungsdokumentation beinhaltet. Etwaiger Quellcode oder weitere Ergänzungen wie Richtlinien sind Bestandteil des Anhangs.\n2. Die Kapitelstruktur richtet sich nach den relevanten Schwerpunkten. Sie ist klar gegliedert, um eine einfache Navigation und Verständlichkeit für den Leser zu gewährleisten.\n3. Die strukturellen Eigenheiten der gewählten Projektmethode sind in Teil 2 umgesetzt.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "Doc02",
+        "name": "Gestaltung der Dokumentation",
+        "description": "Wie ist die Dokumentation gestaltet?",
+        "quality-level-3": "1. Es wird ein einheitlicher Formatsatz angewandt, der Konsistenz gewährleistet und dem Leser eine klare Orientierung bietet.\n2. Es kommen ausgewogene Abstände zwischen Texten und Elementen zur Anwendung.\n3. Die Gestaltung von Überschriften, Texten und Grafiken erleichtert den Lesefluss und behindert ihn nicht.\n4. Die Überschriften enthalten relevante Informationen und erleichtern dem Leser die Orientierung.\n5. Qualitative Seitenumbrüche stellen sicher, dass keine einzelnstehenden Zeilen am Ende oder am Anfang einer Seite auftreten.",
+        "quality-level-2": "Vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "Doc03",
+        "name": "Formale Anforderungen an den IPA-Bericht",
+        "description": "Was sind die Anforderungen an die formale Vollständigkeit des IPA‑Berichts?",
+        "quality-level-3": "Der IPA‑Bericht enthält…\n1. auf allen Seiten (optional Titelblatt) eine Kopf‑ oder Fusszeile, eine korrekte Seitennummerierung, das aktuelle Druckdatum und den Kandidatennamen.\n2. ein vollständiges Inhaltsverzeichnis.\n3. ein alphabetisch sortiertes Glossar, das präzise Erläuterungen zu den verwendeten Fachbegriffen und Abkürzungen bietet. Die Bestandteile des Glossars sind auf externe Fachpersonen ausgerichtet. Es fehlen maximal drei relevante Komponenten.\n4. ein vollständiges und gültiges Quellenverzeichnis.\nWeitere formale Vorgabe:\n5. Der IPA‑Bericht ist digital durchsuchbar (Screenshots und Grafiken sind von diesem Anspruch ausgenommen).",
+        "quality-level-2": "Vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als drei Punkte sind erfüllt."
+      },
+      {
+        "id": "Doc04",
+        "name": "Schriftliche Brillanz",
+        "description": "Wie sind Rechtschreibung, Interpunktion und Grammatik zu beurteilen?",
+        "quality-level-3": "1. Der Schreibstil ist flüssig, der Text ist durchweg klar und verständlich geschrieben.\n2. Die Sätze sind vollständig und ausführlich formuliert.\n3. Rechtschreibung, Interpunktion und Grammatik weisen keine oder nur vereinzelt kleine Schwächen auf.",
+        "quality-level-2": "Die Gütestufe 3 wurde nicht vollständig erreicht. Bspw. aus folgenden Gründen: Der Schreibstil zeigt einige Schwächen, die Klarheit des Textes könnte verbessert werden. Einige Sätze sind nicht vollständig oder ausführlich genug. Rechtschreibung, Interpunktion und Grammatik weisen kleinere Schwächen auf, die die Lesbarkeit nicht beeinträchtigen.",
+        "quality-level-1": "Die Gütestufe 3 wurde wesentlich verfehlt. Bspw. aus folgenden Gründen: Der Schreibstil ist wenig flüssig, der Text weist erhebliche Verständnisschwierigkeiten auf. Viele Sätze sind unvollständig oder knapp formuliert. Rechtschreibung, Interpunktion und Grammatik zeigen deutliche Schwächen, die die Lesbarkeit erheblich beeinträchtigen.",
+        "quality-level-0": "Die Gütestufe 3 wurde nicht annähernd erreicht. Bspw. aus folgenden Gründen: Der Schreibstil ist mangelhaft, der Text ist schwer verständlich. Viele Sätze sind unvollständig oder undeutlich formuliert. Rechtschreibung, Interpunktion und Grammatik weisen erhebliche Mängel auf, die die Gesamtqualität stark beeinträchtigen."
+      },
+      {
+        "id": "Doc05",
+        "name": "Visuelle Anforderungen an Abbildungen",
+        "description": "Welche visuellen Kriterien sind für Abbildungen (bspw. Grafiken, Bilder, Diagramme und Tabellen) zu erfüllen?",
+        "quality-level-3": "1. Die Abbildungen sind gut lesbar, wobei ausreichender Kontrast und angemessene Grösse berücksichtigt wurden (als Referenz dient der Ausdruck auf Format A4).\n2. Die Abbildungen sind klar und verständlich, um eine einfache Interpretation und Informationsaufnahme zu ermöglichen.\n3. Die Abbildungen weisen aussagekräftige Beschriftungen/Legenden auf, um den Inhalt zu erklären und zu kontextualisieren.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "Doc06",
+        "name": "Kurzfassung des IPA‑Berichts",
+        "description": "Was sind die Anforderungen an eine Kurzfassung?",
+        "quality-level-3": "1. Die Kurzfassung ist Bestandteil von Teil 2 des IPA‑Berichts.\n2. Es werden die Kerninformationen wiedergegeben, weder mehr noch weniger.\n3. Die Kurzfassung beschränkt sich auf eine A4‑Seite und enthält keine Grafik.\n4. Die Kurzfassung weist eine klare Struktur auf und beinhaltet 3 bis 4 Kapitel.\n5. Die Ausrichtung auf die Zielgruppe ist gewährleistet.\n6. Die Kurzfassung endet sinnvoll, bspw. mit einer Schlussfolgerung oder einer Empfehlung.\n7. Die Kurzfassung ist objektiv und verzichtet auf die Schilderung persönlicher Erfahrungen.",
+        "quality-level-2": "Fünf oder sechs Punkte sind erfüllt.",
+        "quality-level-1": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als drei Punkte sind erfüllt."
+      },
+      {
+        "id": "Doc07",
+        "name": "Führung des Arbeitsjournals",
+        "description": "Was ist beim Führen des Arbeitsjournals zu beachten?",
+        "quality-level-3": "1. Das Arbeitsjournal ist Bestandteil von Teil 1 des IPA‑Berichts.\n2. Die Darstellung ist übersichtlich, klar und verständlich.\n3. Das Arbeitsjournal besteht aus individuellen Tagesberichten.\n4. Alle Aktivitäten gemäss Zeitplan sowie Überzeiten und ungeplante Arbeiten sind erwähnt.\n5. Erfolge und Misserfolge sind erwähnt. Misserfolge werden kritisch hinterfragt.\n6. Alle genutzten Unterstützungen, einschliesslich Hilfestellungen und KI‑Nutzung, sind vollständig aufgelistet und begründet.",
+        "quality-level-2": "Vier oder fünf Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "Doc08",
+        "name": "Persönliches Fazit",
+        "description": "Was ist beim Verfassen des persönlichen Fazits zu berücksichtigen?",
+        "quality-level-3": "1. Das persönliche Fazit ist Bestandteil von Teil 1 des IPA‑Berichts.\n2. Das persönliche Fazit gewährt einen objektiven Einblick in folgende Komponenten: Herausforderungen, Lernerfahrung, Entwicklungsperspektiven. Es wird aufgezeigt, was bei einem künftig ähnlichen Projekt besser oder anders gemacht wird.\n3. Beurteilung des Erfolgs.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "F&P1",
+        "name": "Präsentation: Struktur und Zeitmanagement",
+        "description": "Wie ist die Präsentation zu strukturieren und welche Zeitvorgabe ist zu beachten?",
+        "quality-level-3": "1. Die Präsentation umfasst eine Einführung, einen Hauptteil und schliesst mit einer kritischen Reflexion ab.\n2. Die Präsentation setzt relevante Schwerpunkte.\n3. Die Informationen werden in einer logischen und zusammenhängenden Reihenfolge präsentiert.\n4. Der Zeitrahmen von 15 bis 20 Minuten wurde eingehalten.",
+        "quality-level-2": "Punkt vier und zwei weitere Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "F&P2",
+        "name": "Präsentation: Einsatz von Medien und Technologie",
+        "description": "Was ist beim Einsatz von Medien und Technologie anlässlich der Präsentation zu beachten?",
+        "quality-level-3": "1. Verwendete Geräte und Software funktionierten einwandfrei. Bei unvorhergesehenen Schwierigkeiten lässt alles darauf schliessen, dass die Vorbereitungen professionell getroffen wurden.\n2. Die Verwendung von Medien und Technologie ist sinnvoll, inhaltlich relevant und unterstützt die Präsentation effektiv.\n3. Die Präsentationsunterlagen sind visuell ansprechend gestaltet.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "F&P3",
+        "name": "Präsentationsgeschick",
+        "description": "Was zeichnet ein hohes Präsentationsgeschick aus?",
+        "quality-level-3": "1. Informationen wurden klar und verständlich präsentiert, damit die Anwesenden die Aussagen leicht nachvollziehen konnten.\n2. Sprache und Medieneinsatz sind aufeinander abgestimmt und ergänzen sich inhaltlich.\n3. Die Präsentation beeindruckte durch selbstsicheres Auftreten, sowohl verbal als auch durch eine überzeugende Körpersprache.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "F&P4",
+        "name": "Demonstration des Produkts",
+        "description": "Wie ist das Produkt der Facharbeit vorzuführen?",
+        "quality-level-3": "1. Die Demonstration erfolgte direkt am Produkt im Zustand des Abgabetermins und live.\n2. Die wesentlichen Produktmerkmale/Funktionen wurden aufgezeigt.\n3. Die Demonstration war gut vorbereitet.\n4. Die Demonstration ist logisch aufgebaut.\n5. Die Demonstration ist für die Zuschauer verständlich und nachvollziehbar.",
+        "quality-level-2": "Vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei oder drei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "F&P5",
+        "name": "Fachgespräch: Themenkomplex 1",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
+      },
+      {
+        "id": "F&P6",
+        "name": "Fachgespräch: Themenkomplex 2",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
+      },
+      {
+        "id": "F&P7",
+        "name": "Fachgespräch: Themenkomplex 3",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
+      },
+      {
+        "id": "F&P8",
+        "name": "Fachgespräch: Themenkomplex 4",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
+      },
+      {
+        "id": "F&P9",
+        "name": "Fachgespräch: Themenkomplex 5",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
+      },
+      {
+        "id": "F&P10",
+        "name": "Fachgespräch: Themenkomplex 6",
+        "description": "Können die Fragen der Experten zur Facharbeit ausreichend und professionell beantwortet werden?",
+        "quality-level-3": "Die Beantwortung der Fragestellung behandelt alle Aspekte professionell in differenzierter Weise. Alle getätigten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Die Antworten sind fachlich kompetent und korrekt. Der Kandidat kann auch zu Details präzise Auskunft geben.",
+        "quality-level-2": "Die Beantwortung der Fragestellung lässt einen oder mehrere nebensächliche Aspekte ausser Acht, oder ein zentraler Aspekt ist nicht hinreichend differenziert. Die meisten Aussagen sind – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt meist korrekte Antworten und kann zu Details meist präzise Auskunft geben.",
+        "quality-level-1": "Die Beantwortung der Fragestellung lässt einen zentralen Aspekt ganz ausser Acht oder ist bezüglich des überwiegenden Teils der zentralen Aspekte nicht hinreichend differenziert. Viele Aussagen sind nicht – wo notwendig – mit Beispielen oder logischen Schlussfolgerungen belegt. Der Kandidat gibt häufig falsche oder unpräzise Antworten.",
+        "quality-level-0": "Die Fragen zur Facharbeit können nicht korrekt beantwortet werden."
       }
     ]
   }
