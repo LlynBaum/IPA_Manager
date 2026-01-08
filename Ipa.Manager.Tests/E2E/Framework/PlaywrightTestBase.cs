@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.E2E.Framework;
 
 [NonParallelizable]
-internal class PlaywrightTestBase : PageTest
+public class PlaywrightTestBase : PageTest
 {
     /// <summary>
     /// Use this code <code>protected override bool EnableTracing => true;</code> to Enable Playwright tracing.
