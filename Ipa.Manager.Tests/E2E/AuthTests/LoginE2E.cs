@@ -164,7 +164,6 @@ public class LoginE2E : PlaywrightTestBase
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync("wrong-password");
         
-
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
         Assert.That(Page.Url, Does.StartWith($"{BaseUrl}login"));
