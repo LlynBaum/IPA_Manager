@@ -16,14 +16,11 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddCookieAuth();
+builder.Services.AddIpaServices();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(connectionString));
-
-builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
-builder.Services.AddIpaServices();
 
 var app = builder.Build();
 
