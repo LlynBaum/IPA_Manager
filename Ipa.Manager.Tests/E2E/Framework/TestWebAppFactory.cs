@@ -1,99 +1,116 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Ipa.Manager.Tests.E2E.Framework;
 
 /// <summary>
-/// Spins up the Blazor Web App.
+/// Spins up the Blazor Web App as an external process.
 /// The app is available via <c>127.0.0.1</c> on a random free port chosen at start up.
 /// </summary>
-internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFactory<Program>
+internal class TestWebAppFactory(string dbConnectionString) : IDisposable, IAsyncDisposable
 {
-    private IHost? host;
-    
-    public override IServiceProvider Services
-        => host?.Services
-           ?? throw new InvalidOperationException("Call StartAsync() first to start host.");
+    private Process? process;
 
-    public string ServerAddress => host is not null
-        ? ClientOptions.BaseAddress.ToString()
-        : throw new InvalidOperationException("Call StartAsync() first to start host.");
-    
+    private Uri? baseAddress;
+    public Uri BaseAddress => baseAddress ?? throw new InvalidOperationException("Call StartAsync() to start the WebApp first.");
+
+    public string DbConnectionString => dbConnectionString;
+
     public async Task StartAsync()
     {
-        // Triggers CreateHost() getting called. Else the host isn't yet created when calling StartAsync().
-        _ = base.Services;
+        // Reserve a free loopback port so Kestrel can bind to a fixed address.
+        var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+        listener.Stop();
 
-        Debug.Assert(host is not null);
+        baseAddress = new Uri($"http://127.0.0.1:{port}");
 
-        // Spins the host app up.
-        await host.StartAsync();
+        // Resolve project folder relative to the test assembly location.
+        var projectPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Ipa.Manager"));
 
-        // Extract the selected dynamic port out of the Kestrel server
-        // and assign it onto the client options for convenience so it
-        // "just works" as otherwise it'll be the default http://localhost
-        // URL, which won't route to the Kestrel-hosted HTTP server.
-        var server = host.Services.GetRequiredService<IServer>();
-        var addresses = server.Features.Get<IServerAddressesFeature>();
-        ClientOptions.BaseAddress = addresses!.Addresses
-            .Select(x => x.Replace("127.0.0.1", "localhost", StringComparison.Ordinal))
-            .Select(x => new Uri(x))
-            .Last();
-    }
-    
-    protected override IHost CreateHost(IHostBuilder builder)
-    {
-        builder.ConfigureHostConfiguration(cfg =>
+        var psi = new ProcessStartInfo
         {
-            cfg.AddInMemoryCollection(new Dictionary<string, string?>
+            FileName = "dotnet",
+            Arguments = "run --no-launch-profile",
+            WorkingDirectory = projectPath,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        // Environment to control the started app
+        psi.Environment["ASPNETCORE_URLS"] = baseAddress.ToString();
+        psi.Environment["ASPNETCORE_ENVIRONMENT"] = "Development";
+        psi.Environment["ConnectionStrings__DefaultConnection"] = dbConnectionString;
+
+        process = Process.Start(psi) ?? throw new InvalidOperationException("Failed to start external process.");
+
+        // Optional: stream app logs into the test runner debug output (best-effort)
+        _ = Task.Run(() =>
+        {
+            try
             {
-                ["ConnectionStrings:DefaultConnection"] = dbConnectionString
-            });
-        });
-        
-        builder.ConfigureLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddProvider(new FileLoggerProvider("test-logs/app.log"));
-            logging.SetMinimumLevel(LogLevel.Debug);
-            logging.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
-        });
-        
-        builder.ConfigureWebHost(webHost =>
-        {
-            webHost.UseKestrel();
-            webHost.UseUrls("http://127.0.0.1:0");
+                if (process is null) return;
+                while (!process.HasExited)
+                {
+                    var line = process.StandardOutput.ReadLine();
+                    if (line is not null) Debug.WriteLine($"[App] {line}");
+                }
+            }
+            catch { /* best-effort logging */ }
         });
 
-        host = builder.Build();
+        // Wait for the app to become responsive.
+        using var http = new HttpClient();
+        http.BaseAddress = baseAddress;
 
-        return new DummyHost();
+        var timeout = TimeSpan.FromSeconds(30);
+        var stopAt = DateTime.UtcNow + timeout;
+        while (DateTime.UtcNow < stopAt)
+        {
+            try
+            {
+                var r = await http.GetAsync("/");
+                if (r.IsSuccessStatusCode) return; // ready
+            }
+            catch { /* not ready yet */ }
+
+            await Task.Delay(250);
+        }
+
+        // Not ready in time: stop process and fail.
+        await DisposeAsync();
+        throw new TimeoutException("External web host did not become ready in time.");
     }
-    
-    // The DummyHost is returned to avoid the
-    // TProgram project being started twice.
-    private sealed class DummyHost : IHost
+
+    public ValueTask DisposeAsync()
     {
-        public IServiceProvider Services { get; }
+        if (process is null) return ValueTask.CompletedTask;
 
-        public DummyHost()
+        try
         {
-            Services = new ServiceCollection()
-                .AddSingleton<IServer>((s) => new TestServer(s))
-                .BuildServiceProvider();
+            if (!process.HasExited)
+            {
+                process.Kill(entireProcessTree: true);
+                process.WaitForExit(5000);
+            }
+        }
+        catch { /* best-effort */ }
+        finally
+        {
+            process.Dispose();
+            process = null;
         }
 
-        public void Dispose()
-        {
-        }
+        return ValueTask.CompletedTask;
+    }
 
-        public Task StartAsync(CancellationToken cancellationToken = default)
-            => Task.CompletedTask;
-
-        public Task StopAsync(CancellationToken cancellationToken = default)
-            => Task.CompletedTask;
+    void IDisposable.Dispose()
+    {
+        // Best-effort synchronous disposal for callers that call Dispose().
+        DisposeAsync().GetAwaiter().GetResult();
     }
 }
