@@ -21,7 +21,7 @@ public class CriteriaService : ICriteriaService
 
     public IReadOnlyList<Criteria> GetAllById(IEnumerable<string> ids)
     {
-        return criteriaMap.Keys
+        return ids
             .Where(k => criteriaMap.ContainsKey(k))
             .Select(k => criteriaMap[k])
             .ToList();
@@ -29,20 +29,14 @@ public class CriteriaService : ICriteriaService
 
     public IReadOnlyDictionary<string, Criteria> GetLookupTableByIds(IEnumerable<string> ids)
     {
-        return criteriaMap.Keys
+        return ids
             .Where(k => criteriaMap.ContainsKey(k))
             .ToDictionary(key => key, key => criteriaMap[key]);
     }
 
-    public async Task InitializeAsync(Assembly assembly, string fileName, CancellationToken cancellationToken = default)
+    public async Task InitializeAsync(string fileName, CancellationToken cancellationToken = default)
     {
-        var directory = Path.GetDirectoryName(assembly.Location);
-        if (directory is null)
-        {
-            throw new ArgumentException("Location of Assembly was an invalid Directory.", nameof(assembly));
-        }
-        
-        var filePath = Path.Combine(directory, fileName);
+        var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
         await using var fileStream = File.Open(filePath, FileMode.Open);
         
         var criteriaList = await JsonSerializer.DeserializeAsync<List<CriteriaJsonNode>>(fileStream, cancellationToken: cancellationToken);

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Ipa.Manager.Services.Criterias;
+﻿namespace Ipa.Manager.Services.Criterias;
 
 public interface ICriteriaService
 {
@@ -12,5 +10,5 @@ public interface ICriteriaService
 
     IReadOnlyDictionary<string, Criteria> GetLookupTableByIds(IEnumerable<string> ids);
 
-    Task InitializeAsync(Assembly assembly, string fileName, CancellationToken cancellationToken = default);
+    Task InitializeAsync(string fileName, CancellationToken cancellationToken = default);
 }

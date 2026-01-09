@@ -17,7 +17,7 @@ public class CriteriaServiceTest
             var service = new CriteriaService(); 
             
             // Act
-            await service.InitializeAsync(GetType().Assembly, FileName);
+            await service.InitializeAsync(FileName);
             
             // Assert
             var result = service.GetAll();
@@ -37,7 +37,7 @@ public class CriteriaServiceTest
         [OneTimeSetUp]
         public async Task SetUp()
         {
-            await service.InitializeAsync(GetType().Assembly, FileName);
+            await service.InitializeAsync(FileName);
         }
         
         [Test]
@@ -47,11 +47,12 @@ public class CriteriaServiceTest
             var result = service.GetAll();
             
             // Assert
-            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Count.EqualTo(3));
             Assert.Multiple(() =>
             {
                 Assert.That(result[0].Id, Is.EqualTo("A01"));
                 Assert.That(result[1].Id, Is.EqualTo("A02"));
+                Assert.That(result[2].Id, Is.EqualTo("A03"));
             });
         }
         
@@ -63,6 +64,69 @@ public class CriteriaServiceTest
             
             // Assert
             Assert.That(result.Id, Is.EqualTo("A01"));
+        }
+        
+        [Test]
+        public void GetById_ReturnsNull_WhenCriteriaWasNotFound()
+        {
+            // Act
+            void Act() => _ = service.GetById("NEC");
+
+            // Assert
+            Assert.Throws<KeyNotFoundException>(Act);
+        }
+        
+        [Test]
+        public void GetAllById_ReturnsExpectedCrieterias()
+        {
+            // Act
+            var result = service.GetAllById(["A01", "A03"]);
+            
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result[0].Id, Is.EqualTo("A01"));
+                Assert.That(result[1].Id, Is.EqualTo("A03"));
+            });
+        }
+        
+        [Test]
+        public void GetAllById_ReturnsEmptyList_WhenNoCriteriaIdIsGiven()
+        {
+            // Act
+            var result = service.GetAllById([]);
+            
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(0));
+        }
+        
+        [Test]
+        public void GetLookupTableByIds_ReturnsExpectedCrieterias()
+        {
+            // Act
+            var result = service.GetLookupTableByIds(["A01", "A03"]);
+            
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Does.ContainKey("A01"));
+                Assert.That(result["A01"].Id, Is.EqualTo("A01"));
+                
+                Assert.That(result, Does.ContainKey("A03"));
+                Assert.That(result["A03"].Id, Is.EqualTo("A03"));
+            });
+        }
+        
+        [Test]
+        public void GetLookupTableByIds_ReturnsEmptyList_WhenNoCriteriaIdIsGiven()
+        {
+            // Act
+            var result = service.GetLookupTableByIds([]);
+            
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(0));
         }
     }
 }
