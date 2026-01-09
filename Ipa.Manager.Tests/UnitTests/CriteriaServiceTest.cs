@@ -67,10 +67,10 @@ public class CriteriaServiceTest
         }
         
         [Test]
-        public void GetById_ReturnsNull_WhenCriteriaWasNotFound()
+        public void GetById_ThrowsException_WhenCriteriaWasNotFound()
         {
             // Act
-            void Act() => _ = service.GetById("NEC");
+            void Act() => _ = service.GetById("KNFE");
 
             // Assert
             Assert.Throws<KeyNotFoundException>(Act);
