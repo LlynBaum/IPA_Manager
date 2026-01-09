@@ -23,26 +23,19 @@ public class PlaywrightTestBase : PageTest
     /// <summary>
     /// A HttpClient to interact with the Web App for 'Integration' Tests.
     /// </summary>
-    protected HttpClient Client => new() { BaseAddress = PlaywrightServerFixture.Factory.BaseAddress };
+    protected HttpClient Client => PlaywrightServerFixture.Factory.Server.CreateClient();
     
     /// <summary>
     /// A DB Context for the current DB Instance. The data in the DB will be cleared after every Test run.
     /// </summary>
     protected ApplicationDbContext Db;
-    
-    [SetUp]
-    public async Task StartServer()
-    {
-        BaseUrl = PlaywrightServerFixture.Factory.BaseAddress.ToString();
-        
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseMySQL(PlaywrightServerFixture.Factory.DbConnectionString)
-            .Options;
 
-        Db = new ApplicationDbContext(options);
-        await Db.Database.EnsureDeletedAsync();
-        await Db.Database.MigrateAsync();
-    }
+    /// <summary>
+    /// The ServiceProvider to access the DI Container.
+    /// </summary>
+    protected IServiceProvider ServiceProvider => scope.ServiceProvider;
+    
+    private IServiceScope scope;
     
     [SetUp]
     public async Task Setup()
@@ -65,10 +58,22 @@ public class PlaywrightTestBase : PageTest
             Path = "trace.zip"
         });
     }
+    
+    [SetUp]
+    public async Task StartServer()
+    {
+        BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
+        
+        scope = PlaywrightServerFixture.Factory.Services.CreateScope();
+        Db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await Db.Database.EnsureDeletedAsync();
+        await Db.Database.MigrateAsync();
+    }
 
     [TearDown]
-    public void DisposeDb()
+    public void DisposeScope()
     {
         Db.Dispose();
+        scope.Dispose();
     }
 }

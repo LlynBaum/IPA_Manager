@@ -205,7 +205,7 @@ public class LoginE2E : PlaywrightTestBase
 
     private async Task CreateTestUserAsync()
     {
-        var passwordHasher = new PasswordHasher<User>();
+        var passwordHasher = ServiceProvider.GetRequiredService<IPasswordHasher<User>>();
         var user = new User
         {
             Username = Username,

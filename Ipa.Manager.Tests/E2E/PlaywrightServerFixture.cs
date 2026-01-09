@@ -33,6 +33,6 @@ internal class PlaywrightServerFixture
     [OneTimeTearDown]
     public void StopServer()
     {
-        factory?.DisposeAsync();
+        factory?.Dispose();
     }
 }
