@@ -12,8 +12,14 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
     [SupplyParameterFromQuery(Name = "LoginFailed")] 
     public bool LoginFailed { get; set; }
 
+    private bool disableForms;
     private string? username;
     private string? password;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        disableForms = true;
+    }
 
     private bool IsInputValid()
     {

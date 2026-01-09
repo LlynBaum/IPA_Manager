@@ -12,9 +12,15 @@ public partial class Register(NavigationManager navigationManager) : ComponentBa
     [SupplyParameterFromQuery]
     public string? RegisterError { get; set; }
     
+    private bool disableForms;
     private string? username;
     private string? password;
     private string? passwordConfirmation;
+    
+    protected override void OnAfterRender(bool firstRender)
+    {
+        disableForms = true;
+    }
     
     private bool IsInputValid()
     {
