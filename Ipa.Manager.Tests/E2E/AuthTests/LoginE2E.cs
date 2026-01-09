@@ -29,6 +29,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_CreatesUserInDb()
     {
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         await UsernameInput.FillAsync(Username);
@@ -50,6 +51,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_CreateAccountDisabled_WhenPasswordConfirmationDoesNotMatch()
     {
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         await UsernameInput.FillAsync(Username);
@@ -65,6 +67,7 @@ public class LoginE2E : PlaywrightTestBase
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         await UsernameInput.FillAsync(Username);
@@ -81,6 +84,7 @@ public class LoginE2E : PlaywrightTestBase
     {
         await CreateTestUserAsync();
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         await UsernameInput.FillAsync(Username);
@@ -96,6 +100,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_ShowsError_WhenUsernameIsTooLong()
     {
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         var username = string.Join(null, Enumerable.Repeat('a', 105));
@@ -113,6 +118,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_ShowsError_WhenPasswordIsTooLong()
     {
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
 
         var password = string.Join(null, Enumerable.Repeat('a', 35));
@@ -130,6 +136,7 @@ public class LoginE2E : PlaywrightTestBase
     public async Task Register_ShowsError_WhenPasswordIsTooShort()
     {
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         
         await UsernameInput.FillAsync(Username);
@@ -146,6 +153,7 @@ public class LoginE2E : PlaywrightTestBase
     {
         await CreateTestUserAsync();
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
 
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync(Password);
@@ -160,6 +168,7 @@ public class LoginE2E : PlaywrightTestBase
     {
         await CreateTestUserAsync();
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
 
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync("wrong-password");
@@ -175,6 +184,7 @@ public class LoginE2E : PlaywrightTestBase
     {
         await CreateTestUserAsync();
         await Page.GotoAsync(BaseUrl);
+        await Task.Delay(5000);
 
         await UsernameInput.FillAsync("Unknown User");
         await PasswordInput.FillAsync(Password);
@@ -193,6 +203,7 @@ public class LoginE2E : PlaywrightTestBase
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await Page.GotoAsync(loginUri);
+        await Task.Delay(5000);
         
         await UsernameInput.FillAsync(Username);
         await PasswordInput.FillAsync(Password);
