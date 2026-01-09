@@ -21,11 +21,12 @@ public class CriteriaServiceTest
             
             // Assert
             var result = service.GetAll();
-            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Count.EqualTo(3));
             Assert.Multiple(() =>
             {
                 Assert.That(result[0].Id, Is.EqualTo("A01"));
                 Assert.That(result[1].Id, Is.EqualTo("A02"));
+                Assert.That(result[2].Id, Is.EqualTo("A03"));
             });
         }
     }
