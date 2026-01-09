@@ -59,6 +59,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
             logging.ClearProviders();
             logging.AddProvider(new FileLoggerProvider("test-logs/app.log"));
             logging.SetMinimumLevel(LogLevel.Debug);
+            logging.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
         });
         
         builder.ConfigureWebHost(webHost =>
