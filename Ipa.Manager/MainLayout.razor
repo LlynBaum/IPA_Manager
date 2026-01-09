@@ -1,3 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
+@if (isReady)
+{
+    <div data-testid="loaded"></div>
+}
+
 @Body
+
+@code {
+
+    private bool isReady;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isReady = true;
+            StateHasChanged();
+        }
+    }
+
+}

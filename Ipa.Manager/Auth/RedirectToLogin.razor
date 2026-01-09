@@ -1,0 +1,11 @@
+@inject NavigationManager NavigationManager
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        var currentLocation = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        var loginUri = "/login" + QueryString.Create("ReturnUrl", currentLocation);
+        NavigationManager.NavigateTo(loginUri);
+    }
+}
