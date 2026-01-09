@@ -1,4 +1,4 @@
-﻿using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Builders;
 using Ipa.Manager.Tests.E2E.Framework;
 using NUnit.Framework;
 using Testcontainers.MySql;
