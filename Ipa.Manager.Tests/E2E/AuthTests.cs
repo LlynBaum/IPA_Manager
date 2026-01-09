@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace Ipa.Manager.Tests.E2E.AuthTests;
+namespace Ipa.Manager.Tests.E2E;
 
 [TestFixture]
-public class LoginE2E : PlaywrightTestBase
+public class AuthTests : PlaywrightTestBase
 {
     private const string Username = "Test";
     private const string Password = "abcdefg";
