@@ -30,10 +30,12 @@ public class AuthTests : PlaywrightTestBase
     {
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync(Password);
-        await PasswordInput.Last.FillAsync(Password);
+
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync(Password);
+        await PasswordInput.Last.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
@@ -51,10 +53,11 @@ public class AuthTests : PlaywrightTestBase
     {
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync(Password);
-        await PasswordInput.Last.FillAsync(Password + "Bla");
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync(Password);
+        await PasswordInput.Last.InteractiveFillAsync(Password + "Bla");
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).IsDisabledAsync();
     }
@@ -66,10 +69,11 @@ public class AuthTests : PlaywrightTestBase
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await GoToPageSaveAsync(loginUri);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync(Password);
-        await PasswordInput.Last.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync(Password);
+        await PasswordInput.Last.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
         
@@ -82,10 +86,11 @@ public class AuthTests : PlaywrightTestBase
         await CreateTestUserAsync();
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync(Password);
-        await PasswordInput.Last.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync(Password);
+        await PasswordInput.Last.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
@@ -97,12 +102,13 @@ public class AuthTests : PlaywrightTestBase
     {
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
         var username = string.Join(null, Enumerable.Repeat('a', 105));
         
-        await UsernameInput.FillAsync(username);
-        await PasswordInput.First.FillAsync(Password);
-        await PasswordInput.Last.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync(username);
+        await PasswordInput.First.InteractiveFillAsync(Password);
+        await PasswordInput.Last.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
@@ -114,12 +120,13 @@ public class AuthTests : PlaywrightTestBase
     {
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
         var password = string.Join(null, Enumerable.Repeat('a', 35));
         
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync(password);
-        await PasswordInput.Last.FillAsync(password);
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync(password);
+        await PasswordInput.Last.InteractiveFillAsync(password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
@@ -131,10 +138,11 @@ public class AuthTests : PlaywrightTestBase
     {
         await GoToPageSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+        await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
         
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.First.FillAsync("ab");
-        await PasswordInput.Last.FillAsync("ab");
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.First.InteractiveFillAsync("ab");
+        await PasswordInput.Last.InteractiveFillAsync("ab");
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Account" }).ClickAsync();
 
@@ -147,8 +155,8 @@ public class AuthTests : PlaywrightTestBase
         await CreateTestUserAsync();
         await GoToPageSaveAsync(BaseUrl);
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
@@ -161,8 +169,8 @@ public class AuthTests : PlaywrightTestBase
         await CreateTestUserAsync();
         await GoToPageSaveAsync(BaseUrl);
 
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.FillAsync("wrong-password");
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.InteractiveFillAsync("wrong-password");
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
@@ -176,8 +184,8 @@ public class AuthTests : PlaywrightTestBase
         await CreateTestUserAsync();
         await GoToPageSaveAsync(BaseUrl);
 
-        await UsernameInput.FillAsync("Unknown User");
-        await PasswordInput.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync("Unknown User");
+        await PasswordInput.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
@@ -194,8 +202,8 @@ public class AuthTests : PlaywrightTestBase
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
         await GoToPageSaveAsync(loginUri);
         
-        await UsernameInput.FillAsync(Username);
-        await PasswordInput.FillAsync(Password);
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.InteractiveFillAsync(Password);
         
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
         
