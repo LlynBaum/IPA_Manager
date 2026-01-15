@@ -2,9 +2,7 @@ using Ipa.Manager;
 using Ipa.Manager.Database;
 using Ipa.Manager.Services;
 using Ipa.Manager.Auth;
-using Ipa.Manager.Models;
 using Ipa.Manager.Services.Criterias;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

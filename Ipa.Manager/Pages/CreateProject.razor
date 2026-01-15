@@ -1,15 +1,4 @@
 @page "/create-project"
-@using Ipa.Manager.Models
-@using Ipa.Manager.Database
-@using Ipa.Manager.Services.Criterias
-@using Ipa.Manager.Auth
-@using Microsoft.EntityFrameworkCore
-@using Microsoft.AspNetCore.Authorization
-@inject ApplicationDbContext DbContext
-@inject IStaticCriteriaService StaticCriteriaService
-@inject ICriteriaProgressService CriteriaProgressService
-@inject NavigationManager NavigationManager
-@attribute [Authorize]
 
 <div class="create-project-container">
     <EditForm Model="@projectModel" OnValidSubmit="HandleSubmit" class="project-form">
@@ -71,35 +60,32 @@
             </div>
 
             <div class="criteria-list">
-                @if (FilteredCriteria != null)
+                @foreach (var criteria in GetFilteredCriteria())
                 {
-                    @foreach (var criteria in FilteredCriteria)
-                    {
-                        <div class="criteria-item @(selectedCriteriaIds.Contains(criteria.Id) ? "selected" : "")">
-                            <label class="checkbox-label">
-                                <input type="checkbox" 
-                                       checked="@selectedCriteriaIds.Contains(criteria.Id)"
-                                       @onchange="@(e => ToggleCriteria(criteria.Id, e.Value))" />
-                                <span class="criteria-info">
-                                    <div class="criteria-header">
-                                        <span class="criteria-id">@criteria.Id</span>
-                                        <span class="criteria-name">@criteria.Name</span>
-                                    </div>
-                                    <span class="criteria-desc">@criteria.Description</span>
+                    <div class="criteria-item @(selectedCriteriaIds.Contains(criteria.Id) ? "selected" : "")">
+                        <label class="checkbox-label">
+                            <input type="checkbox" 
+                                   checked="@selectedCriteriaIds.Contains(criteria.Id)"
+                                   @onchange="@(e => ToggleCriteria(criteria.Id, e.Value))" />
+                            <span class="criteria-info">
+                                <div class="criteria-header">
+                                    <span class="criteria-id">@criteria.Id</span>
+                                    <span class="criteria-name">@criteria.Name</span>
+                                </div>
+                                <span class="criteria-desc">@criteria.Description</span>
                                     
-                                    <div class="quality-levels">
-                                        @for (var i = 0; i < criteria.QualityLevels.Count; i++)
-                                        {
-                                            <div class="quality-level">
-                                                <span class="level-badge level-@i">Level @i</span>
-                                                <span class="level-text">@criteria.QualityLevels[i]</span>
-                                            </div>
-                                        }
-                                    </div>
-                                </span>
-                            </label>
-                        </div>
-                    }
+                                <div class="quality-levels">
+                                    @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                    {
+                                        <div class="quality-level">
+                                            <span class="level-badge level-@i">Level @i</span>
+                                            <span class="level-text">@criteria.QualityLevels[i]</span>
+                                        </div>
+                                    }
+                                </div>
+                            </span>
+                        </label>
+                    </div>
                 }
             </div>
         </div>
@@ -107,107 +93,3 @@
     </EditForm>
 </div>
 
-@code {
-    [CascadingParameter]
-    public UserContext? UserContext { get; set; }
-
-    private Project projectModel = new Project { Name = "", Topic = "" };
-    private IReadOnlyList<Criteria>? availableCriteria;
-    private HashSet<string> selectedCriteriaIds = new();
-    private bool isSubmitting = false;
-    
-    // Search and Filter
-    private string searchTerm = "";
-    private string bulkIdsInput = "";
-
-    private IEnumerable<Criteria> FilteredCriteria
-    {
-        get
-        {
-            if (availableCriteria == null) return [];
-            
-            if (string.IsNullOrWhiteSpace(searchTerm))
-            {
-                return availableCriteria;
-            }
-
-            return availableCriteria.Where(c => 
-                c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
-                c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
-        }
-    }
-
-    protected override void OnInitialized()
-    {
-        availableCriteria = StaticCriteriaService.GetAll();
-    }
-
-    private void ToggleCriteria(string criteriaId, object? checkedValue)
-    {
-        if (checkedValue is bool isChecked && isChecked)
-        {
-            selectedCriteriaIds.Add(criteriaId);
-        }
-        else
-        {
-            selectedCriteriaIds.Remove(criteriaId);
-        }
-    }
-    
-    private void HandleBulkInputKeyUp(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            ApplyBulkSelection();
-        }
-    }
-
-    private void ApplyBulkSelection()
-    {
-        if (string.IsNullOrWhiteSpace(bulkIdsInput)) return;
-
-        var ids = bulkIdsInput.Split(new[] { ',', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-        
-        foreach (var id in ids)
-        {
-            // Normalize ID if needed, or just case-insensitive match
-            var criteria = availableCriteria?.FirstOrDefault(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
-            if (criteria != null)
-            {
-                selectedCriteriaIds.Add(criteria.Id);
-            }
-        }
-        
-        // Optional: clear input after selection
-        bulkIdsInput = "";
-    }
-
-    private async Task HandleSubmit()
-    {
-        isSubmitting = true;
-        try
-        {
-            projectModel.UserId = UserContext.UserId;
-            
-            DbContext.Projects.Add(projectModel);
-            await DbContext.SaveChangesAsync();
-
-            if (selectedCriteriaIds.Any())
-            {
-                await CriteriaProgressService.CreateAsync(projectModel.Id, selectedCriteriaIds.ToList());
-            }
-
-            NavigationManager.NavigateTo("/");
-        }
-        catch (Exception ex)
-        {
-            // Ideally handle error showing to user
-            Console.WriteLine($"Error creating project: {ex.Message}");
-        }
-        finally
-        {
-            isSubmitting = false;
-        }
-    }
-}
