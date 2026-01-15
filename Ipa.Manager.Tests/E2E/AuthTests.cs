@@ -20,7 +20,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task UnauthenticatedUser_IsRedirectedToLogin()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
         Assert.That(Page.Url, Is.EqualTo($"{BaseUrl}login?ReturnUrl=%2F"));
     }
@@ -28,7 +28,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task Register_CreatesUserInDb()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -51,7 +51,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task Register_CreateAccountDisabled_WhenPasswordConfirmationDoesNotMatch()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -67,7 +67,7 @@ public class AuthTests : PlaywrightTestBase
     {
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await GoToPageSaveAsync(loginUri);
+        await Page.GotoSaveAsync(loginUri);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -84,7 +84,7 @@ public class AuthTests : PlaywrightTestBase
     public async Task Register_ShowsError_WhenUsernameIsAlreadyInUse()
     {
         await CreateTestUserAsync();
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -100,7 +100,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenUsernameIsTooLong()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -118,7 +118,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooLong()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
 
@@ -136,7 +136,7 @@ public class AuthTests : PlaywrightTestBase
     [Test]
     public async Task Register_ShowsError_WhenPasswordIsTooShort()
     {
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
         await Expect(Page.GetByRole(AriaRole.Heading)).ToHaveTextAsync("Create Account");
         
@@ -153,7 +153,7 @@ public class AuthTests : PlaywrightTestBase
     public async Task Login_LogisInTheUser_OnSuccess()
     {
         await CreateTestUserAsync();
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
 
         await UsernameInput.InteractiveFillAsync(Username);
         await PasswordInput.InteractiveFillAsync(Password);
@@ -167,7 +167,7 @@ public class AuthTests : PlaywrightTestBase
     public async Task Login_GoesBackToLogin_WhenPasswordIsWrong()
     {
         await CreateTestUserAsync();
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
 
         await UsernameInput.InteractiveFillAsync(Username);
         await PasswordInput.InteractiveFillAsync("wrong-password");
@@ -182,7 +182,7 @@ public class AuthTests : PlaywrightTestBase
     public async Task Login_GoesBackToLogin_WhenUserDoesNotExist()
     {
         await CreateTestUserAsync();
-        await GoToPageSaveAsync(BaseUrl);
+        await Page.GotoSaveAsync(BaseUrl);
 
         await UsernameInput.InteractiveFillAsync("Unknown User");
         await PasswordInput.InteractiveFillAsync(Password);
@@ -200,7 +200,7 @@ public class AuthTests : PlaywrightTestBase
         
         const string returnUrl = "https://www.google.com";
         var loginUri = BaseUrl + "login" + QueryString.Create("ReturnUrl", returnUrl);
-        await GoToPageSaveAsync(loginUri);
+        await Page.GotoSaveAsync(loginUri);
         
         await UsernameInput.InteractiveFillAsync(Username);
         await PasswordInput.InteractiveFillAsync(Password);
@@ -220,12 +220,5 @@ public class AuthTests : PlaywrightTestBase
         };
         await Db.Users.AddAsync(user);
         await Db.SaveChangesAsync();
-    }
-
-    private async Task GoToPageSaveAsync(string url)
-    {
-        await Page.GotoAsync(url, new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle });
-        await Page.GetByTestId("loaded")
-            .WaitForAsync(new() { State = WaitForSelectorState.Attached });
     }
 }
