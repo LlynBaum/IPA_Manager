@@ -1,17 +1,51 @@
 ﻿@page "/"
-@using Ipa.Manager.Auth
-@attribute [Authorize]
 
-<PageTitle>Home</PageTitle>
+<div class="projects-container">
+    <div class="projects-header">
+        <h1 class="projects-title">My Projects</h1>
+        <p class="projects-subtitle">@projects.Count project@(projects.Count != 1 ? "s" : "") in total</p>
+    </div>
 
-<h1>Hello, @UserContext.Username!</h1>
-
-Welcome to your new app.
-
-Id: @UserContext.UserId
-
-@code
-{
-    [CascadingParameter]
-    public required UserContext UserContext { get; set; }
-}
+    @if (projects.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📁</div>
+            <h3 class="empty-title">No projects yet</h3>
+            <p class="empty-description">Create your first project to get started</p>
+        </div>
+    }
+    else
+    {
+        <div class="projects-grid">
+            @foreach (var project in projects)
+            {
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3 class="project-name">@project.Name</h3>
+                        <span class="project-date">@project.CreatedAt.ToString("MMM dd, yyyy")</span>
+                    </div>
+                    
+                    <div class="project-topic">
+                        <span class="topic-badge">@project.Topic</span>
+                    </div>
+                    
+                    @if (project.CriteriaProgress.Any())
+                    {
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon">📊</span>
+                                <span class="meta-text">@project.CriteriaProgress.Count criteria</span>
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="project-actions">
+                        <button class="btn-primary" @onclick="() => ViewProject(project.Id)">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
