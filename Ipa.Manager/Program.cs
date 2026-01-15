@@ -1,5 +1,6 @@
 using Ipa.Manager;
 using Ipa.Manager.Database;
+using Ipa.Manager.Services;
 using Ipa.Manager.Auth;
 using Ipa.Manager.Models;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,11 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddCookieAuth();
+builder.Services.AddIpaServices();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(connectionString));
-
-builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 var app = builder.Build();
 

@@ -1,0 +1,39 @@
+﻿[
+  {
+    "section": "Section 1",
+    "criteria": [
+      {
+        "id": "A01",
+        "name": "Auftragsanalyse und Wahl einer Projektmethode",
+        "description": "Wie erfolgt die Auftragsanalyse? Welche Projektmethode kommt zum Einsatz?",
+        "quality-level-3": "1, 2, 3, 4",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "A02",
+        "name": "Informations-Recherche",
+        "description": "Wie werden Informationen recherchiert?",
+        "quality-level-3": "4, 3, 2, 1",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
+    "section": "Section 2",
+    "criteria": [
+      {
+        "id": "A03",
+        "name": "Test",
+        "description": "Test?",
+        "quality-level-3": "1. something.",
+        "quality-level-2": "what",
+        "quality-level-1": "how",
+        "quality-level-0": "tf"
+      }
+    ]
+  }
+]
