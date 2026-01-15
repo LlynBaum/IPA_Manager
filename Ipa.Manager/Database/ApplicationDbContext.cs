@@ -5,9 +5,14 @@ namespace Ipa.Manager.Database;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<Project> Projects { get; set; }
-    public DbSet<CriteriaProgress> CriteriaProgress { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Project> Projects { get; set; }
+    public virtual DbSet<CriteriaProgress> CriteriaProgress { get; set; }
+
+    /// <summary>
+    /// ONLY use for Mocking!!!
+    /// </summary>
+    public ApplicationDbContext() : this(new DbContextOptions<ApplicationDbContext>()) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
