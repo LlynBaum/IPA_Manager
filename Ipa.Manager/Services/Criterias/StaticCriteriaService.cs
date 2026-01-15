@@ -39,7 +39,7 @@ public class StaticCriteriaService : IStaticCriteriaService
         var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
         await using var fileStream = File.Open(filePath, FileMode.Open);
         
-        var criteriaList = await JsonSerializer.DeserializeAsync<List<CriteriaJsonNode>>(fileStream, cancellationToken: cancellationToken);
+        var criteriaList = await JsonSerializer.DeserializeAsync<List<CriteriaSection>>(fileStream, cancellationToken: cancellationToken);
 
         if (criteriaList is null)
         {
@@ -47,10 +47,20 @@ public class StaticCriteriaService : IStaticCriteriaService
         }
 
         criteriaMap = criteriaList
+            .SelectMany(c => c.Criteria)
             .ToDictionary(
                 c => c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), 
                 c => new Criteria(c.Id, c.Name, c.Description, c.QualityLevels))
             .ToFrozenDictionary();
+    }
+
+    private record CriteriaSection
+    {
+        [JsonPropertyName("section")]
+        public required string Section { get; init; }
+        
+        [JsonPropertyName("criteria")]
+        public required CriteriaJsonNode[] Criteria { get; set; }
     }
 
     private record CriteriaJsonNode
