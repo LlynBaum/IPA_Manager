@@ -23,7 +23,7 @@ public class CriteriaProgressServiceTest
     private CriteriaProgressService service;
 
     [Test]
-    public async Task CreateAsync_CreatesACriteriaProgress_ForeachGivenCriteriaId()
+    public async Task CreateAsync_CreatesCriteriaProgress_ForeachGivenCriteriaId()
     {
         contextMock.Setup(c => c.CriteriaProgress).ReturnsDbSet([]);
         
