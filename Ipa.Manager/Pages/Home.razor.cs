@@ -9,16 +9,18 @@ namespace Ipa.Manager.Pages;
 
 [Authorize]
 public partial class Home(
-    ApplicationDbContext context, 
-    UserContext userContext,
+    ApplicationDbContext context,
     NavigationManager navigationManager)
 {
+    [CascadingParameter]
+    public required UserContext UserContext { get; set; }
+    
     private IReadOnlyList<Project> projects = [];
     
     protected override async Task OnInitializedAsync()
     {
         projects = await context.Projects
-            .Where(p => p.UserId == userContext.UserId)
+            .Where(p => p.UserId == UserContext.UserId)
             .ToListAsync();
     }
 
