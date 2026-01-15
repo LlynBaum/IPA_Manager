@@ -154,7 +154,7 @@
     ]
   },
   {
-    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "section": "HKB C: Aufbauen und Pflegen von digitalen Daten (Wahlkriterien BF)",
     "criteria": [
       {
         "id": "C01",
@@ -267,7 +267,7 @@
     ]
   },
   {
-    "section": "HKB C: Aufbauen und Pflegen von digitalen Daten (Wahlkriterien BF)",
+    "section": "HKB G: Entwickeln von Applikationen (Wahlkriterien AE)",
     "criteria": [
       {
         "id": "G01",
@@ -416,7 +416,7 @@
     ]
   },
   {
-    "section": "HKB G: Entwickeln von Applikationen (Wahlkriterien AE)",
+    "section": "HKB H: Ausliefern und Betreiben von Applikationen (Wahlkriterien AE)",
     "criteria": [
       {
         "id": "H01",
@@ -588,7 +588,7 @@
     ]
   },
   {
-    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "section": "Fachgespräch und Präsentation (Pflichtkriterien BF)",
     "criteria": [
       {
         "id": "F&P1",
