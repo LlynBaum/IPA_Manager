@@ -9,6 +9,7 @@ public static class ServiceRegistration
     public static IServiceCollection AddIpaServices(this IServiceCollection service)
     {
         service.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+        service.AddScoped<ICriteriaProgressService, CriteriaProgressService>();
         service.AddSingleton<IStaticCriteriaService, StaticCriteriaService>();
         return service;
     }
