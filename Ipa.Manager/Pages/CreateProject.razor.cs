@@ -71,7 +71,7 @@ public partial class CreateProject(
     {
         if (string.IsNullOrWhiteSpace(bulkIdsInput)) return;
 
-        var ids = bulkIdsInput.Split(new[] { ',', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+        var ids = bulkIdsInput.Split([',', ' ', ';'], StringSplitOptions.RemoveEmptyEntries);
         
         foreach (var id in ids)
         {
