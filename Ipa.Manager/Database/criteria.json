@@ -154,6 +154,56 @@
     ]
   },
   {
+    "section": "HKB B: Unterstützen und Beraten im ICT-Umfeld (Wahlkriterien BF)",
+    "criteria": [
+      {
+        "id": "B01",
+        "name": "Firewall aufsetzen",
+        "description": "Wie wird eine Firewall aufgesetzt?",
+        "quality-level-3": "Die Zugriffskontrolle ist klar geregelt; Filterregeln korrekt implementiert; Funktionen zur Erkennung und Prävention aktiviert; Datenverkehr wird überwacht.",
+        "quality-level-2": "Drei oder vier Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B02",
+        "name": "Installation des Betriebssystems",
+        "description": "Wie erfolgt die Installation eines Betriebssystems?",
+        "quality-level-3": "Betriebssystem gemäss Unternehmensstandards installiert; Überprüfung erfolgreich durchgeführt; alle erforderlichen Patches und Updates installiert; Benutzertests durchgeführt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B03",
+        "name": "Konfiguration der Sicherheitsmassnahmen",
+        "description": "Wie erfolgt die Konfiguration der Sicherheitsmassnahmen?",
+        "quality-level-3": "Sicherheitsmassnahmen gemäss Unternehmensrichtlinien umgesetzt und umfassend dokumentiert; Sicherheitsprüfung entsprechend vorgenommen.",
+        "quality-level-2": "Zwei Punkte sind erfüllt.",
+        "quality-level-1": "Ein Punkt ist erfüllt.",
+        "quality-level-0": "Kein Punkt ist erfüllt."
+      },
+      {
+        "id": "B04",
+        "name": "Identifikation relevanter Prozessinformationen",
+        "description": "Was umfasst die Identifikation relevanter Prozessinformationen?",
+        "quality-level-3": "Prozessinformationen vollständig erfasst (inkl. Bezeichnung, Auslöser, erwartetes Ergebnis, Empfänger) und klar dokumentiert.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      },
+      {
+        "id": "B05",
+        "name": "Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte",
+        "description": "Wie erfolgt die Zerlegung eines Geschäftsprozesses in einzelne Prozessschritte?",
+        "quality-level-3": "Geschäftsprozess systematisch analysiert; Schritte klar und verständlich beschrieben; logische Abfolge dargestellt.",
+        "quality-level-2": "Drei Punkte sind erfüllt.",
+        "quality-level-1": "Zwei Punkte sind erfüllt.",
+        "quality-level-0": "Weniger als zwei Punkte sind erfüllt."
+      }
+    ]
+  },
+  {
     "section": "HKB C: Aufbauen und Pflegen von digitalen Daten (Wahlkriterien BF)",
     "criteria": [
       {
