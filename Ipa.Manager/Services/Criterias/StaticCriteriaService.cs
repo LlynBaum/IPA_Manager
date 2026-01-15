@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Ipa.Manager.Services.Criterias;
 
-public class CriteriaService : ICriteriaService
+public class StaticCriteriaService : IStaticCriteriaService
 {
     private FrozenDictionary<string, Criteria> criteriaMap = null!;
 

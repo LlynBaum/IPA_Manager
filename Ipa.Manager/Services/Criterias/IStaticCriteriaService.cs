@@ -1,6 +1,6 @@
 ﻿namespace Ipa.Manager.Services.Criterias;
 
-public interface ICriteriaService
+public interface IStaticCriteriaService
 {
     IReadOnlyList<Criteria> GetAll();
     

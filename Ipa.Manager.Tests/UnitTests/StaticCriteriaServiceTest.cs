@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Ipa.Manager.Tests.UnitTests;
 
 [TestFixture]
-public class CriteriaServiceTest
+public class StaticCriteriaServiceTest
 {
     private const string FileName = "UnitTests/criteria.json";
     
@@ -14,7 +14,7 @@ public class CriteriaServiceTest
         public async Task InitializeAsync_LoadsAllCriteria()
         { 
             // Arrange
-            var service = new CriteriaService(); 
+            var service = new StaticCriteriaService(); 
             
             // Act
             await service.InitializeAsync(FileName);
@@ -33,7 +33,7 @@ public class CriteriaServiceTest
     
     private class UsageTests
     {
-        private readonly CriteriaService service = new CriteriaService();
+        private readonly StaticCriteriaService service = new StaticCriteriaService();
 
         [OneTimeSetUp]
         public async Task SetUp()
