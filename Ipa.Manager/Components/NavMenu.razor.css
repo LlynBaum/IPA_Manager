@@ -1,0 +1,118 @@
+.navbar {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 0;
+    height: 72px; /* Slightly taller for better spacing */
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.navbar-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-color);
+    transition: var(--transition-base);
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md); /* Increased gap between tabs */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Force specific styling for the nav items to look like tabs/buttons */
+::deep .nav-link {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px !important;
+    border-radius: var(--radius-md);
+    
+    /* Box styling */
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    
+    /* Text styling - forcing black/dark gray */
+    color: var(--text-primary) !important;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    text-decoration: none !important;
+    
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Hover state */
+::deep .nav-link:hover {
+    background-color: white;
+    border-color: var(--primary-color);
+    color: var(--primary-color) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Active state - completely different look */
+::deep .nav-link.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    font-weight: var(--font-weight-semibold);
+}
+
+::deep .nav-link.active:hover {
+    background-color: var(--primary-hover) !important;
+    color: white !important;
+    border-color: var(--primary-hover);
+}
+
+/* Ensure text inside spans inherits correct color */
+::deep .nav-link-text {
+    color: inherit !important;
+}
+
+/* Nuclear option for overriding link colors */
+a.nav-link:link,
+a.nav-link:visited,
+a.nav-link:active,
+a.nav-link:focus {
+    color: inherit !important;
+    text-decoration: none !important;
+}

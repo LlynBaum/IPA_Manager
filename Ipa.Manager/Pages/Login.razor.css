@@ -91,10 +91,10 @@
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-md);
-    background: #fee;
-    border: 1px solid #fcc;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
     border-radius: var(--radius-md);
-    color: #c33;
+    color: var(--error-color);
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-lg);
     margin-top: var(--spacing-xs);

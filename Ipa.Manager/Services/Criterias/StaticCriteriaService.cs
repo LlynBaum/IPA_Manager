@@ -1,4 +1,4 @@
-﻿using System.Collections.Frozen;
+using System.Collections.Frozen;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,10 +8,11 @@ namespace Ipa.Manager.Services.Criterias;
 public class StaticCriteriaService : IStaticCriteriaService
 {
     private FrozenDictionary<string, Criteria> criteriaMap = null!;
+    private IReadOnlyList<Criteria> orderedCriteria = [];
 
     public IReadOnlyList<Criteria> GetAll()
     {
-        return criteriaMap.Values;
+        return orderedCriteria;
     }
 
     public Criteria GetById(string id)
@@ -46,12 +47,13 @@ public class StaticCriteriaService : IStaticCriteriaService
             throw new InvalidOperationException("Invalid criteria file.");
         }
 
-        criteriaMap = criteriaList
+        var allCriteria = criteriaList
             .SelectMany(c => c.Criteria)
-            .ToDictionary(
-                c => c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), 
-                c => new Criteria(c.Id, c.Name, c.Description, c.QualityLevels))
-            .ToFrozenDictionary();
+            .Select(c => new Criteria(c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), c.Name, c.Description, c.QualityLevels))
+            .ToList();
+
+        orderedCriteria = allCriteria;
+        criteriaMap = allCriteria.ToFrozenDictionary(c => c.Id, c => c);
     }
 
     private record CriteriaSection

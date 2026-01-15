@@ -31,11 +31,13 @@ public class CriteriaProgressServiceTest
 
         contextMock.Verify(
             c => c.CriteriaProgress.AddAsync(
-                It.Is<CriteriaProgress>(cp => cp.CriteriaId == "1" && cp.ProjectId == 1)),
+                It.Is<CriteriaProgress>(cp => cp.CriteriaId == "1" && cp.ProjectId == 1),
+                It.IsAny<CancellationToken>()),
             Times.Once);
         contextMock.Verify(
             c => c.CriteriaProgress.AddAsync(
-                It.Is<CriteriaProgress>(cp => cp.CriteriaId == "1" && cp.ProjectId == 1)),
+                It.Is<CriteriaProgress>(cp => cp.CriteriaId == "2" && cp.ProjectId == 1),
+                It.IsAny<CancellationToken>()),
             Times.Once);
     }
 
