@@ -22,7 +22,7 @@ public partial class CreateProject(
     private readonly Project projectModel = new Project { Name = "", Topic = "" };
     private IReadOnlyList<Criteria>? availableCriteria;
     private readonly HashSet<string> selectedCriteriaIds = [];
-    private bool isSubmitting = false;
+    private bool isSubmitting;
     
     private string searchTerm = "";
     private string bulkIdsInput = "";
@@ -44,12 +44,14 @@ public partial class CreateProject(
 
     protected override void OnInitialized()
     {
-        availableCriteria = staticCriteriaService.GetAll();
+        availableCriteria = staticCriteriaService.GetAll()
+            .OrderBy(e => e.Id)
+            .ToList();
     }
 
     private void ToggleCriteria(string criteriaId, object? checkedValue)
     {
-        if (checkedValue is bool isChecked && isChecked)
+        if (checkedValue is true)
         {
             selectedCriteriaIds.Add(criteriaId);
         }
