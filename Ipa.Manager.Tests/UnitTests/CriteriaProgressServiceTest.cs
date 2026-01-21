@@ -26,7 +26,7 @@ public class CriteriaProgressServiceTest
     public async Task CreateAsync_CreatesCriteriaProgress_ForeachGivenCriteriaId()
     {
         contextMock.Setup(c => c.CriteriaProgress).ReturnsDbSet([]);
-        
+
         await service.CreateAsync(1, ["1", "2"]);
 
         contextMock.Verify(
@@ -45,8 +45,8 @@ public class CriteriaProgressServiceTest
     public async Task GetByProject_ReturnsExpectedProjectCriterias()
     {
         staticCriteriaServiceMock.Setup(s => s.GetById(It.IsAny<string>()))
-            .Returns(() => new Criteria("1","1", "1", ["1"]));
-        
+            .Returns(() => new Criteria("1", "1", "1", ["1"]));
+
         contextMock
             .Setup(c => c.CriteriaProgress)
             .ReturnsDbSet([
@@ -65,7 +65,7 @@ public class CriteriaProgressServiceTest
             ]);
 
         var result = await service.GetByProject(1);
-        
+
         Assert.That(result, Has.Count.EqualTo(1));
         Assert.Multiple(() =>
         {
@@ -78,8 +78,8 @@ public class CriteriaProgressServiceTest
     public async Task GetById_ReturnsExpectedCriteria()
     {
         staticCriteriaServiceMock.Setup(s => s.GetById(It.IsAny<string>()))
-            .Returns(() => new Criteria("1","1", "1", ["1"]));
-        
+            .Returns(() => new Criteria("1", "1", "1", ["1"]));
+
         contextMock
             .Setup(c => c.CriteriaProgress)
             .ReturnsDbSet([
@@ -98,7 +98,7 @@ public class CriteriaProgressServiceTest
             ]);
 
         var result = await service.GetById(1);
-        
+
         Assert.That(result, Is.Not.Null);
         Assert.Multiple(() =>
         {

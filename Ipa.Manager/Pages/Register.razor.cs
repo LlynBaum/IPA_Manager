@@ -8,20 +8,20 @@ public partial class Register(NavigationManager navigationManager) : ComponentBa
 {
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
-    
+
     [SupplyParameterFromQuery]
     public string? RegisterError { get; set; }
-    
+
     private bool disableForms;
     private string? username;
     private string? password;
     private string? passwordConfirmation;
-    
+
     protected override void OnAfterRender(bool firstRender)
     {
         disableForms = true;
     }
-    
+
     private bool IsInputValid()
     {
         if (string.IsNullOrEmpty(username)) return false;
@@ -30,7 +30,7 @@ public partial class Register(NavigationManager navigationManager) : ComponentBa
 
         return password == passwordConfirmation;
     }
-    
+
     private void ToLogin()
     {
         var loginUri = "/login" + QueryString.Create("ReturnUrl", ReturnUrl ?? "/");

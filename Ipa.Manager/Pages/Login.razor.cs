@@ -9,7 +9,7 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
     [SupplyParameterFromQuery(Name = "ReturnUrl")]
     public string? ReturnUrl { get; set; }
 
-    [SupplyParameterFromQuery(Name = "LoginFailed")] 
+    [SupplyParameterFromQuery(Name = "LoginFailed")]
     public bool LoginFailed { get; set; }
 
     private bool disableForms;
@@ -23,12 +23,12 @@ public partial class Login(NavigationManager navigationManager) : ComponentBase
 
     private bool IsInputValid()
     {
-        return username is not null 
-               && username.Length > 0 
-               && password is not null 
+        return username is not null
+               && username.Length > 0
+               && password is not null
                && password.Length > 0;
     }
-    
+
     private void ToRegister()
     {
         var registerUri = "/register" + QueryString.Create("ReturnUrl", ReturnUrl ?? "/");

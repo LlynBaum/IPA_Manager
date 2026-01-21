@@ -14,17 +14,17 @@ public class PlaywrightTestBase : PageTest
     /// <code>npx playwright show-trace bin/Debug/net9.0/trace.zip</code>
     /// </summary>
     protected virtual bool EnableTracing => false;
-    
+
     /// <summary>
     /// The URL where the Blazor host is available.
     /// </summary>
     protected string BaseUrl = string.Empty;
-    
+
     /// <summary>
     /// A HttpClient to interact with the Web App for 'Integration' Tests.
     /// </summary>
     protected HttpClient Client => PlaywrightServerFixture.Factory.Server.CreateClient();
-    
+
     /// <summary>
     /// A DB Context for the current DB Instance. The data in the DB will be cleared after every Test run.
     /// </summary>
@@ -34,13 +34,13 @@ public class PlaywrightTestBase : PageTest
     /// The ServiceProvider to access the DI Container.
     /// </summary>
     protected IServiceProvider ServiceProvider => scope.ServiceProvider;
-    
+
     private IServiceScope scope;
-    
+
     [SetUp]
     public async Task Setup()
     {
-        if(!EnableTracing) return;
+        if (!EnableTracing) return;
         await Context.Tracing.StartAsync(new()
         {
             Screenshots = true,
@@ -48,22 +48,22 @@ public class PlaywrightTestBase : PageTest
             Sources = true
         });
     }
-    
+
     [TearDown]
     public async Task TearDown()
     {
-        if(!EnableTracing) return;
+        if (!EnableTracing) return;
         await Context.Tracing.StopAsync(new()
         {
             Path = "trace.zip"
         });
     }
-    
+
     [SetUp]
     public async Task StartServer()
     {
         BaseUrl = PlaywrightServerFixture.Factory.ServerAddress;
-        
+
         scope = PlaywrightServerFixture.Factory.Services.CreateScope();
         Db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         await Db.Database.EnsureDeletedAsync();
