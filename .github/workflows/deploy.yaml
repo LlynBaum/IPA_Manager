@@ -1,4 +1,4 @@
-﻿name: Docker Image Publish
+name: Docker Image Publish
 
 on:
   push:
@@ -42,6 +42,10 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release
+
+      # Linter: Check code formatting
+      - name: Check code formatting
+        run: dotnet format --verify-no-changes --verbosity minimal
 
       # Install Playwright browsers + Linux dependencies
       - name: Install Playwright

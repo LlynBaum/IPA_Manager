@@ -42,16 +42,16 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var loginUri = "/login" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
-        
+
         var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.Username),
         };
-        
+
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principal = new ClaimsPrincipal(identity);
-        
+
         await HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             principal,
@@ -69,7 +69,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterRequest registerRequest, CancellationToken cancellationToken)
     {
         if (registerRequest.Username.Length > 100)
-        {   
+        {
             var queryString = new Dictionary<string, string?>
             {
                 { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
@@ -78,9 +78,9 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var loginUri = "/register" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
-        
+
         if (registerRequest.Password.Length > 30)
-        {   
+        {
             var queryString = new Dictionary<string, string?>
             {
                 { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
@@ -89,9 +89,9 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var loginUri = "/register" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
-        
+
         if (registerRequest.Password.Length < 5)
-        {   
+        {
             var queryString = new Dictionary<string, string?>
             {
                 { "ReturnUrl", registerRequest.ReturnUrl ?? "/" },
@@ -111,7 +111,7 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
             var loginUri = "/register" + QueryString.Create(queryString);
             return Redirect(loginUri);
         }
-        
+
         // The default Implementation of PasswordHasher does not use the value of user
         var passwordHash = passwordHasher.HashPassword(null!, registerRequest.Password);
         var user = new User
@@ -122,10 +122,10 @@ public class AuthController(ApplicationDbContext context, IPasswordHasher<User> 
 
         await context.Users.AddAsync(user, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        
+
         return await LoginAsync(new LoginRequest(registerRequest.Username, registerRequest.Password, registerRequest.ReturnUrl), cancellationToken);
     }
-    
+
     [HttpGet("logout")]
     public async Task<IActionResult> LogoutAsync()
     {

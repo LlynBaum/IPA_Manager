@@ -31,14 +31,14 @@ public class CriteriaProgressService(ApplicationDbContext context, IStaticCriter
             .Select(c => new ProjectCriteria(c, staticCriteria.GetById(c.CriteriaId)))
             .ToList();
     }
-    
+
     public async Task<ProjectCriteria?> GetById(int id)
     {
         var criteriaProgress = await context.CriteriaProgress
             .SingleOrDefaultAsync(c => c.Id == id);
 
-        return criteriaProgress is not null 
-            ? new ProjectCriteria(criteriaProgress, staticCriteria.GetById(criteriaProgress.CriteriaId)) 
+        return criteriaProgress is not null
+            ? new ProjectCriteria(criteriaProgress, staticCriteria.GetById(criteriaProgress.CriteriaId))
             : null;
     }
 }

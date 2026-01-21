@@ -13,7 +13,7 @@ public partial class CreateProject(
     ApplicationDbContext context,
     ICriteriaProgressService criteriaProgressService,
     IStaticCriteriaService staticCriteriaService,
-    NavigationManager navigationManager, 
+    NavigationManager navigationManager,
     ILogger<CreateProject> logger)
 {
     [CascadingParameter]
@@ -23,21 +23,21 @@ public partial class CreateProject(
     private IReadOnlyList<Criteria>? availableCriteria;
     private readonly HashSet<string> selectedCriteriaIds = [];
     private bool isSubmitting;
-    
+
     private string searchTerm = "";
     private string bulkIdsInput = "";
 
     private IEnumerable<Criteria> GetFilteredCriteria()
     {
         if (availableCriteria == null) return [];
-            
+
         if (string.IsNullOrWhiteSpace(searchTerm))
         {
             return availableCriteria;
         }
 
-        return availableCriteria.Where(c => 
-            c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+        return availableCriteria.Where(c =>
+            c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
             c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
             c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
     }
@@ -60,7 +60,7 @@ public partial class CreateProject(
             selectedCriteriaIds.Remove(criteriaId);
         }
     }
-    
+
     private void HandleBulkInputKeyUp(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
@@ -74,7 +74,7 @@ public partial class CreateProject(
         if (string.IsNullOrWhiteSpace(bulkIdsInput)) return;
 
         var ids = bulkIdsInput.Split([',', ' ', ';'], StringSplitOptions.RemoveEmptyEntries);
-        
+
         foreach (var id in ids)
         {
             var criteria = availableCriteria?.FirstOrDefault(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
@@ -83,7 +83,7 @@ public partial class CreateProject(
                 selectedCriteriaIds.Add(criteria.Id);
             }
         }
-        
+
         bulkIdsInput = "";
     }
 
@@ -93,7 +93,7 @@ public partial class CreateProject(
         try
         {
             projectModel.UserId = UserContext.UserId;
-            
+
             context.Projects.Add(projectModel);
             await context.SaveChangesAsync();
 
