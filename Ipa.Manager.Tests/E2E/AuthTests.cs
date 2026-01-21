@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Ipa.Manager.Models;
 using Ipa.Manager.Tests.E2E.Framework;
 using Microsoft.AspNetCore.Identity;
@@ -208,6 +209,28 @@ public class AuthTests : PlaywrightTestBase
         await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
 
         Assert.That(Page.Url, Is.EqualTo(returnUrl + "/"));
+    }
+
+    [Test]
+    public async Task Logout_LogsOutUser_AndRedirectsToLogin()
+    {
+        await CreateTestUserAsync();
+        await Page.GotoSaveAsync(BaseUrl);
+
+        // Login
+        await UsernameInput.InteractiveFillAsync(Username);
+        await PasswordInput.InteractiveFillAsync(Password);
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Sign In" }).ClickAsync();
+
+        // Verify we're logged in
+        await Expect(Page).ToHaveURLAsync(BaseUrl);
+
+        // Click logout button
+        await Page.GetByRole(AriaRole.Link, new() { Name = "Logout" }).ClickAsync();
+
+        // Should redirect to login
+        await Expect(Page).ToHaveURLAsync(new Regex($"{BaseUrl}login.*"));
+        await Expect(Page.GetByText("Login")).ToBeVisibleAsync();
     }
 
     private async Task CreateTestUserAsync()

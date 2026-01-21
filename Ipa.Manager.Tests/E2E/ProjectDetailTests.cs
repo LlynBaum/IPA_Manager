@@ -108,6 +108,104 @@ public class ProjectDetailTests : PlaywrightTestBase
         Assert.That(deletedProject, Is.Null);
     }
 
+    [Test]
+    public async Task ProjectDetail_CanResetAllProgress()
+    {
+        var (_, project) = await CreateProjectAndLoginAsync();
+
+        await Page.GotoSaveAsync(BaseUrl + $"project/{project.Id}");
+
+        // Check some checkboxes first
+        var checkboxes = Page.Locator(".quality-level-item input[type='checkbox']");
+        var count = await checkboxes.CountAsync();
+        if (count > 0)
+        {
+            await checkboxes.First.CheckAsync();
+            await Page.WaitForTimeoutAsync(500); // Wait for update
+        }
+
+        // Handle confirm dialog
+        Page.Dialog += async (_, dialog) => await dialog.AcceptAsync();
+
+        // Click reset button (find by text content)
+        await Page.Locator(".reset-button").GetByText("Reset All").ClickAsync();
+
+        // Wait for update
+        await Page.WaitForTimeoutAsync(500);
+
+        // Verify grade is reset to 1.0
+        var gradeValue = Page.Locator(".grade-value");
+        await Expect(gradeValue).ToHaveTextAsync("1.0");
+
+        // Verify in DB
+        Db.ChangeTracker.Clear();
+        var progress = Db.CriteriaProgress.Single(cp => cp.ProjectId == project.Id && cp.CriteriaId == "A01");
+        Assert.That(progress.FulfilledRequirementIds, Is.Empty);
+    }
+
+    [Test]
+    public async Task ProjectDetail_CanManageCriteria_AddAndRemove()
+    {
+        var (_, project) = await CreateProjectAndLoginAsync();
+
+        await Page.GotoSaveAsync(BaseUrl + $"project/{project.Id}");
+
+        // Enter edit mode
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Edit" }).ClickAsync();
+
+        // Open criteria modal
+        await Page.Locator("button").Filter(new() { HasText = "Manage Criteria" }).ClickAsync();
+        await Expect(Page.Locator(".modal-title")).ToHaveTextAsync("Manage Criteria");
+
+        // Add A02 (should not be selected initially)
+        var a02Item = Page.Locator(".criteria-modal-item").Filter(new() { HasText = "A02" });
+        var a02Checkbox = a02Item.GetByRole(AriaRole.Checkbox);
+        var isChecked = await a02Checkbox.IsCheckedAsync();
+        if (!isChecked)
+        {
+            await a02Checkbox.CheckAsync();
+        }
+
+        // Save changes
+        await Page.Locator(".modal-footer").GetByRole(AriaRole.Button, new() { Name = "Save Changes" }).ClickAsync();
+
+        // Wait for modal to close
+        await Expect(Page.Locator(".modal-title")).Not.ToBeVisibleAsync();
+
+        // Verify A02 was added in DB
+        Db.ChangeTracker.Clear();
+        var criteriaProgress = Db.CriteriaProgress.Where(cp => cp.ProjectId == project.Id).ToList();
+        Assert.That(criteriaProgress, Has.Count.EqualTo(2));
+        Assert.That(criteriaProgress.Select(cp => cp.CriteriaId), Contains.Item("A02"));
+    }
+
+    [Test]
+    public async Task ProjectDetail_GradeCalculation_UpdatesCorrectly()
+    {
+        var (_, project) = await CreateProjectAndLoginAsync();
+
+        await Page.GotoSaveAsync(BaseUrl + $"project/{project.Id}");
+
+        // Initially grade should be 1.0 (no requirements fulfilled)
+        var gradeValue = Page.Locator(".grade-value");
+        await Expect(gradeValue).ToHaveTextAsync("1.0");
+
+        // Check Level 2 (index 2) - should cascade to 0, 1, 2
+        var checkboxes = Page.Locator(".quality-level-item input[type='checkbox']");
+        var checkboxCount = await checkboxes.CountAsync();
+        if (checkboxCount >= 3)
+        {
+            // Level 2 is the third checkbox (0-indexed: 0, 1, 2)
+            await checkboxes.Nth(2).CheckAsync();
+            await Page.WaitForTimeoutAsync(500);
+
+            // Grade should be updated (2 points out of 3 max = ~4.3)
+            var gradeText = await gradeValue.TextContentAsync();
+            var grade = double.Parse(gradeText!);
+            Assert.That(grade, Is.GreaterThan(1.0));
+        }
+    }
+
     private async Task<(User User, Project Project)> CreateProjectAndLoginAsync()
     {
         // Create user
