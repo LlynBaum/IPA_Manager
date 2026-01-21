@@ -19,7 +19,7 @@ public partial class CreateProject(
     [CascadingParameter]
     public required UserContext UserContext { get; set; }
 
-    private readonly Project projectModel = new Project { Name = "", Topic = "" };
+    private readonly Project projectModel = new() { Name = "", Topic = "" };
     private IReadOnlyList<Criteria>? availableCriteria;
     private readonly HashSet<string> selectedCriteriaIds = [];
     private bool isSubmitting;
@@ -27,26 +27,27 @@ public partial class CreateProject(
     private string searchTerm = "";
     private string bulkIdsInput = "";
 
-    private IEnumerable<Criteria> GetFilteredCriteria()
+    private IEnumerable<IGrouping<string, Criteria>> GetGroupedCriteria()
     {
         if (availableCriteria == null) return [];
             
-        if (string.IsNullOrWhiteSpace(searchTerm))
+        var filtered = availableCriteria;
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            return availableCriteria;
+            filtered = filtered.Where(c => 
+                c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+                c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        return availableCriteria.Where(c => 
-            c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
-            c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-            c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+        return filtered.GroupBy(c => c.Section);
     }
 
     protected override void OnInitialized()
     {
-        availableCriteria = staticCriteriaService.GetAll()
-            .OrderBy(e => e.Id)
-            .ToList();
+        // GetAll() already returns criteria in JSON order (by section, then by criteria order within section)
+        availableCriteria = staticCriteriaService.GetAll();
     }
 
     private void ToggleCriteria(string criteriaId, object? checkedValue)

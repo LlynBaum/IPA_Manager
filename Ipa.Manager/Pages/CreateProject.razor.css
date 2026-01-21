@@ -130,7 +130,22 @@ h2 {
 .criteria-list {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.criteria-group {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-md);
+}
+
+.group-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin: var(--spacing-sm) 0;
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--border-light);
 }
 
 .criteria-item {

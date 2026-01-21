@@ -1,5 +1,4 @@
 @page "/create-project"
-
 <div class="create-project-container">
     <EditForm Model="@projectModel" OnValidSubmit="HandleSubmit" class="project-form">
         <div class="form-header">
@@ -60,31 +59,37 @@
             </div>
 
             <div class="criteria-list">
-                @foreach (var criteria in GetFilteredCriteria())
+                @foreach (var group in GetGroupedCriteria())
                 {
-                    <div class="criteria-item @(selectedCriteriaIds.Contains(criteria.Id) ? "selected" : "")">
-                        <label class="checkbox-label">
-                            <input type="checkbox" 
-                                   checked="@selectedCriteriaIds.Contains(criteria.Id)"
-                                   @onchange="@(e => ToggleCriteria(criteria.Id, e.Value))" />
-                            <span class="criteria-info">
-                                <div class="criteria-header">
-                                    <span class="criteria-id">@criteria.Id</span>
-                                    <span class="criteria-name">@criteria.Name</span>
-                                </div>
-                                <span class="criteria-desc">@criteria.Description</span>
-                                    
-                                <div class="quality-levels">
-                                    @for (var i = 0; i < criteria.QualityLevels.Count; i++)
-                                    {
-                                        <div class="quality-level">
-                                            <span class="level-badge level-@i">Level @i</span>
-                                            <span class="level-text">@criteria.QualityLevels[i]</span>
+                    <div class="criteria-group">
+                        <h3 class="group-title">@group.Key</h3>
+                        @foreach (var criteria in group)
+                        {
+                            <div class="criteria-item @(selectedCriteriaIds.Contains(criteria.Id) ? "selected" : "")">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" 
+                                           checked="@selectedCriteriaIds.Contains(criteria.Id)"
+                                           @onchange="@(e => ToggleCriteria(criteria.Id, e.Value))" />
+                                    <span class="criteria-info">
+                                        <div class="criteria-header">
+                                            <span class="criteria-id">@criteria.Id</span>
+                                            <span class="criteria-name">@criteria.Name</span>
                                         </div>
-                                    }
-                                </div>
-                            </span>
-                        </label>
+                                        <span class="criteria-desc">@criteria.Description</span>
+                                            
+                                        <div class="quality-levels">
+                                            @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                            {
+                                                <div class="quality-level">
+                                                    <span class="level-badge level-@i">Level @i</span>
+                                                    <span class="level-text">@criteria.QualityLevels[i]</span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </span>
+                                </label>
+                            </div>
+                        }
                     </div>
                 }
             </div>

@@ -1,0 +1,207 @@
+@page "/project/{Id:int}"
+
+<PageTitle>@(project?.Name ?? "Project Details")</PageTitle>
+
+@if (project is null)
+{
+    <div class="loading-state">Loading...</div>
+}
+else
+{
+    <div class="detail-container">
+        <div class="detail-layout">
+            <div class="main-content">
+                <div class="detail-header">
+                    @if (isEditing)
+                    {
+                        <div class="edit-form">
+                            <div class="form-group">
+                                <label class="form-label">IPA Name</label>
+                                <input type="text" class="form-input" @bind="editName" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Topic</label>
+                                <input type="text" class="form-input" @bind="editTopic" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Criteria (@criteriaList.Count selected)</label>
+                                <button class="btn-icon" @onclick="OpenCriteriaModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Manage Criteria
+                                </button>
+                            </div>
+                            <div class="header-actions">
+                                <button class="btn-icon btn-primary" @onclick="SaveProjectDetails">Save Changes</button>
+                                <button class="btn-icon" @onclick="ToggleEditMode">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="header-content">
+                            <h1 class="project-title">@project.Name</h1>
+                            <p class="project-topic">@project.Topic</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn-icon" @onclick="ToggleEditMode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                Edit
+                            </button>
+                            <button class="btn-icon btn-danger" @onclick="DeleteProject">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                                Delete
+                            </button>
+                        </div>
+                    }
+                </div>
+
+                <div class="criteria-list">
+                    @foreach (var item in criteriaList)
+                    {
+                        <div class="criteria-card">
+                            <div class="criteria-section">@item.Criteria.Section</div>
+                            <div class="criteria-header">
+                                <span class="criteria-id">@item.Criteria.Id</span>
+                                <h3 class="criteria-name">@item.Criteria.Name</h3>
+                            </div>
+                            
+                            <p class="criteria-description">@item.Criteria.Description</p>
+
+                            <div class="quality-levels">
+                                @for (int i = item.Criteria.QualityLevels.Count - 1; i >= 0; i--)
+                                {
+                                    var index = i;
+                                    var level = item.Criteria.QualityLevels[i];
+                                    var isChecked = item.CriteriaProgress.FulfilledRequirementIds.Contains(index);
+                                    
+                                    <div class="quality-level-item @(isChecked ? "checked" : "")" @onclick="() => ToggleRequirement(item, index)">
+                                        <div class="checkbox-wrapper">
+                                            <input type="checkbox" 
+                                                   class="custom-checkbox"
+                                                   checked="@isChecked" 
+                                                   @onchange="() => ToggleRequirement(item, index)" 
+                                                   @onclick:stopPropagation />
+                                        </div>
+                                        <div class="level-content">
+                                            <span class="level-label">Gütestufe @i</span>
+                                            <span class="level-text">@level</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="notes-section">
+                                <label class="notes-label">Notes</label>
+                                <textarea class="notes-input" 
+                                          placeholder="Add notes for this criteria..."
+                                          value="@item.CriteriaProgress.Notes"
+                                          @onchange="@(e => UpdateNotes(item, e))"></textarea>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="grade-card">
+                    <div class="grade-info">
+                        <span class="grade-label">Current Grade</span>
+                        <span class="grade-value">@currentGrade.ToString("0.0")</span>
+                    </div>
+                    <div class="grade-details">
+                        <span class="points-info">@totalPoints / @maxPoints Points</span>
+                        <span class="points-label">Based on fulfilled criteria</span>
+                    </div>
+                    <button class="reset-button" @onclick="ResetAllProgress">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                        Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (showCriteriaModal)
+    {
+        <div class="modal-overlay" @onclick="CloseCriteriaModal">
+            <div class="modal-content" @onclick:stopPropagation>
+                <div class="modal-header">
+                    <h2 class="modal-title">Manage Criteria</h2>
+                    <button class="modal-close" @onclick="CloseCriteriaModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="modal-search">
+                    <input type="text" 
+                           class="search-input" 
+                           placeholder="Search criteria..." 
+                           @bind="criteriaSearchTerm" 
+                           @bind:event="oninput" />
+                </div>
+
+                <div class="modal-body">
+                    @foreach (var group in GetGroupedAvailableCriteria())
+                    {
+                        <div class="criteria-modal-group">
+                            <h3 class="group-title">@group.Key</h3>
+                            @foreach (var criteria in group)
+                            {
+                                var isSelected = selectedCriteriaIds.Contains(criteria.Id);
+                                <div class="criteria-modal-item @(isSelected ? "selected" : "")">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" 
+                                               checked="@isSelected" 
+                                               @onchange="() => ToggleCriteriaSelection(criteria.Id)" />
+                                        <span class="criteria-modal-info">
+                                            <div class="criteria-modal-header">
+                                                <span class="criteria-modal-id">@criteria.Id</span>
+                                                <span class="criteria-modal-name">@criteria.Name</span>
+                                            </div>
+                                            <span class="criteria-modal-desc">@criteria.Description</span>
+                                            
+                                            <div class="modal-quality-levels">
+                                                @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                                {
+                                                    <div class="modal-quality-level">
+                                                        <span class="modal-level-badge level-@i">Level @i</span>
+                                                        <span class="modal-level-text">@criteria.QualityLevels[i]</span>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </span>
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <span class="selection-count">@selectedCriteriaIds.Count criteria selected</span>
+                    <div class="modal-actions">
+                        <button class="btn-icon" @onclick="CloseCriteriaModal">Cancel</button>
+                        <button class="btn-icon btn-primary" @onclick="SaveCriteriaChanges">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

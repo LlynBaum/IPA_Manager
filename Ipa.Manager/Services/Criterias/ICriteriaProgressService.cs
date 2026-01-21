@@ -1,3 +1,5 @@
+using Ipa.Manager.Models;
+
 namespace Ipa.Manager.Services.Criterias;
 
 public interface ICriteriaProgressService
@@ -7,4 +9,6 @@ public interface ICriteriaProgressService
     Task<IReadOnlyList<ProjectCriteria>> GetByProject(int projectId);
     
     Task<ProjectCriteria?> GetById(int id);
+
+    Task UpdateAsync(CriteriaProgress criteriaProgress);
 }
