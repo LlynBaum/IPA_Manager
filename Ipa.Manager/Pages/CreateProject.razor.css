@@ -1,0 +1,279 @@
+.create-project-container {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto;
+    padding: var(--spacing-xl);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+h1 {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin: 0; /* Removed bottom margin since header handles spacing */
+    font-weight: var(--font-weight-bold);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+::deep .form-control,
+::deep input[type="text"] {
+    width: 100%;
+    padding: 14px var(--spacing-md) 14px 48px;
+    border: 2px solid var(--input-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-base);
+    box-sizing: border-box;
+    color: var(--text-primary);
+    background-color: var(--surface);
+}
+
+::deep .form-control:focus,
+::deep input[type="text"]:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+::deep .form-control::placeholder,
+::deep input[type="text"]::placeholder {
+    color: var(--text-placeholder);
+}
+
+.criteria-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.criteria-tools {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 2;
+    min-width: 200px;
+}
+
+.search-box input {
+    padding-left: var(--spacing-md) !important; /* Override icon padding since we don't have icon here yet */
+}
+
+.bulk-select-box {
+    flex: 3;
+    display: flex;
+    gap: var(--spacing-sm);
+    min-width: 300px;
+}
+
+.bulk-select-box input {
+    padding-left: var(--spacing-md) !important;
+}
+
+.btn-secondary {
+    padding: 0 var(--spacing-lg);
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition-base);
+    white-space: nowrap;
+}
+
+.btn-secondary:hover {
+    background-color: var(--input-border);
+}
+
+.criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.criteria-item {
+    padding: var(--spacing-lg);
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--input-border);
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.criteria-item:hover {
+    border-color: var(--input-focus);
+    box-shadow: var(--shadow-md);
+}
+
+.criteria-item.selected {
+    border-color: var(--primary-color);
+    background-color: var(--background-light);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    cursor: pointer;
+    width: 100%;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.criteria-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.criteria-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.criteria-id {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+}
+
+.criteria-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+}
+
+.criteria-desc {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-relaxed);
+}
+
+.quality-levels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    background-color: var(--background-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.quality-level {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.level-badge {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding-top: 2px;
+}
+
+.level-text {
+    color: var(--text-primary);
+    line-height: var(--line-height-normal);
+    white-space: pre-wrap;
+}
+
+.submit-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-base);
+    margin: 0;
+    width: auto;
+}
+
+.submit-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Validation styling */
+::deep .validation-message {
+    color: var(--error-color);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+}
+
+::deep .validation-errors {
+    color: var(--error-color);
+    background-color: var(--error-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}

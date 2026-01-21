@@ -1,0 +1,95 @@
+@page "/create-project"
+
+<div class="create-project-container">
+    <EditForm Model="@projectModel" OnValidSubmit="HandleSubmit" class="project-form">
+        <div class="form-header">
+            <h1>Create New Project</h1>
+            <button type="submit" class="submit-button" disabled="@isSubmitting">
+                Create Project
+            </button>
+        </div>
+
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="name">IPA</label>
+            <div class="input-wrapper">
+                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <InputText id="name" @bind-Value="projectModel.Name" class="form-control" placeholder="Enter IPA name" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="topic">Topic</label>
+            <div class="input-wrapper">
+                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <InputText id="topic" @bind-Value="projectModel.Topic" class="form-control" placeholder="Enter topic" />
+            </div>
+        </div>
+
+        <div class="criteria-section">
+            <h2>Select Criteria</h2>
+            
+            <div class="criteria-tools">
+                <div class="search-box">
+                    <input type="text" 
+                           class="form-control" 
+                           placeholder="Search criteria (e.g. 'A01', 'Analysis')..." 
+                           @bind="searchTerm" 
+                           @bind:event="oninput" />
+                </div>
+                
+                <div class="bulk-select-box">
+                    <input type="text" 
+                           class="form-control" 
+                           placeholder="Quick select IDs (e.g. 'A01, A02')" 
+                           @bind="bulkIdsInput" 
+                           @onkeyup="@HandleBulkInputKeyUp" />
+                    <button type="button" class="btn-secondary" @onclick="ApplyBulkSelection">Select</button>
+                </div>
+            </div>
+
+            <div class="criteria-list">
+                @foreach (var criteria in GetFilteredCriteria())
+                {
+                    <div class="criteria-item @(selectedCriteriaIds.Contains(criteria.Id) ? "selected" : "")">
+                        <label class="checkbox-label">
+                            <input type="checkbox" 
+                                   checked="@selectedCriteriaIds.Contains(criteria.Id)"
+                                   @onchange="@(e => ToggleCriteria(criteria.Id, e.Value))" />
+                            <span class="criteria-info">
+                                <div class="criteria-header">
+                                    <span class="criteria-id">@criteria.Id</span>
+                                    <span class="criteria-name">@criteria.Name</span>
+                                </div>
+                                <span class="criteria-desc">@criteria.Description</span>
+                                    
+                                <div class="quality-levels">
+                                    @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                    {
+                                        <div class="quality-level">
+                                            <span class="level-badge level-@i">Level @i</span>
+                                            <span class="level-text">@criteria.QualityLevels[i]</span>
+                                        </div>
+                                    }
+                                </div>
+                            </span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+

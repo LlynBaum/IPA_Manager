@@ -2,8 +2,7 @@ using Ipa.Manager;
 using Ipa.Manager.Database;
 using Ipa.Manager.Services;
 using Ipa.Manager.Auth;
-using Ipa.Manager.Models;
-using Microsoft.AspNetCore.Identity;
+using Ipa.Manager.Services.Criterias;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +26,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    dbContext.Database.Migrate(); 
+    dbContext.Database.Migrate();
+
+    var staticCriteriaService = scope.ServiceProvider.GetRequiredService<IStaticCriteriaService>();
+    await staticCriteriaService.InitializeAsync("Database/criteria.json");
 }
 
 if (!app.Environment.IsDevelopment())

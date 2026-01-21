@@ -1,14 +1,14 @@
-﻿@page "/"
+@page "/"
 @using Ipa.Manager.Auth
 @attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, @UserContext.Username!</h1>
-
-Welcome to your new app.
-
-Id: @UserContext.UserId
+<div class="home-container">
+    <h1>Hello, @UserContext.Username!</h1>
+    <p class="welcome-text">Welcome to your new app.</p>
+    <p class="user-id">Id: @UserContext.UserId</p>
+</div>
 
 @code
 {
