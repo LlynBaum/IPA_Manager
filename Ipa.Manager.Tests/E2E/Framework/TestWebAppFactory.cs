@@ -13,7 +13,7 @@ namespace Ipa.Manager.Tests.E2E.Framework;
 internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFactory<Program>
 {
     private IHost? host;
-    
+
     public override IServiceProvider Services
         => host?.Services
            ?? throw new InvalidOperationException("Call StartAsync() first to start host.");
@@ -21,7 +21,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
     public string ServerAddress => host is not null
         ? ClientOptions.BaseAddress.ToString()
         : throw new InvalidOperationException("Call StartAsync() first to start host.");
-    
+
     public async Task StartAsync()
     {
         // Triggers CreateHost() getting called. Else the host isn't yet created when calling StartAsync().
@@ -43,7 +43,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
             .Select(x => new Uri(x))
             .Last();
     }
-    
+
     protected override IHost CreateHost(IHostBuilder builder)
     {
         builder.ConfigureHostConfiguration(cfg =>
@@ -53,7 +53,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
                 ["ConnectionStrings:DefaultConnection"] = dbConnectionString
             });
         });
-        
+
         builder.ConfigureLogging(logging =>
         {
             logging.ClearProviders();
@@ -61,7 +61,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
             logging.SetMinimumLevel(LogLevel.Debug);
             logging.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
         });
-        
+
         builder.ConfigureWebHost(webHost =>
         {
             webHost.UseKestrel();
@@ -72,7 +72,7 @@ internal class TestWebAppFactory(string dbConnectionString) : WebApplicationFact
 
         return new DummyHost();
     }
-    
+
     // The DummyHost is returned to avoid the
     // TProgram project being started twice.
     private sealed class DummyHost : IHost

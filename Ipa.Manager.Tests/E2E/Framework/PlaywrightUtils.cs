@@ -8,7 +8,7 @@ public static class PlaywrightUtils
     {
         await page.GotoAsync(url, new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle });
     }
-    
+
     public static async Task InteractiveFillAsync(this ILocator locator, string value)
     {
         await locator.FillAsync(value);

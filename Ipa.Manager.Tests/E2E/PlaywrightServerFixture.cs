@@ -25,11 +25,11 @@ internal class PlaywrightServerFixture
         {
             throw new DockerUnavailableException("Failed to start Testcontainers for MySQL DB. Make sure docker is running.", e);
         }
-        
+
         factory = new TestWebAppFactory(connectionString);
         await factory.StartAsync();
     }
-    
+
     [OneTimeTearDown]
     public void StopServer()
     {

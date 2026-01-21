@@ -38,7 +38,7 @@ public class StaticCriteriaService : IStaticCriteriaService
     {
         var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
         await using var fileStream = File.Open(filePath, FileMode.Open);
-        
+
         var criteriaList = await JsonSerializer.DeserializeAsync<List<CriteriaSection>>(fileStream, cancellationToken: cancellationToken);
 
         if (criteriaList is null)
@@ -64,7 +64,7 @@ public class StaticCriteriaService : IStaticCriteriaService
     {
         [JsonPropertyName("section")]
         public required string Section { get; init; }
-        
+
         [JsonPropertyName("criteria")]
         public required CriteriaJsonNode[] Criteria { get; set; }
     }
@@ -73,22 +73,22 @@ public class StaticCriteriaService : IStaticCriteriaService
     {
         [JsonPropertyName("id")]
         public required string Id { get; init; }
-        
+
         [JsonPropertyName("name")]
         public required string Name { get; init; }
-        
+
         [JsonPropertyName("description")]
         public required string Description { get; init; }
-        
+
         [JsonPropertyName("quality-level-0")]
         public required string QualityLevel0 { get; init; }
-        
+
         [JsonPropertyName("quality-level-1")]
         public required string QualityLevel1 { get; init; }
-        
+
         [JsonPropertyName("quality-level-2")]
         public required string QualityLevel2 { get; init; }
-        
+
         [JsonPropertyName("quality-level-3")]
         public required string QualityLevel3 { get; init; }
 

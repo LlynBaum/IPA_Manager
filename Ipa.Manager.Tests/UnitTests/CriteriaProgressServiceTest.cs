@@ -26,7 +26,7 @@ public class CriteriaProgressServiceTest
     public async Task CreateAsync_CreatesCriteriaProgress_ForeachGivenCriteriaId()
     {
         contextMock.Setup(c => c.CriteriaProgress).ReturnsDbSet([]);
-        
+
         await service.CreateAsync(1, ["1", "2"]);
 
         contextMock.Verify(
@@ -65,7 +65,7 @@ public class CriteriaProgressServiceTest
             ]);
 
         var result = await service.GetByProject(1);
-        
+
         Assert.That(result, Has.Count.EqualTo(1));
         Assert.Multiple(() =>
         {
@@ -98,7 +98,7 @@ public class CriteriaProgressServiceTest
             ]);
 
         var result = await service.GetById(1);
-        
+
         Assert.That(result, Is.Not.Null);
         Assert.Multiple(() =>
         {

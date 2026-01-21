@@ -3,7 +3,7 @@
 public interface IStaticCriteriaService
 {
     IReadOnlyList<Criteria> GetAll();
-    
+
     Criteria GetById(string id);
 
     IReadOnlyList<Criteria> GetAllById(IEnumerable<string> ids);
