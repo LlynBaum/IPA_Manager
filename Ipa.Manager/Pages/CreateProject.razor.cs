@@ -30,13 +30,13 @@ public partial class CreateProject(
     private IEnumerable<IGrouping<string, Criteria>> GetGroupedCriteria()
     {
         if (availableCriteria == null) return [];
-            
+
         var filtered = availableCriteria;
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            filtered = filtered.Where(c => 
-                c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+            filtered = filtered.Where(c =>
+                c.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                 c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                 c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
         }

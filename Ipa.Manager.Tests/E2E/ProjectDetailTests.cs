@@ -58,7 +58,7 @@ public class ProjectDetailTests : PlaywrightTestBase
 
         var notesArea = Page.Locator("textarea");
         await notesArea.FillAsync("Updated Note Content");
-        
+
         // Trigger change event (blur)
         await notesArea.BlurAsync();
 
@@ -75,12 +75,12 @@ public class ProjectDetailTests : PlaywrightTestBase
         await Page.GotoSaveAsync(BaseUrl + $"project/{project.Id}");
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Edit" }).ClickAsync();
-        
+
         await Page.Locator("input[type='text']").First.FillAsync("Renamed Project");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Save Changes" }).ClickAsync();
 
         await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Renamed Project" })).ToBeVisibleAsync();
-        
+
         // Verify DB
         Db.ChangeTracker.Clear();
         var updatedProject = Db.Projects.Find(project.Id);

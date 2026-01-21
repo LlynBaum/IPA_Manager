@@ -39,7 +39,7 @@ public class HomeTests : PlaywrightTestBase
             CreatedAt = DateTime.UtcNow
         };
         await Db.Projects.AddAsync(project);
-        
+
         // Add some criteria progress
         await Db.CriteriaProgress.AddAsync(new CriteriaProgress
         {
@@ -56,7 +56,7 @@ public class HomeTests : PlaywrightTestBase
         await Expect(Page.GetByText("My Existing Project")).ToBeVisibleAsync();
         await Expect(Page.GetByText("C# Mastery")).ToBeVisibleAsync();
         await Expect(Page.GetByText("1 criteria")).ToBeVisibleAsync();
-        
+
         // Verify total count in header
         await Expect(Page.GetByText("1 project in total")).ToBeVisibleAsync();
     }
@@ -86,7 +86,7 @@ public class HomeTests : PlaywrightTestBase
 
         // Verify it's gone
         await Expect(Page.GetByText("To Be Deleted")).Not.ToBeVisibleAsync();
-        
+
         // Verify DB
         Assert.That(Db.Projects.Any(p => p.Id == project.Id), Is.False);
     }
@@ -119,7 +119,7 @@ public class HomeTests : PlaywrightTestBase
         });
 
         Assert.That(response.Status, Is.EqualTo(200).Or.EqualTo(302)); // Redirect or OK
-        
+
         return user;
     }
 }

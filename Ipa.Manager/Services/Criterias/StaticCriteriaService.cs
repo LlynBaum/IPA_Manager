@@ -49,13 +49,13 @@ public class StaticCriteriaService : IStaticCriteriaService
         // Keep ordered list for GetAll() to preserve JSON order
         orderedCriteria = criteriaList
             .SelectMany(section => section.Criteria.Select(c => new Criteria(
-                c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), 
-                c.Name, 
-                c.Description, 
+                c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."),
+                c.Name,
+                c.Description,
                 section.Section,
                 c.QualityLevels)))
             .ToList();
-        
+
         // Dictionary for fast lookups by ID
         criteriaMap = orderedCriteria.ToFrozenDictionary(c => c.Id, c => c);
     }

@@ -74,7 +74,7 @@ public partial class ProjectDetail(
 
         totalPoints = criteriaList.Sum(c => c.CriteriaProgress.FulfilledRequirementIds.DefaultIfEmpty(0).Max());
         maxPoints = criteriaList.Count * 3;
-        
+
         if (maxPoints > 0)
         {
             currentGrade = Math.Round(((double)totalPoints / maxPoints) * 5 + 1, 1);
@@ -142,7 +142,7 @@ public partial class ProjectDetail(
 
         context.Projects.Update(project);
         await context.SaveChangesAsync();
-        
+
         isEditing = false;
     }
 
@@ -151,7 +151,7 @@ public partial class ProjectDetail(
         if (project is null) return;
 
         bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this project? This action cannot be undone.");
-        
+
         if (confirmed)
         {
             context.Projects.Remove(project);
@@ -163,7 +163,7 @@ public partial class ProjectDetail(
     private async Task ResetAllProgress()
     {
         bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to reset all progress? All checkboxes will be unchecked.");
-        
+
         if (confirmed)
         {
             foreach (var item in criteriaList)
@@ -248,7 +248,7 @@ public partial class ProjectDetail(
         // Reload data
         criteriaList = await criteriaProgressService.GetByProject(Id);
         CalculateGrade();
-        
+
         showCriteriaModal = false;
     }
 }

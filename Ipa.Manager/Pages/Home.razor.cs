@@ -16,9 +16,9 @@ public partial class Home(
 {
     [CascadingParameter]
     public required UserContext UserContext { get; set; }
-    
+
     private IReadOnlyList<Project> projects = [];
-    
+
     protected override async Task OnInitializedAsync()
     {
         await LoadProjects();
@@ -40,7 +40,7 @@ public partial class Home(
     private async Task DeleteProject(Project project)
     {
         bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{project.Name}'?");
-        
+
         if (confirmed)
         {
             context.Projects.Remove(project);

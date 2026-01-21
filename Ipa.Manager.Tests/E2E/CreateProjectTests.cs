@@ -20,7 +20,7 @@ public class CreateProjectTests : PlaywrightTestBase
         await CreateUserAndLoginAsync();
 
         await Page.GotoSaveAsync(BaseUrl + "create-project");
-        
+
         // Fill in the form
         await Page.GetByPlaceholder("Enter IPA name").FillAsync("My Awesome IPA");
         await Page.GetByPlaceholder("Enter topic").FillAsync("Web Development with Blazor");
@@ -44,7 +44,7 @@ public class CreateProjectTests : PlaywrightTestBase
         {
             Assert.That(project.Name, Is.EqualTo("My Awesome IPA"));
             Assert.That(project.Topic, Is.EqualTo("Web Development with Blazor"));
-            Assert.That(project.UserId, Is.Not.Zero); 
+            Assert.That(project.UserId, Is.Not.Zero);
         });
 
         // Verify Criteria Progress
@@ -59,14 +59,14 @@ public class CreateProjectTests : PlaywrightTestBase
         await CreateUserAndLoginAsync();
 
         await Page.GotoSaveAsync(BaseUrl + "create-project");
-        
+
         // Submit without filling anything
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Project" }).ClickAsync();
 
         // Expect validation messages
         await Expect(Page.GetByText("The Name field is required.")).ToBeVisibleAsync();
         await Expect(Page.GetByText("The Topic field is required.")).ToBeVisibleAsync();
-        
+
         // Verify no project created
         Assert.That(Db.Projects.Count(), Is.EqualTo(0));
     }
