@@ -78,7 +78,7 @@
                                         <span class="criteria-desc">@criteria.Description</span>
                                             
                                         <div class="quality-levels">
-                                            @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                            @for (int i = criteria.QualityLevels.Count - 1; i >= 0; i--)
                                             {
                                                 <div class="quality-level">
                                                     <span class="level-badge level-@i">Level @i</span>
@@ -95,6 +95,11 @@
             </div>
         </div>
 
+        <div class="form-footer">
+            <button type="submit" class="submit-button" disabled="@isSubmitting">
+                Create Project
+            </button>
+        </div>
     </EditForm>
 </div>
 

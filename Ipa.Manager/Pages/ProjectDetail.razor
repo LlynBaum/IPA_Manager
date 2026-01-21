@@ -178,7 +178,7 @@ else
                                             <span class="criteria-modal-desc">@criteria.Description</span>
                                             
                                             <div class="modal-quality-levels">
-                                                @for (var i = 0; i < criteria.QualityLevels.Count; i++)
+                                                @for (int i = criteria.QualityLevels.Count - 1; i >= 0; i--)
                                                 {
                                                     <div class="modal-quality-level">
                                                         <span class="modal-level-badge level-@i">Level @i</span>

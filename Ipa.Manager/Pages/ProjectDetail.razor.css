@@ -311,7 +311,9 @@
 .level-text {
     font-size: var(--font-size-base);
     color: var(--text-primary);
-    line-height: var(--line-height-normal);
+    line-height: var(--line-height-relaxed);
+    white-space: pre-line;
+    display: block;
 }
 
 .notes-section {
@@ -605,7 +607,9 @@
 .modal-level-text {
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
-    line-height: var(--line-height-normal);
+    line-height: var(--line-height-relaxed);
+    white-space: pre-line;
+    display: block;
 }
 
 .modal-footer {
