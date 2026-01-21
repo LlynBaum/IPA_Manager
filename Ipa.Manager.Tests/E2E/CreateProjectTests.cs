@@ -31,8 +31,8 @@ public class CreateProjectTests : PlaywrightTestBase
         await Page.Locator(".criteria-item").Filter(new() { HasText = "A01" }).GetByRole(AriaRole.Checkbox).CheckAsync();
         await Page.Locator(".criteria-item").Filter(new() { HasText = "A02" }).GetByRole(AriaRole.Checkbox).CheckAsync();
 
-        // Submit
-        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Project" }).ClickAsync();
+        // Submit (use header button - there are two: one in header, one at bottom)
+        await Page.Locator(".form-header").GetByRole(AriaRole.Button, new() { Name = "Create Project" }).ClickAsync();
 
         // Expect redirection to Home
         await Expect(Page).ToHaveURLAsync(BaseUrl);
@@ -60,8 +60,8 @@ public class CreateProjectTests : PlaywrightTestBase
 
         await Page.GotoSaveAsync(BaseUrl + "create-project");
 
-        // Submit without filling anything
-        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Project" }).ClickAsync();
+        // Submit without filling anything (use first button - there are two: one in header, one at bottom)
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Create Project" }).First.ClickAsync();
 
         // Expect validation messages
         await Expect(Page.GetByText("The Name field is required.")).ToBeVisibleAsync();
