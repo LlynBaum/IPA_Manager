@@ -41,4 +41,10 @@ public class CriteriaProgressService(ApplicationDbContext context, IStaticCriter
             ? new ProjectCriteria(criteriaProgress, staticCriteria.GetById(criteriaProgress.CriteriaId))
             : null;
     }
+
+    public async Task UpdateAsync(CriteriaProgress criteriaProgress)
+    {
+        context.CriteriaProgress.Update(criteriaProgress);
+        await context.SaveChangesAsync();
+    }
 }

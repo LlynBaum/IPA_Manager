@@ -116,3 +116,25 @@ a.nav-link:focus {
     color: inherit !important;
     text-decoration: none !important;
 }
+
+/* Logout button styling */
+.nav-link-logout {
+    display: inline-flex !important;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--error-light) !important;
+    border-color: var(--error-border) !important;
+    color: var(--error-color) !important;
+}
+
+.nav-link-logout:hover {
+    background-color: var(--error-bg) !important;
+    border-color: var(--error-color) !important;
+    color: var(--error-color) !important;
+}
+
+.nav-link-logout svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}

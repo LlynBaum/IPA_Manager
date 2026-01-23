@@ -7,10 +7,11 @@ namespace Ipa.Manager.Services.Criterias;
 public class StaticCriteriaService : IStaticCriteriaService
 {
     private FrozenDictionary<string, Criteria> criteriaMap = null!;
+    private IReadOnlyList<Criteria> orderedCriteria = null!;
 
     public IReadOnlyList<Criteria> GetAll()
     {
-        return criteriaMap.Values;
+        return orderedCriteria;
     }
 
     public Criteria GetById(string id)
@@ -45,10 +46,18 @@ public class StaticCriteriaService : IStaticCriteriaService
             throw new InvalidOperationException("Invalid criteria file.");
         }
 
-        criteriaMap = criteriaList
-            .SelectMany(c => c.Criteria)
-            .Select(c => new Criteria(c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."), c.Name, c.Description, c.QualityLevels))
-            .ToFrozenDictionary(c => c.Id, c => c);
+        // Keep ordered list for GetAll() to preserve JSON order
+        orderedCriteria = criteriaList
+            .SelectMany(section => section.Criteria.Select(c => new Criteria(
+                c.Id ?? throw new InvalidOperationException("Criteria Json is in wrong format."),
+                c.Name,
+                c.Description,
+                section.Section,
+                c.QualityLevels)))
+            .ToList();
+
+        // Dictionary for fast lookups by ID
+        criteriaMap = orderedCriteria.ToFrozenDictionary(c => c.Id, c => c);
     }
 
     private record CriteriaSection

@@ -45,7 +45,7 @@ public class CriteriaProgressServiceTest
     public async Task GetByProject_ReturnsExpectedProjectCriterias()
     {
         staticCriteriaServiceMock.Setup(s => s.GetById(It.IsAny<string>()))
-            .Returns(() => new Criteria("1", "1", "1", ["1"]));
+            .Returns(() => new Criteria("1", "1", "1", "Section", ["1"]));
 
         contextMock
             .Setup(c => c.CriteriaProgress)
@@ -78,7 +78,7 @@ public class CriteriaProgressServiceTest
     public async Task GetById_ReturnsExpectedCriteria()
     {
         staticCriteriaServiceMock.Setup(s => s.GetById(It.IsAny<string>()))
-            .Returns(() => new Criteria("1", "1", "1", ["1"]));
+            .Returns(() => new Criteria("1", "1", "1", "Section", ["1"]));
 
         contextMock
             .Setup(c => c.CriteriaProgress)
