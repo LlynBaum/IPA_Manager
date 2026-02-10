@@ -1,7 +1,5 @@
 @page "/project/{Id:int}"
 
-<PageTitle>@(project?.Name ?? "Project Details")</PageTitle>
-
 @if (project is null)
 {
     <div class="loading-state">Loading...</div>
