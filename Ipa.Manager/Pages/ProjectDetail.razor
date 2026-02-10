@@ -1,7 +1,5 @@
 @page "/project/{Id:int}"
 
-<PageTitle>@(project?.Name ?? "Project Details")</PageTitle>
-
 @if (project is null)
 {
     <div class="loading-state">Loading...</div>
@@ -79,7 +77,7 @@ else
                             <p class="criteria-description">@item.Criteria.Description</p>
 
                             <div class="quality-levels">
-                                @for (int i = item.Criteria.QualityLevels.Count - 1; i >= 0; i--)
+                                @for (var i = item.Criteria.QualityLevels.Count - 1; i >= 0; i--)
                                 {
                                     var index = i;
                                     var level = item.Criteria.QualityLevels[i];
@@ -178,7 +176,7 @@ else
                                             <span class="criteria-modal-desc">@criteria.Description</span>
                                             
                                             <div class="modal-quality-levels">
-                                                @for (int i = criteria.QualityLevels.Count - 1; i >= 0; i--)
+                                                @for (var i = criteria.QualityLevels.Count - 1; i >= 0; i--)
                                                 {
                                                     <div class="modal-quality-level">
                                                         <span class="modal-level-badge level-@i">Level @i</span>

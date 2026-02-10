@@ -456,7 +456,7 @@
 }
 
 .search-input {
-    width: 100%;
+    width: calc(100% - var(--spacing-md));
     padding: var(--spacing-sm) var(--spacing-md);
     border: 1px solid var(--input-border);
     border-radius: var(--radius-md);

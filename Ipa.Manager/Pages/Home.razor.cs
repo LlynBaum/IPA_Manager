@@ -39,7 +39,7 @@ public partial class Home(
 
     private async Task DeleteProject(Project project)
     {
-        bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{project.Name}'?");
+        var confirmed = await jsRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{project.Name}'?");
 
         if (confirmed)
         {

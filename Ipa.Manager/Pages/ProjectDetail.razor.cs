@@ -87,7 +87,7 @@ public partial class ProjectDetail(
 
     private async Task ToggleRequirement(ProjectCriteria item, int requirementIndex)
     {
-        bool isChecking = !item.CriteriaProgress.FulfilledRequirementIds.Contains(requirementIndex);
+        var isChecking = !item.CriteriaProgress.FulfilledRequirementIds.Contains(requirementIndex);
 
         if (isChecking)
         {
@@ -103,7 +103,7 @@ public partial class ProjectDetail(
         else
         {
             // Uncheck this level and all levels above it
-            for (int i = requirementIndex; i < item.Criteria.QualityLevels.Count; i++)
+            for (var i = requirementIndex; i < item.Criteria.QualityLevels.Count; i++)
             {
                 if (item.CriteriaProgress.FulfilledRequirementIds.Contains(i))
                 {
@@ -150,7 +150,7 @@ public partial class ProjectDetail(
     {
         if (project is null) return;
 
-        bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this project? This action cannot be undone.");
+        var confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this project? This action cannot be undone.");
 
         if (confirmed)
         {
@@ -162,7 +162,7 @@ public partial class ProjectDetail(
 
     private async Task ResetAllProgress()
     {
-        bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to reset all progress? All checkboxes will be unchecked.");
+        var confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to reset all progress? All checkboxes will be unchecked.");
 
         if (confirmed)
         {
@@ -190,13 +190,9 @@ public partial class ProjectDetail(
 
     private void ToggleCriteriaSelection(string criteriaId)
     {
-        if (selectedCriteriaIds.Contains(criteriaId))
+        if (!selectedCriteriaIds.Add(criteriaId))
         {
             selectedCriteriaIds.Remove(criteriaId);
-        }
-        else
-        {
-            selectedCriteriaIds.Add(criteriaId);
         }
     }
 
